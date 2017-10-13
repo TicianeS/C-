@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CallcenterModel.Store" Provider="Npgsql" ProviderManifestToken="9.5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+          <Property Name="ativo" Type="bool" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'horario' in the table 'Callcenter.public.divfuncionario' was excluded.-->
+        <EntityType Name="divfuncionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="funcionario_id" Type="int4" Nullable="false" />
+          <Property Name="divisao_id" Type="int4" Nullable="false" />
+          <Property Name="supervisor_id" Type="int4" Nullable="false" />
+          <Property Name="cidade" Type="varchar" MaxLength="80" />
+          <Property Name="ativo" Type="bool" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="divisoes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="sigla" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ativo" Type="bool" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ferias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pretensoes" Type="int4" />
+          <Property Name="per1_inicio" Type="date" />
+          <Property Name="per1_fim" Type="date" />
+          <Property Name="per2_inicio" Type="date" />
+          <Property Name="per2_fim" Type="date" />
+          <Property Name="ativo" Type="bool" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+          <Property Name="situacao" Type="varchar" MaxLength="80" />
+          <Property Name="observacoes" Type="varchar" MaxLength="120" />
+          <Property Name="status" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="registro" Type="int4" />
+          <Property Name="nome" Type="text" Nullable="false" />
+          <Property Name="nascimento" Type="date" />
+          <Property Name="per_aquisitivo" Type="date" />
+          <Property Name="endereco" Type="varchar" MaxLength="100" />
+          <Property Name="numero" Type="varchar" MaxLength="8" />
+          <Property Name="complemento" Type="varchar" MaxLength="20" />
+          <Property Name="cidade" Type="varchar" MaxLength="40" />
+          <Property Name="bairro" Type="varchar" MaxLength="40" />
+          <Property Name="cep" Type="varchar" MaxLength="10" />
+          <Property Name="telefone1" Type="varchar" MaxLength="20" />
+          <Property Name="telefone2" Type="varchar" MaxLength="20" />
+          <Property Name="telefone3" Type="varchar" MaxLength="20" />
+          <Property Name="id_cargo" Type="int4" />
+          <Property Name="cadastro" Type="date" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="ativo" Type="bool" />
+        </EntityType>
+        <EntityType Name="pretensoes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_divfuncionarios" Type="int4" Nullable="false" />
+          <Property Name="ano" Type="int4" />
+          <Property Name="per1_op1_inicio" Type="date" />
+          <Property Name="per1_op1_fim" Type="date" />
+          <Property Name="per1_op2_inicio" Type="date" />
+          <Property Name="per1_op2_fim" Type="date" />
+          <Property Name="per1_op3_inicio" Type="date" />
+          <Property Name="per1_op3_fim" Type="date" />
+          <Property Name="per2_op1_inicio" Type="date" />
+          <Property Name="per2_op1_fim" Type="date" />
+          <Property Name="per2_op2_inicio" Type="date" />
+          <Property Name="per2_op2_fim" Type="date" />
+          <Property Name="per2_op3_inicio" Type="date" />
+          <Property Name="per2_op3_fim" Type="date" />
+          <Property Name="ativo" Type="bool" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_funcionario" Type="int4" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ativo" Type="bool" />
+          <Property Name="alterado" Type="varchar" MaxLength="80" />
+          <Property Name="cadastro" Type="date" Nullable="false" />
+          <Property Name="perfil" Type="varchar" MaxLength="80" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vagas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mes" Type="int4" />
+          <Property Name="ano" Type="int4" />
+          <Property Name="turno" Type="varchar" MaxLength="10" />
+          <Property Name="id_cargo" Type="int4" />
+        </EntityType>
+        <Association Name="cargo">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="funcionarios">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cargo1">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="vagas" Type="Self.vagas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vagas">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="divfuncionario1">
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="1" />
+          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="divfuncionario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pretensoes">
+              <PropertyRef Name="id_divfuncionarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="divisao">
+          <End Role="divisoes" Type="Self.divisoes" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="divisoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="divisao_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_Funcionario">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="funcionario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pretensoes">
+          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="0..1" />
+          <End Role="ferias" Type="Self.ferias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pretensoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ferias">
+              <PropertyRef Name="id_pretensoes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_Supervisor">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CallcenterModelStoreContainer">
+          <EntitySet Name="cargos" EntityType="Self.cargos" Schema="public" store:Type="Tables" />
+          <EntitySet Name="divfuncionario" EntityType="Self.divfuncionario" Schema="public" store:Type="Tables" />
+          <EntitySet Name="divisoes" EntityType="Self.divisoes" Schema="public" store:Type="Tables" />
+          <EntitySet Name="ferias" EntityType="Self.ferias" Schema="public" store:Type="Tables" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" Schema="public" store:Type="Tables" />
+          <EntitySet Name="pretensoes" EntityType="Self.pretensoes" Schema="public" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="public" store:Type="Tables" />
+          <EntitySet Name="vagas" EntityType="Self.vagas" Schema="public" store:Type="Tables" />
+          <AssociationSet Name="cargo" Association="Self.cargo">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="funcionarios" EntitySet="funcionarios" />
+          </AssociationSet>
+          <AssociationSet Name="cargo1" Association="Self.cargo1">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="vagas" EntitySet="vagas" />
+          </AssociationSet>
+          <AssociationSet Name="divfuncionario1" Association="Self.divfuncionario1">
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+            <End Role="pretensoes" EntitySet="pretensoes" />
+          </AssociationSet>
+          <AssociationSet Name="divisao" Association="Self.divisao">
+            <End Role="divisoes" EntitySet="divisoes" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario" Association="Self.funcionario">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="Id_Funcionario" Association="Self.Id_Funcionario">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="id_pretensoes" Association="Self.id_pretensoes">
+            <End Role="pretensoes" EntitySet="pretensoes" />
+            <End Role="ferias" EntitySet="ferias" />
+          </AssociationSet>
+          <AssociationSet Name="Id_Supervisor" Association="Self.Id_Supervisor">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CallcenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cargos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="funcionarios" Relationship="Self.cargo" FromRole="cargos" ToRole="funcionarios" />
+          <NavigationProperty Name="vagas" Relationship="Self.cargo1" FromRole="cargos" ToRole="vagas" />
+        </EntityType>
+        <EntityType Name="divfuncionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="funcionario_id" Type="Int32" Nullable="false" />
+          <Property Name="divisao_id" Type="Int32" Nullable="false" />
+          <Property Name="supervisor_id" Type="Int32" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ativo" Type="Boolean" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="pretensoes" Relationship="Self.divfuncionario1" FromRole="divfuncionario" ToRole="pretensoes" />
+          <NavigationProperty Name="divisoes" Relationship="Self.divisao" FromRole="divfuncionario" ToRole="divisoes" />
+          <NavigationProperty Name="funcionarios" Relationship="Self.Id_Funcionario" FromRole="divfuncionario" ToRole="funcionarios" />
+          <NavigationProperty Name="funcionarios1" Relationship="Self.Id_Supervisor" FromRole="divfuncionario" ToRole="funcionarios" />
+        </EntityType>
+        <EntityType Name="Divisao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sigla" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="divfuncionario" Relationship="Self.divisao" FromRole="divisoes" ToRole="divfuncionario" />
+        </EntityType>
+        <EntityType Name="ferias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pretensoes" Type="Int32" />
+          <Property Name="per1_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per1_fim" Type="DateTime" Precision="0" />
+          <Property Name="per2_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per2_fim" Type="DateTime" Precision="0" />
+          <Property Name="ativo" Type="Boolean" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="situacao" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="observacoes" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="pretensoes" Relationship="Self.id_pretensoes" FromRole="ferias" ToRole="pretensoes" />
+        </EntityType>
+        <EntityType Name="funcionarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="registro" Type="Int32" />
+          <Property Name="nome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nascimento" Type="DateTime" Precision="0" />
+          <Property Name="per_aquisitivo" Type="DateTime" Precision="0" />
+          <Property Name="endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="numero" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cidade" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="cep" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="telefone1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="telefone2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="telefone3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="id_cargo" Type="Int32" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="cargos" Relationship="Self.cargo" FromRole="funcionarios" ToRole="cargos" />
+          <NavigationProperty Name="divfuncionario" Relationship="Self.Id_Funcionario" FromRole="funcionarios" ToRole="divfuncionario" />
+          <NavigationProperty Name="divfuncionario1" Relationship="Self.Id_Supervisor" FromRole="funcionarios" ToRole="divfuncionario" />
+          <NavigationProperty Name="usuarios" Relationship="Self.funcionario" FromRole="funcionarios" ToRole="usuarios" />
+        </EntityType>
+        <EntityType Name="pretensoes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_divfuncionarios" Type="Int32" Nullable="false" />
+          <Property Name="ano" Type="Int32" />
+          <Property Name="per1_op1_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per1_op1_fim" Type="DateTime" Precision="0" />
+          <Property Name="per1_op2_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per1_op2_fim" Type="DateTime" Precision="0" />
+          <Property Name="per1_op3_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per1_op3_fim" Type="DateTime" Precision="0" />
+          <Property Name="per2_op1_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per2_op1_fim" Type="DateTime" Precision="0" />
+          <Property Name="per2_op2_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per2_op2_fim" Type="DateTime" Precision="0" />
+          <Property Name="per2_op3_inicio" Type="DateTime" Precision="0" />
+          <Property Name="per2_op3_fim" Type="DateTime" Precision="0" />
+          <Property Name="ativo" Type="Boolean" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <NavigationProperty Name="divfuncionario" Relationship="Self.divfuncionario1" FromRole="pretensoes" ToRole="divfuncionario" />
+          <NavigationProperty Name="ferias" Relationship="Self.id_pretensoes" FromRole="pretensoes" ToRole="ferias" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ativo" Type="Boolean" />
+          <Property Name="alterado" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="cadastro" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="perfil" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="funcionarios" Relationship="Self.funcionario" FromRole="usuarios" ToRole="funcionarios" />
+        </EntityType>
+        <EntityType Name="vagas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mes" Type="Int32" />
+          <Property Name="ano" Type="Int32" />
+          <Property Name="turno" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="id_cargo" Type="Int32" />
+          <NavigationProperty Name="cargos" Relationship="Self.cargo1" FromRole="vagas" ToRole="cargos" />
+        </EntityType>
+        <Association Name="cargo">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="funcionarios">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cargo1">
+          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
+          <End Role="vagas" Type="Self.vagas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cargos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vagas">
+              <PropertyRef Name="id_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="divfuncionario1">
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="1" />
+          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="divfuncionario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pretensoes">
+              <PropertyRef Name="id_divfuncionarios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="divisao">
+          <End Role="divisoes" Type="CallcenterModel.Divisao" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="divisoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="divisao_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_Funcionario">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="funcionario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_Supervisor">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="divfuncionario">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pretensoes">
+          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="0..1" />
+          <End Role="ferias" Type="Self.ferias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pretensoes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ferias">
+              <PropertyRef Name="id_pretensoes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="funcionario">
+          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
+          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="funcionarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuarios">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CallcenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cargos" EntityType="Self.cargos" />
+          <EntitySet Name="divfuncionario" EntityType="Self.divfuncionario" />
+          <EntitySet Name="divisoes" EntityType="CallcenterModel.Divisao" />
+          <EntitySet Name="ferias" EntityType="Self.ferias" />
+          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
+          <EntitySet Name="pretensoes" EntityType="Self.pretensoes" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <EntitySet Name="vagas" EntityType="Self.vagas" />
+          <AssociationSet Name="cargo" Association="Self.cargo">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="funcionarios" EntitySet="funcionarios" />
+          </AssociationSet>
+          <AssociationSet Name="cargo1" Association="Self.cargo1">
+            <End Role="cargos" EntitySet="cargos" />
+            <End Role="vagas" EntitySet="vagas" />
+          </AssociationSet>
+          <AssociationSet Name="divfuncionario1" Association="Self.divfuncionario1">
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+            <End Role="pretensoes" EntitySet="pretensoes" />
+          </AssociationSet>
+          <AssociationSet Name="divisao" Association="Self.divisao">
+            <End Role="divisoes" EntitySet="divisoes" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="Id_Funcionario" Association="Self.Id_Funcionario">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="Id_Supervisor" Association="Self.Id_Supervisor">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="divfuncionario" EntitySet="divfuncionario" />
+          </AssociationSet>
+          <AssociationSet Name="id_pretensoes" Association="Self.id_pretensoes">
+            <End Role="pretensoes" EntitySet="pretensoes" />
+            <End Role="ferias" EntitySet="ferias" />
+          </AssociationSet>
+          <AssociationSet Name="funcionario" Association="Self.funcionario">
+            <End Role="funcionarios" EntitySet="funcionarios" />
+            <End Role="usuarios" EntitySet="usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CallcenterModelStoreContainer" CdmEntityContainer="CallcenterEntities">
+          <EntitySetMapping Name="cargos">
+            <EntityTypeMapping TypeName="CallcenterModel.cargos">
+              <MappingFragment StoreEntitySet="cargos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="divfuncionario">
+            <EntityTypeMapping TypeName="CallcenterModel.divfuncionario">
+              <MappingFragment StoreEntitySet="divfuncionario">
+                <ScalarProperty Name="funcionario_id" ColumnName="funcionario_id" />
+                <ScalarProperty Name="divisao_id" ColumnName="divisao_id" />
+                <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="divisoes">
+            <EntityTypeMapping TypeName="CallcenterModel.Divisao">
+              <MappingFragment StoreEntitySet="divisoes">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="sigla" ColumnName="sigla" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ferias">
+            <EntityTypeMapping TypeName="CallcenterModel.ferias">
+              <MappingFragment StoreEntitySet="ferias">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pretensoes" ColumnName="id_pretensoes" />
+                <ScalarProperty Name="per1_inicio" ColumnName="per1_inicio" />
+                <ScalarProperty Name="per1_fim" ColumnName="per1_fim" />
+                <ScalarProperty Name="per2_inicio" ColumnName="per2_inicio" />
+                <ScalarProperty Name="per2_fim" ColumnName="per2_fim" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="situacao" ColumnName="situacao" />
+                <ScalarProperty Name="observacoes" ColumnName="observacoes" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="funcionarios">
+            <EntityTypeMapping TypeName="CallcenterModel.funcionarios">
+              <MappingFragment StoreEntitySet="funcionarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="registro" ColumnName="registro" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="nascimento" ColumnName="nascimento" />
+                <ScalarProperty Name="per_aquisitivo" ColumnName="per_aquisitivo" />
+                <ScalarProperty Name="endereco" ColumnName="endereco" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="telefone1" ColumnName="telefone1" />
+                <ScalarProperty Name="telefone2" ColumnName="telefone2" />
+                <ScalarProperty Name="telefone3" ColumnName="telefone3" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pretensoes">
+            <EntityTypeMapping TypeName="CallcenterModel.pretensoes">
+              <MappingFragment StoreEntitySet="pretensoes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_divfuncionarios" ColumnName="id_divfuncionarios" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="per1_op1_inicio" ColumnName="per1_op1_inicio" />
+                <ScalarProperty Name="per1_op1_fim" ColumnName="per1_op1_fim" />
+                <ScalarProperty Name="per1_op2_inicio" ColumnName="per1_op2_inicio" />
+                <ScalarProperty Name="per1_op2_fim" ColumnName="per1_op2_fim" />
+                <ScalarProperty Name="per1_op3_inicio" ColumnName="per1_op3_inicio" />
+                <ScalarProperty Name="per1_op3_fim" ColumnName="per1_op3_fim" />
+                <ScalarProperty Name="per2_op1_inicio" ColumnName="per2_op1_inicio" />
+                <ScalarProperty Name="per2_op1_fim" ColumnName="per2_op1_fim" />
+                <ScalarProperty Name="per2_op2_inicio" ColumnName="per2_op2_inicio" />
+                <ScalarProperty Name="per2_op2_fim" ColumnName="per2_op2_fim" />
+                <ScalarProperty Name="per2_op3_inicio" ColumnName="per2_op3_inicio" />
+                <ScalarProperty Name="per2_op3_fim" ColumnName="per2_op3_fim" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="CallcenterModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="alterado" ColumnName="alterado" />
+                <ScalarProperty Name="cadastro" ColumnName="cadastro" />
+                <ScalarProperty Name="perfil" ColumnName="perfil" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vagas">
+            <EntityTypeMapping TypeName="CallcenterModel.vagas">
+              <MappingFragment StoreEntitySet="vagas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="turno" ColumnName="turno" />
+                <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
