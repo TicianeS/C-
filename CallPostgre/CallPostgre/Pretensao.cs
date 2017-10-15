@@ -12,12 +12,12 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class pretensoes
+    public partial class Pretensao
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public pretensoes()
+        public Pretensao()
         {
-            this.ferias = new HashSet<ferias>();
+            this.ferias = new HashSet<Ferias>();
         }
     
         public int id { get; set; }
@@ -39,8 +39,8 @@ namespace CallPostgre
         public string alterado { get; set; }
         public System.DateTime cadastro { get; set; }
     
-        public virtual divfuncionario divfuncionario { get; set; }
+        public virtual Departamento divfuncionario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ferias> ferias { get; set; }
+        public virtual ICollection<Ferias> ferias { get; set; }
     }
 }

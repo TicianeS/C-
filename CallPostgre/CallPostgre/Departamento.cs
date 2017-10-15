@@ -12,12 +12,12 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class divfuncionario
+    public partial class Departamento
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public divfuncionario()
+        public Departamento()
         {
-            this.pretensoes = new HashSet<pretensoes>();
+            this.pretensoes = new HashSet<Pretensao>();
         }
     
         public int funcionario_id { get; set; }
@@ -30,9 +30,9 @@ namespace CallPostgre
         public int id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pretensoes> pretensoes { get; set; }
+        public virtual ICollection<Pretensao> pretensoes { get; set; }
         public virtual Divisao divisoes { get; set; }
-        public virtual funcionarios funcionarios { get; set; }
-        public virtual funcionarios funcionarios1 { get; set; }
+        public virtual Funcionario funcionarios { get; set; }
+        public virtual Funcionario funcionarios1 { get; set; }
     }
 }

@@ -25,13 +25,13 @@ namespace CallPostgre
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<cargos> cargos { get; set; }
-        public virtual DbSet<divfuncionario> divfuncionario { get; set; }
+        public virtual DbSet<Cargo> cargos { get; set; }
+        public virtual DbSet<Departamento> divfuncionario { get; set; }
         public virtual DbSet<Divisao> divisoes { get; set; }
-        public virtual DbSet<ferias> ferias { get; set; }
-        public virtual DbSet<funcionarios> funcionarios { get; set; }
-        public virtual DbSet<pretensoes> pretensoes { get; set; }
-        public virtual DbSet<usuarios> usuarios { get; set; }
-        public virtual DbSet<vagas> vagas { get; set; }
+        public virtual DbSet<Ferias> ferias { get; set; }
+        public virtual DbSet<Funcionario> funcionarios { get; set; }
+        public virtual DbSet<Pretensao> pretensoes { get; set; }
+        public virtual DbSet<Usuario> usuarios { get; set; }
+        public virtual DbSet<Vaga> vagas { get; set; }
     }
 }

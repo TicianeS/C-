@@ -12,7 +12,7 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class usuarios
+    public partial class Usuario
     {
         public int id_funcionario { get; set; }
         public string senha { get; set; }
@@ -22,6 +22,6 @@ namespace CallPostgre
         public string perfil { get; set; }
         public int id { get; set; }
     
-        public virtual funcionarios funcionarios { get; set; }
+        public virtual Funcionario funcionarios { get; set; }
     }
 }

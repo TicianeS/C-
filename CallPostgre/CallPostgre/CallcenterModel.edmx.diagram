@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="66d5996f7ae04ebaa5ae0e6c141de939" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="CallcenterModel.cargos" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.divfuncionario" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Cargo" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Departamento" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CallcenterModel.Divisao" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.ferias" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.funcionarios" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.pretensoes" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.usuarios" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CallcenterModel.vagas" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Ferias" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Funcionario" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Pretensao" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Usuario" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CallcenterModel.Vaga" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
         <AssociationConnector Association="CallcenterModel.cargo" ManuallyRouted="false" />
         <AssociationConnector Association="CallcenterModel.cargo1" ManuallyRouted="false" />
         <AssociationConnector Association="CallcenterModel.divfuncionario1" ManuallyRouted="false" />

@@ -268,7 +268,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CallcenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="cargos">
+        <EntityType Name="Cargo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -280,7 +280,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <NavigationProperty Name="funcionarios" Relationship="Self.cargo" FromRole="cargos" ToRole="funcionarios" />
           <NavigationProperty Name="vagas" Relationship="Self.cargo1" FromRole="cargos" ToRole="vagas" />
         </EntityType>
-        <EntityType Name="divfuncionario">
+        <EntityType Name="Departamento">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -309,7 +309,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="divfuncionario" Relationship="Self.divisao" FromRole="divisoes" ToRole="divfuncionario" />
         </EntityType>
-        <EntityType Name="ferias">
+        <EntityType Name="Ferias">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -327,7 +327,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <Property Name="status" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="pretensoes" Relationship="Self.id_pretensoes" FromRole="ferias" ToRole="pretensoes" />
         </EntityType>
-        <EntityType Name="funcionarios">
+        <EntityType Name="Funcionario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -354,7 +354,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <NavigationProperty Name="divfuncionario1" Relationship="Self.Id_Supervisor" FromRole="funcionarios" ToRole="divfuncionario" />
           <NavigationProperty Name="usuarios" Relationship="Self.funcionario" FromRole="funcionarios" ToRole="usuarios" />
         </EntityType>
-        <EntityType Name="pretensoes">
+        <EntityType Name="Pretensao">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -379,7 +379,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <NavigationProperty Name="divfuncionario" Relationship="Self.divfuncionario1" FromRole="pretensoes" ToRole="divfuncionario" />
           <NavigationProperty Name="ferias" Relationship="Self.id_pretensoes" FromRole="pretensoes" ToRole="ferias" />
         </EntityType>
-        <EntityType Name="usuarios">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -392,7 +392,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="funcionarios" Relationship="Self.funcionario" FromRole="usuarios" ToRole="funcionarios" />
         </EntityType>
-        <EntityType Name="vagas">
+        <EntityType Name="Vaga">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -404,8 +404,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <NavigationProperty Name="cargos" Relationship="Self.cargo1" FromRole="vagas" ToRole="cargos" />
         </EntityType>
         <Association Name="cargo">
-          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
-          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="*" />
+          <End Role="cargos" Type="CallcenterModel.Cargo" Multiplicity="0..1" />
+          <End Role="funcionarios" Type="CallcenterModel.Funcionario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cargos">
               <PropertyRef Name="id" />
@@ -416,8 +416,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="cargo1">
-          <End Role="cargos" Type="Self.cargos" Multiplicity="0..1" />
-          <End Role="vagas" Type="Self.vagas" Multiplicity="*" />
+          <End Role="cargos" Type="CallcenterModel.Cargo" Multiplicity="0..1" />
+          <End Role="vagas" Type="CallcenterModel.Vaga" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cargos">
               <PropertyRef Name="id" />
@@ -428,8 +428,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="divfuncionario1">
-          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="1" />
-          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="*" />
+          <End Role="divfuncionario" Type="CallcenterModel.Departamento" Multiplicity="1" />
+          <End Role="pretensoes" Type="CallcenterModel.Pretensao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="divfuncionario">
               <PropertyRef Name="id" />
@@ -441,7 +441,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
         </Association>
         <Association Name="divisao">
           <End Role="divisoes" Type="CallcenterModel.Divisao" Multiplicity="1" />
-          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <End Role="divfuncionario" Type="CallcenterModel.Departamento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="divisoes">
               <PropertyRef Name="id" />
@@ -452,8 +452,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="Id_Funcionario">
-          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
-          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <End Role="funcionarios" Type="CallcenterModel.Funcionario" Multiplicity="1" />
+          <End Role="divfuncionario" Type="CallcenterModel.Departamento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="funcionarios">
               <PropertyRef Name="id" />
@@ -464,8 +464,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="Id_Supervisor">
-          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
-          <End Role="divfuncionario" Type="Self.divfuncionario" Multiplicity="*" />
+          <End Role="funcionarios" Type="CallcenterModel.Funcionario" Multiplicity="1" />
+          <End Role="divfuncionario" Type="CallcenterModel.Departamento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="funcionarios">
               <PropertyRef Name="id" />
@@ -476,8 +476,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="id_pretensoes">
-          <End Role="pretensoes" Type="Self.pretensoes" Multiplicity="0..1" />
-          <End Role="ferias" Type="Self.ferias" Multiplicity="*" />
+          <End Role="pretensoes" Type="CallcenterModel.Pretensao" Multiplicity="0..1" />
+          <End Role="ferias" Type="CallcenterModel.Ferias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pretensoes">
               <PropertyRef Name="id" />
@@ -488,8 +488,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <Association Name="funcionario">
-          <End Role="funcionarios" Type="Self.funcionarios" Multiplicity="1" />
-          <End Role="usuarios" Type="Self.usuarios" Multiplicity="*" />
+          <End Role="funcionarios" Type="CallcenterModel.Funcionario" Multiplicity="1" />
+          <End Role="usuarios" Type="CallcenterModel.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="funcionarios">
               <PropertyRef Name="id" />
@@ -500,14 +500,14 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CallcenterEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="cargos" EntityType="Self.cargos" />
-          <EntitySet Name="divfuncionario" EntityType="Self.divfuncionario" />
+          <EntitySet Name="cargos" EntityType="CallcenterModel.Cargo" />
+          <EntitySet Name="divfuncionario" EntityType="CallcenterModel.Departamento" />
           <EntitySet Name="divisoes" EntityType="CallcenterModel.Divisao" />
-          <EntitySet Name="ferias" EntityType="Self.ferias" />
-          <EntitySet Name="funcionarios" EntityType="Self.funcionarios" />
-          <EntitySet Name="pretensoes" EntityType="Self.pretensoes" />
-          <EntitySet Name="usuarios" EntityType="Self.usuarios" />
-          <EntitySet Name="vagas" EntityType="Self.vagas" />
+          <EntitySet Name="ferias" EntityType="CallcenterModel.Ferias" />
+          <EntitySet Name="funcionarios" EntityType="CallcenterModel.Funcionario" />
+          <EntitySet Name="pretensoes" EntityType="CallcenterModel.Pretensao" />
+          <EntitySet Name="usuarios" EntityType="CallcenterModel.Usuario" />
+          <EntitySet Name="vagas" EntityType="CallcenterModel.Vaga" />
           <AssociationSet Name="cargo" Association="Self.cargo">
             <End Role="cargos" EntitySet="cargos" />
             <End Role="funcionarios" EntitySet="funcionarios" />
@@ -548,7 +548,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CallcenterModelStoreContainer" CdmEntityContainer="CallcenterEntities">
           <EntitySetMapping Name="cargos">
-            <EntityTypeMapping TypeName="CallcenterModel.cargos">
+            <EntityTypeMapping TypeName="CallcenterModel.Cargo">
               <MappingFragment StoreEntitySet="cargos">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nome" ColumnName="nome" />
@@ -559,7 +559,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="divfuncionario">
-            <EntityTypeMapping TypeName="CallcenterModel.divfuncionario">
+            <EntityTypeMapping TypeName="CallcenterModel.Departamento">
               <MappingFragment StoreEntitySet="divfuncionario">
                 <ScalarProperty Name="funcionario_id" ColumnName="funcionario_id" />
                 <ScalarProperty Name="divisao_id" ColumnName="divisao_id" />
@@ -585,7 +585,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ferias">
-            <EntityTypeMapping TypeName="CallcenterModel.ferias">
+            <EntityTypeMapping TypeName="CallcenterModel.Ferias">
               <MappingFragment StoreEntitySet="ferias">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_pretensoes" ColumnName="id_pretensoes" />
@@ -603,7 +603,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="funcionarios">
-            <EntityTypeMapping TypeName="CallcenterModel.funcionarios">
+            <EntityTypeMapping TypeName="CallcenterModel.Funcionario">
               <MappingFragment StoreEntitySet="funcionarios">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="registro" ColumnName="registro" />
@@ -627,7 +627,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pretensoes">
-            <EntityTypeMapping TypeName="CallcenterModel.pretensoes">
+            <EntityTypeMapping TypeName="CallcenterModel.Pretensao">
               <MappingFragment StoreEntitySet="pretensoes">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_divfuncionarios" ColumnName="id_divfuncionarios" />
@@ -651,7 +651,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="CallcenterModel.usuarios">
+            <EntityTypeMapping TypeName="CallcenterModel.Usuario">
               <MappingFragment StoreEntitySet="usuarios">
                 <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
                 <ScalarProperty Name="senha" ColumnName="senha" />
@@ -664,7 +664,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vagas">
-            <EntityTypeMapping TypeName="CallcenterModel.vagas">
+            <EntityTypeMapping TypeName="CallcenterModel.Vaga">
               <MappingFragment StoreEntitySet="vagas">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="mes" ColumnName="mes" />

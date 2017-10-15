@@ -12,7 +12,7 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class vagas
+    public partial class Vaga
     {
         public int id { get; set; }
         public Nullable<int> mes { get; set; }
@@ -20,6 +20,6 @@ namespace CallPostgre
         public string turno { get; set; }
         public Nullable<int> id_cargo { get; set; }
     
-        public virtual cargos cargos { get; set; }
+        public virtual Cargo cargos { get; set; }
     }
 }

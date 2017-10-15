@@ -12,14 +12,14 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class funcionarios
+    public partial class Funcionario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public funcionarios()
+        public Funcionario()
         {
-            this.divfuncionario = new HashSet<divfuncionario>();
-            this.divfuncionario1 = new HashSet<divfuncionario>();
-            this.usuarios = new HashSet<usuarios>();
+            this.divfuncionario = new HashSet<Departamento>();
+            this.divfuncionario1 = new HashSet<Departamento>();
+            this.usuarios = new HashSet<Usuario>();
         }
     
         public int id { get; set; }
@@ -41,12 +41,12 @@ namespace CallPostgre
         public string alterado { get; set; }
         public Nullable<bool> ativo { get; set; }
     
-        public virtual cargos cargos { get; set; }
+        public virtual Cargo cargos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<divfuncionario> divfuncionario { get; set; }
+        public virtual ICollection<Departamento> divfuncionario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<divfuncionario> divfuncionario1 { get; set; }
+        public virtual ICollection<Departamento> divfuncionario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuarios> usuarios { get; set; }
+        public virtual ICollection<Usuario> usuarios { get; set; }
     }
 }

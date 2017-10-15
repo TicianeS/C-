@@ -12,13 +12,13 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class cargos
+    public partial class Cargo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cargos()
+        public Cargo()
         {
-            this.funcionarios = new HashSet<funcionarios>();
-            this.vagas = new HashSet<vagas>();
+            this.funcionarios = new HashSet<Funcionario>();
+            this.vagas = new HashSet<Vaga>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,8 @@ namespace CallPostgre
         public Nullable<bool> ativo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<funcionarios> funcionarios { get; set; }
+        public virtual ICollection<Funcionario> funcionarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vagas> vagas { get; set; }
+        public virtual ICollection<Vaga> vagas { get; set; }
     }
 }

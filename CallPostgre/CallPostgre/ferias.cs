@@ -12,7 +12,7 @@ namespace CallPostgre
     using System;
     using System.Collections.Generic;
     
-    public partial class ferias
+    public partial class Ferias
     {
         public int id { get; set; }
         public Nullable<int> id_pretensoes { get; set; }
@@ -27,6 +27,6 @@ namespace CallPostgre
         public string observacoes { get; set; }
         public string status { get; set; }
     
-        public virtual pretensoes pretensoes { get; set; }
+        public virtual Pretensao pretensoes { get; set; }
     }
 }

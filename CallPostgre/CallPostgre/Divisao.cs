@@ -17,7 +17,7 @@ namespace CallPostgre
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Divisao()
         {
-            this.divfuncionario = new HashSet<divfuncionario>();
+            this.divfuncionario = new HashSet<Departamento>();
         }
     
         public string nome { get; set; }
@@ -28,6 +28,6 @@ namespace CallPostgre
         public int id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<divfuncionario> divfuncionario { get; set; }
+        public virtual ICollection<Departamento> divfuncionario { get; set; }
     }
 }
