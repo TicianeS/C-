@@ -65,56 +65,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CallcenterModel.Context.cs">
+    <Compile Include="DAO\FuncionarioDAO.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="Model\CallcenterModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CallcenterModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CallcenterModel.cs">
+    <Compile Include="Model\CallcenterModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CallcenterModel.Designer.cs">
+    <Compile Include="Model\CallcenterModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CallcenterModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Cargo.cs">
+    <Compile Include="Model\Cargo.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAO\DivisaoDAO.cs" />
     <Compile Include="DAO\SingletonObjectContext.cs" />
-    <Compile Include="Departamento.cs">
+    <Compile Include="Model\Departamento.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Divisao.cs">
+    <Compile Include="Model\Divisao.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ferias.cs">
+    <Compile Include="Model\Ferias.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Funcionario.cs">
+    <Compile Include="Model\Funcionario.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Util\Conversor.cs" />
+    <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pretensao.cs">
+    <Compile Include="Model\Pretensao.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario.cs">
+    <Compile Include="Model\Usuario.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vaga.cs">
+    <Compile Include="Model\Vaga.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -125,12 +128,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="CallcenterModel.edmx">
+    <EntityDeploy Include="Model\CallcenterModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CallcenterModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CallcenterModel.edmx.diagram">
+    <None Include="Model\CallcenterModel.edmx.diagram">
       <DependentUpon>CallcenterModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -148,16 +152,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CallcenterModel.Context.tt">
+    <Content Include="Model\CallcenterModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CallcenterModel.edmx</DependentUpon>
       <LastGenOutput>CallcenterModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="CallcenterModel.tt">
+    <Content Include="Model\CallcenterModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CallcenterModel.edmx</DependentUpon>
       <LastGenOutput>CallcenterModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\copel.png" />
+    <None Include="Resources\azul.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

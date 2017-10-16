@@ -3,28 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
-using System.Data;
 using CallPostgre.Model;
 
 namespace CallPostgre.DAO
 {
-    class DivisaoDAO
+    class FuncionarioDAO
     {
-        public static Divisao ObterDivisaoId(int id)
+        public static Funcionario ObterFuncionarioId(int reg)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
-
             try
             {
-                return db.divisoes.FirstOrDefault(x => x.id == id);
+                return db.funcionarios.FirstOrDefault(x => x.registro == reg);
             }
-
             catch (Exception e)
             {
                 return null;
             }
         }
-
     }
 }

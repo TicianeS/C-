@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CallPostgre
+namespace CallPostgre.Model
 {
     using System;
     using System.Data.Entity;

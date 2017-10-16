@@ -7,27 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CallPostgre
+namespace CallPostgre.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Divisao
+    public partial class Cargo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Divisao()
+        public Cargo()
         {
-            this.divfuncionario = new HashSet<Departamento>();
+            this.funcionarios = new HashSet<Funcionario>();
+            this.vagas = new HashSet<Vaga>();
         }
     
+        public int id { get; set; }
         public string nome { get; set; }
-        public string sigla { get; set; }
-        public Nullable<bool> ativo { get; set; }
         public string alterado { get; set; }
         public System.DateTime cadastro { get; set; }
-        public int id { get; set; }
+        public Nullable<bool> ativo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Departamento> divfuncionario { get; set; }
+        public virtual ICollection<Funcionario> funcionarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vaga> vagas { get; set; }
     }
 }

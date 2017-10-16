@@ -7,19 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CallPostgre
+namespace CallPostgre.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Vaga
+    public partial class Usuario
     {
+        public int id_funcionario { get; set; }
+        public string senha { get; set; }
+        public Nullable<bool> ativo { get; set; }
+        public string alterado { get; set; }
+        public System.DateTime cadastro { get; set; }
+        public string perfil { get; set; }
         public int id { get; set; }
-        public Nullable<int> mes { get; set; }
-        public Nullable<int> ano { get; set; }
-        public string turno { get; set; }
-        public Nullable<int> id_cargo { get; set; }
     
-        public virtual Cargo cargos { get; set; }
+        public virtual Funcionario funcionarios { get; set; }
     }
 }
