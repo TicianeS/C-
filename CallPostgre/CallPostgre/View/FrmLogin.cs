@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using CallPostgre.DAO;
 using CallPostgre.Model;
 using CallPostgre.Util;
+using CallPostgre.View;
 
 
 namespace CallPostgre
 {
-    public partial class Login : Form
+    public partial class FrmLogin : Form
     {
-        public Login()
+        public FrmLogin()
         {
             InitializeComponent();
         }
@@ -48,12 +49,13 @@ namespace CallPostgre
                     
                     if (Usuario.senha.Equals(mskLoginSenha.Text))
                     {
-                        //frmPrincipal frmPri = new frmPrincipal(this);
-                        //this.Hide();
-                        //frmPri.Show();
-                        MessageBox.Show("Bem-vinda " + Usuario.funcionarios.nome);
-                    }
-                    else
+                        
+                        MessageBox.Show("Bem-vindo (a) " + Usuario.funcionarios.nome + " !");
+                    FrmPrincipal frmPri = new FrmPrincipal(this);
+                    this.Hide();
+                    frmPri.Show();
+                }
+                else
                     {
                         MessageBox.Show("Login ou senha incorretos.", "Dados incorretos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -62,6 +64,11 @@ namespace CallPostgre
                 
                 
             }
+        }
+
+        private void linkLogin_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Solicite a sua senha de acesso para o seu monitor.");
         }
     }
 }

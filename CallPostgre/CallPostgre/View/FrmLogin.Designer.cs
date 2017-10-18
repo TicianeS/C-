@@ -1,6 +1,6 @@
 ﻿namespace CallPostgre
 {
-    partial class Login
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -57,7 +57,7 @@
             this.lblLoginSenha.Location = new System.Drawing.Point(117, 92);
             this.lblLoginSenha.Name = "lblLoginSenha";
             this.lblLoginSenha.Size = new System.Drawing.Size(49, 16);
-            this.lblLoginSenha.TabIndex = 1;
+            this.lblLoginSenha.TabIndex = 2;
             this.lblLoginSenha.Text = "Senha";
             // 
             // mskLoginSenha
@@ -80,6 +80,7 @@
             this.linkLogin.TabIndex = 5;
             this.linkLogin.TabStop = true;
             this.linkLogin.Text = "Esqueci minha senha";
+            this.linkLogin.Click += new System.EventHandler(this.linkLogin_Click);
             // 
             // btnLoginEntrar
             // 
@@ -113,9 +114,9 @@
             this.txtLoginRegistro.MaxLength = 6;
             this.txtLoginRegistro.Name = "txtLoginRegistro";
             this.txtLoginRegistro.Size = new System.Drawing.Size(110, 20);
-            this.txtLoginRegistro.TabIndex = 7;
+            this.txtLoginRegistro.TabIndex = 1;
             // 
-            // Login
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +131,7 @@
             this.Controls.Add(this.lblLoginRegistro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Login";
+            this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Férias VATD";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -145,10 +146,10 @@
         private System.Windows.Forms.Label lblLoginRegistro;
         private System.Windows.Forms.Label lblLoginSenha;
         private System.Windows.Forms.MaskedTextBox mskLoginSenha;
-        private System.Windows.Forms.Button btnLoginEntrar;
         private System.Windows.Forms.LinkLabel linkLogin;
         private System.Windows.Forms.PictureBox picLogin;
-        private System.Windows.Forms.TextBox txtLoginRegistro;
+        public System.Windows.Forms.Button btnLoginEntrar;
+        public System.Windows.Forms.TextBox txtLoginRegistro;
     }
 }
 
