@@ -32,15 +32,15 @@
             this.lblUsuarioNome = new System.Windows.Forms.Label();
             this.txtUsuarioRegistro = new System.Windows.Forms.TextBox();
             this.txtUsuarioNome = new System.Windows.Forms.TextBox();
-            this.btnUsuarioAlterarSenha = new System.Windows.Forms.Button();
-            this.btnUsuarioCadastrar = new System.Windows.Forms.Button();
-            this.btnUsuarioExcluir = new System.Windows.Forms.Button();
             this.txtUsuarioNovaSenha = new System.Windows.Forms.TextBox();
             this.lblUsuarioNovaSenha = new System.Windows.Forms.Label();
             this.lblUsuarioConfimarSenha = new System.Windows.Forms.Label();
             this.txtUsuarioConfirmarSenha = new System.Windows.Forms.TextBox();
             this.grpUsuarioSenha = new System.Windows.Forms.GroupBox();
             this.btnUsuarioSalvarSenha = new System.Windows.Forms.Button();
+            this.btnUsuarioExcluir = new System.Windows.Forms.Button();
+            this.btnUsuarioCadastrar = new System.Windows.Forms.Button();
+            this.btnUsuarioAlterarSenha = new System.Windows.Forms.Button();
             this.grpUsuarioSenha.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,33 +81,6 @@
             this.txtUsuarioNome.ReadOnly = true;
             this.txtUsuarioNome.Size = new System.Drawing.Size(436, 20);
             this.txtUsuarioNome.TabIndex = 3;
-            // 
-            // btnUsuarioAlterarSenha
-            // 
-            this.btnUsuarioAlterarSenha.Location = new System.Drawing.Point(201, 117);
-            this.btnUsuarioAlterarSenha.Name = "btnUsuarioAlterarSenha";
-            this.btnUsuarioAlterarSenha.Size = new System.Drawing.Size(109, 23);
-            this.btnUsuarioAlterarSenha.TabIndex = 5;
-            this.btnUsuarioAlterarSenha.Text = "Alterar Senha";
-            this.btnUsuarioAlterarSenha.UseVisualStyleBackColor = true;
-            // 
-            // btnUsuarioCadastrar
-            // 
-            this.btnUsuarioCadastrar.Location = new System.Drawing.Point(12, 117);
-            this.btnUsuarioCadastrar.Name = "btnUsuarioCadastrar";
-            this.btnUsuarioCadastrar.Size = new System.Drawing.Size(109, 23);
-            this.btnUsuarioCadastrar.TabIndex = 4;
-            this.btnUsuarioCadastrar.Text = "Cadastrar Usuário";
-            this.btnUsuarioCadastrar.UseVisualStyleBackColor = true;
-            // 
-            // btnUsuarioExcluir
-            // 
-            this.btnUsuarioExcluir.Location = new System.Drawing.Point(391, 117);
-            this.btnUsuarioExcluir.Name = "btnUsuarioExcluir";
-            this.btnUsuarioExcluir.Size = new System.Drawing.Size(109, 23);
-            this.btnUsuarioExcluir.TabIndex = 6;
-            this.btnUsuarioExcluir.Text = "Excluir Usuário";
-            this.btnUsuarioExcluir.UseVisualStyleBackColor = true;
             // 
             // txtUsuarioNovaSenha
             // 
@@ -159,12 +132,60 @@
             // 
             // btnUsuarioSalvarSenha
             // 
+            this.btnUsuarioSalvarSenha.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarioSalvarSenha.BackgroundImage = global::CallPostgre.Properties.Resources.verde;
+            this.btnUsuarioSalvarSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUsuarioSalvarSenha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarioSalvarSenha.ForeColor = System.Drawing.Color.White;
             this.btnUsuarioSalvarSenha.Location = new System.Drawing.Point(189, 87);
             this.btnUsuarioSalvarSenha.Name = "btnUsuarioSalvarSenha";
-            this.btnUsuarioSalvarSenha.Size = new System.Drawing.Size(109, 23);
+            this.btnUsuarioSalvarSenha.Size = new System.Drawing.Size(109, 25);
             this.btnUsuarioSalvarSenha.TabIndex = 12;
             this.btnUsuarioSalvarSenha.Text = "Salvar";
-            this.btnUsuarioSalvarSenha.UseVisualStyleBackColor = true;
+            this.btnUsuarioSalvarSenha.UseVisualStyleBackColor = false;
+            // 
+            // btnUsuarioExcluir
+            // 
+            this.btnUsuarioExcluir.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarioExcluir.BackgroundImage = global::CallPostgre.Properties.Resources.vermelho;
+            this.btnUsuarioExcluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUsuarioExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarioExcluir.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarioExcluir.Location = new System.Drawing.Point(391, 117);
+            this.btnUsuarioExcluir.Name = "btnUsuarioExcluir";
+            this.btnUsuarioExcluir.Size = new System.Drawing.Size(109, 25);
+            this.btnUsuarioExcluir.TabIndex = 6;
+            this.btnUsuarioExcluir.Text = "Excluir Usuário";
+            this.btnUsuarioExcluir.UseVisualStyleBackColor = false;
+            // 
+            // btnUsuarioCadastrar
+            // 
+            this.btnUsuarioCadastrar.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarioCadastrar.BackgroundImage = global::CallPostgre.Properties.Resources.azul;
+            this.btnUsuarioCadastrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUsuarioCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarioCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarioCadastrar.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarioCadastrar.Location = new System.Drawing.Point(12, 117);
+            this.btnUsuarioCadastrar.Name = "btnUsuarioCadastrar";
+            this.btnUsuarioCadastrar.Size = new System.Drawing.Size(109, 25);
+            this.btnUsuarioCadastrar.TabIndex = 4;
+            this.btnUsuarioCadastrar.Text = "Cadastrar Usuário";
+            this.btnUsuarioCadastrar.UseVisualStyleBackColor = false;
+            // 
+            // btnUsuarioAlterarSenha
+            // 
+            this.btnUsuarioAlterarSenha.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarioAlterarSenha.BackgroundImage = global::CallPostgre.Properties.Resources.laranja;
+            this.btnUsuarioAlterarSenha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUsuarioAlterarSenha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarioAlterarSenha.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarioAlterarSenha.Location = new System.Drawing.Point(201, 117);
+            this.btnUsuarioAlterarSenha.Name = "btnUsuarioAlterarSenha";
+            this.btnUsuarioAlterarSenha.Size = new System.Drawing.Size(109, 25);
+            this.btnUsuarioAlterarSenha.TabIndex = 5;
+            this.btnUsuarioAlterarSenha.Text = "Alterar Senha";
+            this.btnUsuarioAlterarSenha.UseVisualStyleBackColor = false;
             // 
             // FrmUsuario
             // 

@@ -180,6 +180,9 @@
       <DependentUpon>CallcenterModel.edmx</DependentUpon>
       <LastGenOutput>CallcenterModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\verde.png" />
+    <None Include="Resources\vermelho.png" />
+    <None Include="Resources\laranja.png" />
     <None Include="Resources\copel.png" />
     <None Include="Resources\azul.png" />
   </ItemGroup>
