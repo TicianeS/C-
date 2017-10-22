@@ -44,13 +44,15 @@ namespace CallPostgre
                 int reg = Conversor.ConverterParaInt(txtLoginRegistro.Text);
                 
                 Usuario Usuario = new Usuario();
-                
-                    Usuario = UsuarioDAO.ObterUsuarioRegistro(reg);
-                    
-                    if (Usuario.senha.Equals(mskLoginSenha.Text))
+                Usuario = UsuarioDAO.ObterUsuarioRegistro(reg);
+
+                string senha = mskLoginSenha.Text;
+
+                if (Usuario.senha.Equals(senha))
                     {
-                        
-                        MessageBox.Show("Bem-vindo (a) " + Usuario.funcionarios.nome + " !");
+                    string nome = Usuario.funcionarios.nome;
+                    
+                        MessageBox.Show("BEM-VINDO (A) " + Usuario.funcionarios.nome + " !");
                     FrmPrincipal frmPri = new FrmPrincipal(this);
                     this.Hide();
                     frmPri.Show();

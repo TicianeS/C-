@@ -65,7 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CargoDAO.cs" />
+    <Compile Include="DAO\DepartamentoDAO.cs" />
+    <Compile Include="DAO\FeriasDAO.cs" />
     <Compile Include="DAO\FuncionarioDAO.cs" />
+    <Compile Include="DAO\PretensaoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Model\CallcenterModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -87,6 +91,9 @@
     </Compile>
     <Compile Include="DAO\DivisaoDAO.cs" />
     <Compile Include="DAO\SingletonObjectContext.cs" />
+    <Compile Include="Model\datas.cs">
+      <DependentUpon>CallcenterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Departamento.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>

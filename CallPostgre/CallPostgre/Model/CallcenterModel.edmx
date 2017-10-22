@@ -15,8 +15,15 @@
           <Property Name="cadastro" Type="date" Nullable="false" />
           <Property Name="ativo" Type="bool" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6005: The data type 'timetz' is currently not supported for the target Entity Framework version; the column 'horario' in the table 'Callcenter.public.divfuncionario' was excluded.-->
+        <EntityType Name="datas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inicio" Type="date" />
+          <Property Name="fim" Type="date" />
+          <Property Name="tipo" Type="varchar" MaxLength="80" />
+        </EntityType>
         <EntityType Name="divfuncionario">
           <Key>
             <PropertyRef Name="id" />
@@ -24,6 +31,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <Property Name="funcionario_id" Type="int4" Nullable="false" />
           <Property Name="divisao_id" Type="int4" Nullable="false" />
           <Property Name="supervisor_id" Type="int4" Nullable="false" />
+          <Property Name="horario" Type="time" Precision="6" />
           <Property Name="cidade" Type="varchar" MaxLength="80" />
           <Property Name="ativo" Type="bool" />
           <Property Name="alterado" Type="varchar" MaxLength="80" />
@@ -224,6 +232,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
         </Association>
         <EntityContainer Name="CallcenterModelStoreContainer">
           <EntitySet Name="cargos" EntityType="Self.cargos" Schema="public" store:Type="Tables" />
+          <EntitySet Name="datas" EntityType="Self.datas" Schema="public" store:Type="Tables" />
           <EntitySet Name="divfuncionario" EntityType="Self.divfuncionario" Schema="public" store:Type="Tables" />
           <EntitySet Name="divisoes" EntityType="Self.divisoes" Schema="public" store:Type="Tables" />
           <EntitySet Name="ferias" EntityType="Self.ferias" Schema="public" store:Type="Tables" />
@@ -295,7 +304,8 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <NavigationProperty Name="pretensoes" Relationship="Self.divfuncionario1" FromRole="divfuncionario" ToRole="pretensoes" />
           <NavigationProperty Name="divisoes" Relationship="Self.divisao" FromRole="divfuncionario" ToRole="divisoes" />
           <NavigationProperty Name="funcionarios" Relationship="Self.Id_Funcionario" FromRole="divfuncionario" ToRole="funcionarios" />
-          <NavigationProperty Name="funcionarios1" Relationship="Self.Id_Supervisor" FromRole="divfuncionario" ToRole="funcionarios" />
+          <NavigationProperty Name="supervisores" Relationship="Self.Id_Supervisor" FromRole="divfuncionario" ToRole="funcionarios" />
+          <Property Name="horario" Type="Time" Precision="6" />
         </EntityType>
         <EntityType Name="Divisao">
           <Key>
@@ -540,7 +550,17 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
             <End Role="funcionarios" EntitySet="funcionarios" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
+          <EntitySet Name="datas" EntityType="CallcenterModel.datas" />
         </EntityContainer>
+        <EntityType Name="datas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inicio" Type="DateTime" Precision="0" />
+          <Property Name="fim" Type="DateTime" Precision="0" />
+          <Property Name="tipo" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -561,6 +581,7 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
           <EntitySetMapping Name="divfuncionario">
             <EntityTypeMapping TypeName="CallcenterModel.Departamento">
               <MappingFragment StoreEntitySet="divfuncionario">
+                <ScalarProperty Name="horario" ColumnName="horario" />
                 <ScalarProperty Name="funcionario_id" ColumnName="funcionario_id" />
                 <ScalarProperty Name="divisao_id" ColumnName="divisao_id" />
                 <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
@@ -671,6 +692,16 @@ warning 6005: The data type 'timetz' is currently not supported for the target E
                 <ScalarProperty Name="ano" ColumnName="ano" />
                 <ScalarProperty Name="turno" ColumnName="turno" />
                 <ScalarProperty Name="id_cargo" ColumnName="id_cargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datas">
+            <EntityTypeMapping TypeName="CallcenterModel.datas">
+              <MappingFragment StoreEntitySet="datas">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fim" ColumnName="fim" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -129,6 +129,7 @@
             this.grpUsuarioSenha.TabIndex = 7;
             this.grpUsuarioSenha.TabStop = false;
             this.grpUsuarioSenha.Text = "Senha";
+            this.grpUsuarioSenha.Visible = false;
             // 
             // btnUsuarioSalvarSenha
             // 

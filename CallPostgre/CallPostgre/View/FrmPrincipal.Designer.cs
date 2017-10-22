@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.teleatendenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarSenhaDeAcessoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarSenhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnTeleatendente = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnTeleAcesso = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnTeleAcessoAlterarSenha = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pretensõesDeFériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarFériasAutorizadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acessoAoSistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarSenhaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnMonitor = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnMoniAcesso = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnMoniAcessoGerUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.dadosPessoaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.pretensõesDeFériasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarFériasAutorizadasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.timesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.supervisorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acessoAoSistemaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarSenhaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSupervisor = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSuperAcesso = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSuperAcessoGerUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.dadosPessoaisToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pretensõesDeFériasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarFériasAutorizadasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarFériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblFrmPrincipalOla = new System.Windows.Forms.Label();
+            this.mnSair = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblFrmPrincipalCargo = new System.Windows.Forms.Label();
             this.lblFrmPrincipalNome = new System.Windows.Forms.Label();
             this.lblFrmPrincipalRegistro = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -63,39 +63,40 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.teleatendenteToolStripMenuItem,
-            this.monitorToolStripMenuItem,
-            this.supervisorToolStripMenuItem,
-            this.sairToolStripMenuItem});
+            this.mnTeleatendente,
+            this.mnMonitor,
+            this.mnSupervisor,
+            this.mnSair});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1047, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // teleatendenteToolStripMenuItem
+            // mnTeleatendente
             // 
-            this.teleatendenteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alterarSenhaDeAcessoToolStripMenuItem,
+            this.mnTeleatendente.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnTeleAcesso,
             this.fériasToolStripMenuItem,
             this.fériasToolStripMenuItem1});
-            this.teleatendenteToolStripMenuItem.Name = "teleatendenteToolStripMenuItem";
-            this.teleatendenteToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.teleatendenteToolStripMenuItem.Text = "Teleatendente";
+            this.mnTeleatendente.Name = "mnTeleatendente";
+            this.mnTeleatendente.Size = new System.Drawing.Size(93, 20);
+            this.mnTeleatendente.Text = "Teleatendente";
             // 
-            // alterarSenhaDeAcessoToolStripMenuItem
+            // mnTeleAcesso
             // 
-            this.alterarSenhaDeAcessoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alterarSenhaToolStripMenuItem});
-            this.alterarSenhaDeAcessoToolStripMenuItem.Name = "alterarSenhaDeAcessoToolStripMenuItem";
-            this.alterarSenhaDeAcessoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.alterarSenhaDeAcessoToolStripMenuItem.Text = "Acesso ao sistema";
+            this.mnTeleAcesso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnTeleAcessoAlterarSenha});
+            this.mnTeleAcesso.Name = "mnTeleAcesso";
+            this.mnTeleAcesso.Size = new System.Drawing.Size(170, 22);
+            this.mnTeleAcesso.Text = "Acesso ao sistema";
             // 
-            // alterarSenhaToolStripMenuItem
+            // mnTeleAcessoAlterarSenha
             // 
-            this.alterarSenhaToolStripMenuItem.Name = "alterarSenhaToolStripMenuItem";
-            this.alterarSenhaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.alterarSenhaToolStripMenuItem.Text = "Alterar senha";
+            this.mnTeleAcessoAlterarSenha.Name = "mnTeleAcessoAlterarSenha";
+            this.mnTeleAcessoAlterarSenha.Size = new System.Drawing.Size(152, 22);
+            this.mnTeleAcessoAlterarSenha.Text = "Alterar senha";
+            this.mnTeleAcessoAlterarSenha.Click += new System.EventHandler(this.mnTeleAcessoAlterarSenha_Click);
             // 
             // fériasToolStripMenuItem
             // 
@@ -125,30 +126,30 @@
             this.consultarFériasAutorizadasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.consultarFériasAutorizadasToolStripMenuItem.Text = "Consultar férias autorizadas";
             // 
-            // monitorToolStripMenuItem
+            // mnMonitor
             // 
-            this.monitorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acessoAoSistemaToolStripMenuItem,
+            this.mnMonitor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnMoniAcesso,
             this.dadosPessoaisToolStripMenuItem,
             this.fériasToolStripMenuItem2,
             this.timesToolStripMenuItem});
-            this.monitorToolStripMenuItem.Name = "monitorToolStripMenuItem";
-            this.monitorToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.monitorToolStripMenuItem.Text = "Monitor";
+            this.mnMonitor.Name = "mnMonitor";
+            this.mnMonitor.Size = new System.Drawing.Size(62, 20);
+            this.mnMonitor.Text = "Monitor";
             // 
-            // acessoAoSistemaToolStripMenuItem
+            // mnMoniAcesso
             // 
-            this.acessoAoSistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alterarSenhaToolStripMenuItem1});
-            this.acessoAoSistemaToolStripMenuItem.Name = "acessoAoSistemaToolStripMenuItem";
-            this.acessoAoSistemaToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.acessoAoSistemaToolStripMenuItem.Text = "Acesso ao sistema";
+            this.mnMoniAcesso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnMoniAcessoGerUsuario});
+            this.mnMoniAcesso.Name = "mnMoniAcesso";
+            this.mnMoniAcesso.Size = new System.Drawing.Size(170, 22);
+            this.mnMoniAcesso.Text = "Acesso ao sistema";
             // 
-            // alterarSenhaToolStripMenuItem1
+            // mnMoniAcessoGerUsuario
             // 
-            this.alterarSenhaToolStripMenuItem1.Name = "alterarSenhaToolStripMenuItem1";
-            this.alterarSenhaToolStripMenuItem1.Size = new System.Drawing.Size(143, 22);
-            this.alterarSenhaToolStripMenuItem1.Text = "Alterar senha";
+            this.mnMoniAcessoGerUsuario.Name = "mnMoniAcessoGerUsuario";
+            this.mnMoniAcessoGerUsuario.Size = new System.Drawing.Size(172, 22);
+            this.mnMoniAcessoGerUsuario.Text = "Gerenciar Usuários";
             // 
             // dadosPessoaisToolStripMenuItem
             // 
@@ -183,30 +184,30 @@
             this.timesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.timesToolStripMenuItem.Text = "Times";
             // 
-            // supervisorToolStripMenuItem
+            // mnSupervisor
             // 
-            this.supervisorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.acessoAoSistemaToolStripMenuItem1,
+            this.mnSupervisor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnSuperAcesso,
             this.dadosPessoaisToolStripMenuItem1,
             this.fériasToolStripMenuItem3,
             this.timesToolStripMenuItem1});
-            this.supervisorToolStripMenuItem.Name = "supervisorToolStripMenuItem";
-            this.supervisorToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.supervisorToolStripMenuItem.Text = "Supervisor";
+            this.mnSupervisor.Name = "mnSupervisor";
+            this.mnSupervisor.Size = new System.Drawing.Size(74, 20);
+            this.mnSupervisor.Text = "Supervisor";
             // 
-            // acessoAoSistemaToolStripMenuItem1
+            // mnSuperAcesso
             // 
-            this.acessoAoSistemaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alterarSenhaToolStripMenuItem2});
-            this.acessoAoSistemaToolStripMenuItem1.Name = "acessoAoSistemaToolStripMenuItem1";
-            this.acessoAoSistemaToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.acessoAoSistemaToolStripMenuItem1.Text = "Acesso ao sistema";
+            this.mnSuperAcesso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnSuperAcessoGerUsuario});
+            this.mnSuperAcesso.Name = "mnSuperAcesso";
+            this.mnSuperAcesso.Size = new System.Drawing.Size(170, 22);
+            this.mnSuperAcesso.Text = "Acesso ao sistema";
             // 
-            // alterarSenhaToolStripMenuItem2
+            // mnSuperAcessoGerUsuario
             // 
-            this.alterarSenhaToolStripMenuItem2.Name = "alterarSenhaToolStripMenuItem2";
-            this.alterarSenhaToolStripMenuItem2.Size = new System.Drawing.Size(143, 22);
-            this.alterarSenhaToolStripMenuItem2.Text = "Alterar senha";
+            this.mnSuperAcessoGerUsuario.Name = "mnSuperAcessoGerUsuario";
+            this.mnSuperAcessoGerUsuario.Size = new System.Drawing.Size(172, 22);
+            this.mnSuperAcessoGerUsuario.Text = "Gerenciar Usuários";
             // 
             // dadosPessoaisToolStripMenuItem1
             // 
@@ -248,20 +249,21 @@
             this.timesToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.timesToolStripMenuItem1.Text = "Times";
             // 
-            // sairToolStripMenuItem
+            // mnSair
             // 
-            this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.sairToolStripMenuItem.Text = "Sair";
+            this.mnSair.Name = "mnSair";
+            this.mnSair.Size = new System.Drawing.Size(38, 20);
+            this.mnSair.Text = "Sair";
+            this.mnSair.Click += new System.EventHandler(this.mnSair_Click);
             // 
-            // lblFrmPrincipalOla
+            // lblFrmPrincipalCargo
             // 
-            this.lblFrmPrincipalOla.AutoSize = true;
-            this.lblFrmPrincipalOla.Location = new System.Drawing.Point(636, 7);
-            this.lblFrmPrincipalOla.Name = "lblFrmPrincipalOla";
-            this.lblFrmPrincipalOla.Size = new System.Drawing.Size(23, 13);
-            this.lblFrmPrincipalOla.TabIndex = 2;
-            this.lblFrmPrincipalOla.Text = "Olá";
+            this.lblFrmPrincipalCargo.AutoSize = true;
+            this.lblFrmPrincipalCargo.Location = new System.Drawing.Point(469, 7);
+            this.lblFrmPrincipalCargo.Name = "lblFrmPrincipalCargo";
+            this.lblFrmPrincipalCargo.Size = new System.Drawing.Size(45, 13);
+            this.lblFrmPrincipalCargo.TabIndex = 2;
+            this.lblFrmPrincipalCargo.Text = "CARGO";
             // 
             // lblFrmPrincipalNome
             // 
@@ -275,7 +277,7 @@
             // lblFrmPrincipalRegistro
             // 
             this.lblFrmPrincipalRegistro.AutoSize = true;
-            this.lblFrmPrincipalRegistro.Location = new System.Drawing.Point(578, 7);
+            this.lblFrmPrincipalRegistro.Location = new System.Drawing.Point(405, 7);
             this.lblFrmPrincipalRegistro.Name = "lblFrmPrincipalRegistro";
             this.lblFrmPrincipalRegistro.Size = new System.Drawing.Size(31, 13);
             this.lblFrmPrincipalRegistro.TabIndex = 4;
@@ -288,7 +290,7 @@
             this.ClientSize = new System.Drawing.Size(1047, 555);
             this.Controls.Add(this.lblFrmPrincipalRegistro);
             this.Controls.Add(this.lblFrmPrincipalNome);
-            this.Controls.Add(this.lblFrmPrincipalOla);
+            this.Controls.Add(this.lblFrmPrincipalCargo);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -305,33 +307,33 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem teleatendenteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alterarSenhaDeAcessoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnTeleatendente;
+        private System.Windows.Forms.ToolStripMenuItem mnTeleAcesso;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem monitorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem supervisorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alterarSenhaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnMonitor;
+        private System.Windows.Forms.ToolStripMenuItem mnSupervisor;
+        private System.Windows.Forms.ToolStripMenuItem mnTeleAcessoAlterarSenha;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pretensõesDeFériasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarFériasAutorizadasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem acessoAoSistemaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alterarSenhaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnMoniAcesso;
+        private System.Windows.Forms.ToolStripMenuItem mnMoniAcessoGerUsuario;
         private System.Windows.Forms.ToolStripMenuItem dadosPessoaisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem pretensõesDeFériasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem consultarFériasAutorizadasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem timesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem acessoAoSistemaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem alterarSenhaToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnSuperAcesso;
+        private System.Windows.Forms.ToolStripMenuItem mnSuperAcessoGerUsuario;
         private System.Windows.Forms.ToolStripMenuItem dadosPessoaisToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem pretensõesDeFériasToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem consultarFériasAutorizadasToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem gerenciarFériasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem timesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.Label lblFrmPrincipalOla;
-        private System.Windows.Forms.Label lblFrmPrincipalNome;
+        private System.Windows.Forms.ToolStripMenuItem mnSair;
         public System.Windows.Forms.Label lblFrmPrincipalRegistro;
+        public System.Windows.Forms.Label lblFrmPrincipalCargo;
+        public System.Windows.Forms.Label lblFrmPrincipalNome;
     }
 }

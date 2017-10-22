@@ -28,11 +28,12 @@ namespace CallPostgre.Model
         public string alterado { get; set; }
         public System.DateTime cadastro { get; set; }
         public int id { get; set; }
+        public Nullable<System.TimeSpan> horario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pretensao> pretensoes { get; set; }
         public virtual Divisao divisoes { get; set; }
         public virtual Funcionario funcionarios { get; set; }
-        public virtual Funcionario funcionarios1 { get; set; }
+        public virtual Funcionario supervisores { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CallPostgre.Model;
+using System.Data.Entity;
 
 namespace CallPostgre.DAO
 {
@@ -34,5 +35,64 @@ namespace CallPostgre.DAO
                 return null;
             }
         }
+
+        public static bool Incluir(Usuario Usuario)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+
+            try
+            {
+                db.usuarios.Add(Usuario);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static bool Alterar(Usuario Usuario)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                db.Entry(Usuario).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public static bool Excluir(Usuario Usuario)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                db.usuarios.Remove(Usuario);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static IOrderedEnumerable<Usuario> ListarTodos()
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.usuarios.Include("funcionarios").ToList().OrderBy(x => x.id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }

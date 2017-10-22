@@ -33,5 +33,6 @@ namespace CallPostgre.Model
         public virtual DbSet<Pretensao> pretensoes { get; set; }
         public virtual DbSet<Usuario> usuarios { get; set; }
         public virtual DbSet<Vaga> vagas { get; set; }
+        public virtual DbSet<datas> datas { get; set; }
     }
 }

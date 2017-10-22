@@ -3,36 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
-using System.Data;
 using CallPostgre.Model;
+using System.Data.Entity;
 
 namespace CallPostgre.DAO
 {
-    class DivisaoDAO
+    class FeriasDAO
     {
-        public static Divisao ObterDivisaoId(int id)
+        public static bool Incluir(Ferias Ferias)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
 
             try
             {
-                return db.divisoes.FirstOrDefault(x => x.id == id);
-            }
-
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public static bool Incluir(Divisao Divisao)
-        {
-            CallcenterEntities db = SingletonObjectContext.Instance.Context;
-
-            try
-            {
-                db.divisoes.Add(Divisao);
+                db.ferias.Add(Ferias);
                 db.SaveChanges();
                 return true;
             }
@@ -42,12 +26,12 @@ namespace CallPostgre.DAO
             }
         }
 
-        public static bool Alterar(Divisao Divisao)
+        public static bool Alterar(Ferias Ferias)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
             try
             {
-                db.Entry(Divisao).State = EntityState.Modified;
+                db.Entry(Ferias).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
@@ -56,12 +40,12 @@ namespace CallPostgre.DAO
                 return false;
             }
         }
-        public static bool Excluir(Divisao Divisao)
+        public static bool Excluir(Ferias Ferias)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
             try
             {
-                db.divisoes.Remove(Divisao);
+                db.ferias.Remove(Ferias);
                 db.SaveChanges();
                 return true;
             }
@@ -71,19 +55,18 @@ namespace CallPostgre.DAO
             }
         }
 
-        public static IOrderedEnumerable<Divisao> ListarTodos()
+        public static IOrderedEnumerable<Ferias> ListarTodos()
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
             try
             {
-                return db.divisoes.ToList().OrderBy(x => x.nome);
+                return db.ferias.ToList().OrderBy(x => x.id);
             }
             catch
             {
                 return null;
             }
         }
-
 
     }
 }
