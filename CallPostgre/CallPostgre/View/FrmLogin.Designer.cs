@@ -85,7 +85,7 @@
             // btnLoginEntrar
             // 
             this.btnLoginEntrar.BackColor = System.Drawing.Color.Transparent;
-            this.btnLoginEntrar.BackgroundImage = global::CallPostgre.Properties.Resources.azul;
+            this.btnLoginEntrar.BackgroundImage = global::CallPostgre.Properties.Resources.verde;
             this.btnLoginEntrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLoginEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoginEntrar.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

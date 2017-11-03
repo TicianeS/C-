@@ -48,29 +48,33 @@ namespace CallPostgre
 
                 string senha = mskLoginSenha.Text;
 
-                if (Usuario.senha.Equals(senha))
-                    {
-                    string nome = Usuario.funcionarios.nome;
-                    
-                        MessageBox.Show("BEM-VINDO (A) " + Usuario.funcionarios.nome + " !");
-                    FrmPrincipal frmPri = new FrmPrincipal(this);
-                    this.Hide();
-                    frmPri.Show();
+               if (Usuario == null)
+                {
+                    MessageBox.Show("Login ou senha incorretos.", "Dados incorretos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
+               else
+                {
+                    if (Usuario.senha.Equals(senha))
+                    {
+                        string nome = Usuario.funcionarios.nome;
+
+                        MessageBox.Show("BEM-VINDO (A) " + Usuario.funcionarios.nome + " !");
+                        FrmPrincipal frmPri = new FrmPrincipal(this);
+                        this.Hide();
+                        frmPri.Show();
+                    }
+                    else
                     {
                         MessageBox.Show("Login ou senha incorretos.", "Dados incorretos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    
-             //   }
-                
-                
+                }
+                       
             }
         }
 
         private void linkLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Solicite a sua senha de acesso para o seu monitor.");
+            MessageBox.Show("Solicite sua senha de acesso para o seu monitor.");
         }
     }
 }

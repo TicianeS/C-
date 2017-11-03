@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnTeleatendente = new System.Windows.Forms.ToolStripMenuItem();
             this.mnTeleAcesso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnTeleAcessoAlterarSenha = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,28 +50,34 @@
             this.dadosPessoaisToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pretensõesDeFériasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarFériasAutorizadasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarFériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarVagasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarDatasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.departamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.divisãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnSuperDepCargos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSair = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFrmPrincipalCargo = new System.Windows.Forms.Label();
             this.lblFrmPrincipalNome = new System.Windows.Forms.Label();
             this.lblFrmPrincipalRegistro = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.mnPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // mnPrincipal
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnTeleatendente,
             this.mnMonitor,
             this.mnSupervisor,
             this.mnSair});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1047, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mnPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.mnPrincipal.Name = "mnPrincipal";
+            this.mnPrincipal.Size = new System.Drawing.Size(1047, 24);
+            this.mnPrincipal.TabIndex = 1;
+            this.mnPrincipal.Text = "menuStrip1";
             // 
             // mnTeleatendente
             // 
@@ -80,8 +86,8 @@
             this.fériasToolStripMenuItem,
             this.fériasToolStripMenuItem1});
             this.mnTeleatendente.Name = "mnTeleatendente";
-            this.mnTeleatendente.Size = new System.Drawing.Size(93, 20);
-            this.mnTeleatendente.Text = "Teleatendente";
+            this.mnTeleatendente.Size = new System.Drawing.Size(59, 20);
+            this.mnTeleatendente.Text = "Opções";
             // 
             // mnTeleAcesso
             // 
@@ -134,8 +140,8 @@
             this.fériasToolStripMenuItem2,
             this.timesToolStripMenuItem});
             this.mnMonitor.Name = "mnMonitor";
-            this.mnMonitor.Size = new System.Drawing.Size(62, 20);
-            this.mnMonitor.Text = "Monitor";
+            this.mnMonitor.Size = new System.Drawing.Size(59, 20);
+            this.mnMonitor.Text = "Opções";
             // 
             // mnMoniAcesso
             // 
@@ -155,7 +161,7 @@
             // 
             this.dadosPessoaisToolStripMenuItem.Name = "dadosPessoaisToolStripMenuItem";
             this.dadosPessoaisToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.dadosPessoaisToolStripMenuItem.Text = "Dados Pessoais";
+            this.dadosPessoaisToolStripMenuItem.Text = "Funcionários";
             // 
             // fériasToolStripMenuItem2
             // 
@@ -190,10 +196,11 @@
             this.mnSuperAcesso,
             this.dadosPessoaisToolStripMenuItem1,
             this.fériasToolStripMenuItem3,
-            this.timesToolStripMenuItem1});
+            this.timesToolStripMenuItem1,
+            this.departamentoToolStripMenuItem});
             this.mnSupervisor.Name = "mnSupervisor";
-            this.mnSupervisor.Size = new System.Drawing.Size(74, 20);
-            this.mnSupervisor.Text = "Supervisor";
+            this.mnSupervisor.Size = new System.Drawing.Size(59, 20);
+            this.mnSupervisor.Text = "Opções";
             // 
             // mnSuperAcesso
             // 
@@ -213,14 +220,15 @@
             // 
             this.dadosPessoaisToolStripMenuItem1.Name = "dadosPessoaisToolStripMenuItem1";
             this.dadosPessoaisToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.dadosPessoaisToolStripMenuItem1.Text = "Dados pessoais";
+            this.dadosPessoaisToolStripMenuItem1.Text = "Funcionários";
             // 
             // fériasToolStripMenuItem3
             // 
             this.fériasToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pretensõesDeFériasToolStripMenuItem2,
-            this.consultarFériasAutorizadasToolStripMenuItem2,
-            this.gerenciarFériasToolStripMenuItem});
+            this.gerenciarFériasToolStripMenuItem,
+            this.gerenciarToolStripMenuItem,
+            this.datasToolStripMenuItem});
             this.fériasToolStripMenuItem3.Name = "fériasToolStripMenuItem3";
             this.fériasToolStripMenuItem3.Size = new System.Drawing.Size(170, 22);
             this.fériasToolStripMenuItem3.Text = "Férias";
@@ -228,26 +236,70 @@
             // pretensõesDeFériasToolStripMenuItem2
             // 
             this.pretensõesDeFériasToolStripMenuItem2.Name = "pretensõesDeFériasToolStripMenuItem2";
-            this.pretensõesDeFériasToolStripMenuItem2.Size = new System.Drawing.Size(219, 22);
+            this.pretensõesDeFériasToolStripMenuItem2.Size = new System.Drawing.Size(178, 22);
             this.pretensõesDeFériasToolStripMenuItem2.Text = "Pretensões de férias";
-            // 
-            // consultarFériasAutorizadasToolStripMenuItem2
-            // 
-            this.consultarFériasAutorizadasToolStripMenuItem2.Name = "consultarFériasAutorizadasToolStripMenuItem2";
-            this.consultarFériasAutorizadasToolStripMenuItem2.Size = new System.Drawing.Size(219, 22);
-            this.consultarFériasAutorizadasToolStripMenuItem2.Text = "Consultar férias autorizadas";
             // 
             // gerenciarFériasToolStripMenuItem
             // 
             this.gerenciarFériasToolStripMenuItem.Name = "gerenciarFériasToolStripMenuItem";
-            this.gerenciarFériasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.gerenciarFériasToolStripMenuItem.Text = "Gerenciar férias";
+            this.gerenciarFériasToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.gerenciarFériasToolStripMenuItem.Text = "Férias";
+            // 
+            // gerenciarToolStripMenuItem
+            // 
+            this.gerenciarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gerenciarVagasToolStripMenuItem});
+            this.gerenciarToolStripMenuItem.Name = "gerenciarToolStripMenuItem";
+            this.gerenciarToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.gerenciarToolStripMenuItem.Text = "Vagas";
+            // 
+            // gerenciarVagasToolStripMenuItem
+            // 
+            this.gerenciarVagasToolStripMenuItem.Name = "gerenciarVagasToolStripMenuItem";
+            this.gerenciarVagasToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.gerenciarVagasToolStripMenuItem.Text = "Gerenciar vagas";
+            // 
+            // datasToolStripMenuItem
+            // 
+            this.datasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gerenciarDatasToolStripMenuItem});
+            this.datasToolStripMenuItem.Name = "datasToolStripMenuItem";
+            this.datasToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.datasToolStripMenuItem.Text = "Datas";
+            // 
+            // gerenciarDatasToolStripMenuItem
+            // 
+            this.gerenciarDatasToolStripMenuItem.Name = "gerenciarDatasToolStripMenuItem";
+            this.gerenciarDatasToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.gerenciarDatasToolStripMenuItem.Text = "Gerenciar datas ";
             // 
             // timesToolStripMenuItem1
             // 
             this.timesToolStripMenuItem1.Name = "timesToolStripMenuItem1";
             this.timesToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.timesToolStripMenuItem1.Text = "Times";
+            // 
+            // departamentoToolStripMenuItem
+            // 
+            this.departamentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.divisãoToolStripMenuItem,
+            this.mnSuperDepCargos});
+            this.departamentoToolStripMenuItem.Name = "departamentoToolStripMenuItem";
+            this.departamentoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.departamentoToolStripMenuItem.Text = "Departamento";
+            // 
+            // divisãoToolStripMenuItem
+            // 
+            this.divisãoToolStripMenuItem.Name = "divisãoToolStripMenuItem";
+            this.divisãoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.divisãoToolStripMenuItem.Text = "Divisões";
+            // 
+            // mnSuperDepCargos
+            // 
+            this.mnSuperDepCargos.Name = "mnSuperDepCargos";
+            this.mnSuperDepCargos.Size = new System.Drawing.Size(152, 22);
+            this.mnSuperDepCargos.Text = "Cargos";
+            this.mnSuperDepCargos.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
             // 
             // mnSair
             // 
@@ -261,9 +313,10 @@
             this.lblFrmPrincipalCargo.AutoSize = true;
             this.lblFrmPrincipalCargo.Location = new System.Drawing.Point(469, 7);
             this.lblFrmPrincipalCargo.Name = "lblFrmPrincipalCargo";
-            this.lblFrmPrincipalCargo.Size = new System.Drawing.Size(45, 13);
+            this.lblFrmPrincipalCargo.Size = new System.Drawing.Size(44, 13);
             this.lblFrmPrincipalCargo.TabIndex = 2;
-            this.lblFrmPrincipalCargo.Text = "CARGO";
+            this.lblFrmPrincipalCargo.Text = "PERFIL";
+            this.lblFrmPrincipalCargo.Visible = false;
             // 
             // lblFrmPrincipalNome
             // 
@@ -282,6 +335,7 @@
             this.lblFrmPrincipalRegistro.Size = new System.Drawing.Size(31, 13);
             this.lblFrmPrincipalRegistro.TabIndex = 4;
             this.lblFrmPrincipalRegistro.Text = "0000";
+            this.lblFrmPrincipalRegistro.Visible = false;
             // 
             // FrmPrincipal
             // 
@@ -291,14 +345,15 @@
             this.Controls.Add(this.lblFrmPrincipalRegistro);
             this.Controls.Add(this.lblFrmPrincipalNome);
             this.Controls.Add(this.lblFrmPrincipalCargo);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mnPrincipal);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mnPrincipal;
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mnPrincipal.ResumeLayout(false);
+            this.mnPrincipal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,7 +361,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mnPrincipal;
         private System.Windows.Forms.ToolStripMenuItem mnTeleatendente;
         private System.Windows.Forms.ToolStripMenuItem mnTeleAcesso;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem;
@@ -328,12 +383,18 @@
         private System.Windows.Forms.ToolStripMenuItem dadosPessoaisToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem pretensõesDeFériasToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem consultarFériasAutorizadasToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem gerenciarFériasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem timesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnSair;
         public System.Windows.Forms.Label lblFrmPrincipalRegistro;
         public System.Windows.Forms.Label lblFrmPrincipalCargo;
         public System.Windows.Forms.Label lblFrmPrincipalNome;
+        private System.Windows.Forms.ToolStripMenuItem departamentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem divisãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnSuperDepCargos;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarVagasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem datasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarDatasToolStripMenuItem;
     }
 }

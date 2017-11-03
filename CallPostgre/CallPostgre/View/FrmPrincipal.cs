@@ -16,6 +16,7 @@ namespace CallPostgre.View
     public partial class FrmPrincipal : Form
     {
         FrmLogin log;
+        FrmCargo frmCargo;
         public FrmPrincipal(FrmLogin x)
         {
             log = x;
@@ -41,9 +42,12 @@ namespace CallPostgre.View
 
             f = FuncionarioDAO.ObterFuncionarioId(reg);
             lblFrmPrincipalNome.Text = f.nome;
-            lblFrmPrincipalCargo.Text = f.cargos.nome;
 
-            if (lblFrmPrincipalCargo.Text.Contains("TELEATENDENTE"))
+            Usuario u = new Usuario();
+            u = UsuarioDAO.ObterUsuarioRegistro(reg);
+            lblFrmPrincipalCargo.Text = u.perfil;
+
+            if (lblFrmPrincipalCargo.Text.Equals("TELEATENDENTE"))
             {
                 mnTeleatendente.Enabled = true;
                 mnMonitor.Enabled = false;
@@ -51,7 +55,7 @@ namespace CallPostgre.View
             }
             else
             {
-                if (lblFrmPrincipalCargo.Text.Contains("MONITOR") || reg == 43387)
+                if (lblFrmPrincipalCargo.Text.Equals("MONITOR") || lblFrmPrincipalCargo.Text.Equals("APOIO MONITOR"))
                 {
                     mnTeleatendente.Enabled = false;
                     mnMonitor.Enabled = true;
@@ -59,7 +63,7 @@ namespace CallPostgre.View
                 }
                 else
                 {
-                    if (reg == 51482)
+                    if (lblFrmPrincipalCargo.Text.Equals("APOIO SUPERVISOR") || lblFrmPrincipalCargo.Text.Equals("SUPERVISOR") || lblFrmPrincipalCargo.Text.Equals("GERENTE"))
                     {
                         mnTeleatendente.Enabled = false;
                         mnMonitor.Enabled = false;
@@ -67,10 +71,20 @@ namespace CallPostgre.View
                     }
                     else
                     {
-                        mnTeleatendente.Enabled = false;
-                        mnMonitor.Enabled = false;
-                        mnSupervisor.Enabled = false;
+                        if (lblFrmPrincipalCargo.Text.Equals("ADMINISTRADOR"))
+                        {
+                            mnTeleatendente.Enabled = true;
+                            mnMonitor.Enabled = true;
+                            mnSupervisor.Enabled = true;
+                        }
+                        else
+                        {
+                            mnTeleatendente.Enabled = false;
+                            mnMonitor.Enabled = false;
+                            mnSupervisor.Enabled = false;
+                        }
                     }
+                    
                 }
             }
         }
@@ -84,6 +98,22 @@ namespace CallPostgre.View
         private void mnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            
+        }
+
+        private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void cargosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmCargo == null || frmCargo.IsDisposed)
+            {
+               frmCargo = new FrmCargo();
+               frmCargo.MdiParent = this;
+               frmCargo.Show();
+            }
             
         }
     }

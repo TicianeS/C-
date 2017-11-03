@@ -107,6 +107,24 @@
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Util\Conversor.cs" />
+    <Compile Include="View\FrmCargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmCargo.Designer.cs">
+      <DependentUpon>FrmCargo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmDepartamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmDepartamento.Designer.cs">
+      <DependentUpon>frmDepartamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrmPretensao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmPretensao.Designer.cs">
+      <DependentUpon>FrmPretensao.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +154,15 @@
     <Compile Include="View\FrmUsuario.Designer.cs">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FrmCargo.resx">
+      <DependentUpon>FrmCargo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmDepartamento.resx">
+      <DependentUpon>frmDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmPretensao.resx">
+      <DependentUpon>FrmPretensao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
