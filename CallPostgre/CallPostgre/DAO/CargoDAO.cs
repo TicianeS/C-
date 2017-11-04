@@ -67,5 +67,32 @@ namespace CallPostgre.DAO
                 return null;
             }
         }
+
+        public static IOrderedEnumerable<Cargo> ObterCargoNome(string nome)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.cargos.Where(x => x.nome.Contains(nome)).ToList().OrderBy(x => x.nome);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static Cargo PesquisarCargo(string nome)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.cargos.FirstOrDefault(x => x.nome.Equals(nome));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
     }
 }

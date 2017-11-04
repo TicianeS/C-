@@ -115,6 +115,7 @@
             this.txtLoginRegistro.Name = "txtLoginRegistro";
             this.txtLoginRegistro.Size = new System.Drawing.Size(110, 20);
             this.txtLoginRegistro.TabIndex = 1;
+            this.txtLoginRegistro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoginRegistro_KeyPress);
             // 
             // FrmLogin
             // 

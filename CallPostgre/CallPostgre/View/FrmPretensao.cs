@@ -12,11 +12,11 @@ namespace CallPostgre.View
 {
     public partial class FrmPretensao : Form
     {
-        public FrmPretensao()
+        FrmPrincipal pri;
+        public FrmPretensao(FrmPrincipal x)
         {
+            pri = x;
             InitializeComponent();
         }
-
-     
     }
 }

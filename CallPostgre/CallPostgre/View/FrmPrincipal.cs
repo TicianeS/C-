@@ -17,6 +17,7 @@ namespace CallPostgre.View
     {
         FrmLogin log;
         FrmCargo frmCargo;
+        FrmPretensao frmPret;
         public FrmPrincipal(FrmLogin x)
         {
             log = x;
@@ -110,11 +111,41 @@ namespace CallPostgre.View
         {
             if (frmCargo == null || frmCargo.IsDisposed)
             {
-               frmCargo = new FrmCargo();
+               frmCargo = new FrmCargo(this);
                frmCargo.MdiParent = this;
                frmCargo.Show();
             }
             
+        }
+
+        private void pretensõesDeFériasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmPret == null || frmPret.IsDisposed)
+            {
+                frmPret = new FrmPretensao(this);
+                frmPret.MdiParent = this;
+                frmPret.Show();
+            }
+        }
+
+        private void pretensõesDeFériasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (frmPret == null || frmPret.IsDisposed)
+            {
+                frmPret = new FrmPretensao(this);
+                frmPret.MdiParent = this;
+                frmPret.Show();
+            }
+        }
+
+        private void pretensõesDeFériasToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (frmPret == null || frmPret.IsDisposed)
+            {
+                frmPret = new FrmPretensao(this);
+                frmPret.MdiParent = this;
+                frmPret.Show();
+            }
         }
     }
 }

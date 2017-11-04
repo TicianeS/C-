@@ -100,7 +100,7 @@
             // mnTeleAcessoAlterarSenha
             // 
             this.mnTeleAcessoAlterarSenha.Name = "mnTeleAcessoAlterarSenha";
-            this.mnTeleAcessoAlterarSenha.Size = new System.Drawing.Size(152, 22);
+            this.mnTeleAcessoAlterarSenha.Size = new System.Drawing.Size(143, 22);
             this.mnTeleAcessoAlterarSenha.Text = "Alterar senha";
             this.mnTeleAcessoAlterarSenha.Click += new System.EventHandler(this.mnTeleAcessoAlterarSenha_Click);
             // 
@@ -125,6 +125,7 @@
             this.pretensõesDeFériasToolStripMenuItem.Name = "pretensõesDeFériasToolStripMenuItem";
             this.pretensõesDeFériasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.pretensõesDeFériasToolStripMenuItem.Text = "Pretensões de férias";
+            this.pretensõesDeFériasToolStripMenuItem.Click += new System.EventHandler(this.pretensõesDeFériasToolStripMenuItem_Click);
             // 
             // consultarFériasAutorizadasToolStripMenuItem
             // 
@@ -177,6 +178,7 @@
             this.pretensõesDeFériasToolStripMenuItem1.Name = "pretensõesDeFériasToolStripMenuItem1";
             this.pretensõesDeFériasToolStripMenuItem1.Size = new System.Drawing.Size(219, 22);
             this.pretensõesDeFériasToolStripMenuItem1.Text = "Pretensões de férias";
+            this.pretensõesDeFériasToolStripMenuItem1.Click += new System.EventHandler(this.pretensõesDeFériasToolStripMenuItem1_Click);
             // 
             // consultarFériasAutorizadasToolStripMenuItem1
             // 
@@ -238,6 +240,7 @@
             this.pretensõesDeFériasToolStripMenuItem2.Name = "pretensõesDeFériasToolStripMenuItem2";
             this.pretensõesDeFériasToolStripMenuItem2.Size = new System.Drawing.Size(178, 22);
             this.pretensõesDeFériasToolStripMenuItem2.Text = "Pretensões de férias";
+            this.pretensõesDeFériasToolStripMenuItem2.Click += new System.EventHandler(this.pretensõesDeFériasToolStripMenuItem2_Click);
             // 
             // gerenciarFériasToolStripMenuItem
             // 
@@ -291,13 +294,13 @@
             // divisãoToolStripMenuItem
             // 
             this.divisãoToolStripMenuItem.Name = "divisãoToolStripMenuItem";
-            this.divisãoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.divisãoToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.divisãoToolStripMenuItem.Text = "Divisões";
             // 
             // mnSuperDepCargos
             // 
             this.mnSuperDepCargos.Name = "mnSuperDepCargos";
-            this.mnSuperDepCargos.Size = new System.Drawing.Size(152, 22);
+            this.mnSuperDepCargos.Size = new System.Drawing.Size(117, 22);
             this.mnSuperDepCargos.Text = "Cargos";
             this.mnSuperDepCargos.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
             // 
@@ -321,6 +324,7 @@
             // lblFrmPrincipalNome
             // 
             this.lblFrmPrincipalNome.AutoSize = true;
+            this.lblFrmPrincipalNome.BackColor = System.Drawing.SystemColors.Control;
             this.lblFrmPrincipalNome.Location = new System.Drawing.Point(666, 7);
             this.lblFrmPrincipalNome.Name = "lblFrmPrincipalNome";
             this.lblFrmPrincipalNome.Size = new System.Drawing.Size(35, 13);
@@ -341,7 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 555);
+            this.ClientSize = new System.Drawing.Size(1047, 611);
             this.Controls.Add(this.lblFrmPrincipalRegistro);
             this.Controls.Add(this.lblFrmPrincipalNome);
             this.Controls.Add(this.lblFrmPrincipalCargo);
