@@ -67,5 +67,33 @@ namespace CallPostgre.DAO
                 return null;
             }
         }
+
+        public static Departamento PesquisarFuncReg(int reg)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.divfuncionario.Include("funcionarios").FirstOrDefault(x => x.funcionarios.registro == reg);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static Departamento PesquisarFuncRegMes(int reg)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            DateTime hoje = DateTime.Now;
+            try
+            {
+                return db.divfuncionario.Include("funcionarios").FirstOrDefault(x => x.funcionarios.registro == reg);
+               // return db.divfuncionario.Include("funcionarios").FirstOrDefault(x => x.funcionarios.registro == reg && x.cadastro.Month == hoje.Month && x.cadastro.Year == hoje.Year);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -106,7 +106,7 @@
     <Compile Include="Model\Funcionario.cs">
       <DependentUpon>CallcenterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Util\Conversor.cs" />
+    <Compile Include="Util\Tools.cs" />
     <Compile Include="View\FrmCargo.cs">
       <SubType>Form</SubType>
     </Compile>

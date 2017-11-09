@@ -37,7 +37,7 @@ namespace CallPostgre.View
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             lblFrmPrincipalRegistro.Text = log.txtLoginRegistro.Text;
-            int reg = Conversor.ConverterParaInt(lblFrmPrincipalRegistro.Text);
+            int reg = Util.Tools.ConverterParaInt(lblFrmPrincipalRegistro.Text);
 
             Funcionario f = new Funcionario();
 
@@ -46,9 +46,9 @@ namespace CallPostgre.View
 
             Usuario u = new Usuario();
             u = UsuarioDAO.ObterUsuarioRegistro(reg);
-            lblFrmPrincipalCargo.Text = u.perfil;
+            lblFrmPrincipalPerfil.Text = u.perfil;
 
-            if (lblFrmPrincipalCargo.Text.Equals("TELEATENDENTE"))
+            if (lblFrmPrincipalPerfil.Text.Equals("TELEATENDENTE"))
             {
                 mnTeleatendente.Enabled = true;
                 mnMonitor.Enabled = false;
@@ -56,7 +56,7 @@ namespace CallPostgre.View
             }
             else
             {
-                if (lblFrmPrincipalCargo.Text.Equals("MONITOR") || lblFrmPrincipalCargo.Text.Equals("APOIO MONITOR"))
+                if (lblFrmPrincipalPerfil.Text.Equals("MONITOR") || lblFrmPrincipalPerfil.Text.Equals("APOIO MONITOR"))
                 {
                     mnTeleatendente.Enabled = false;
                     mnMonitor.Enabled = true;
@@ -64,7 +64,7 @@ namespace CallPostgre.View
                 }
                 else
                 {
-                    if (lblFrmPrincipalCargo.Text.Equals("APOIO SUPERVISOR") || lblFrmPrincipalCargo.Text.Equals("SUPERVISOR") || lblFrmPrincipalCargo.Text.Equals("GERENTE"))
+                    if (lblFrmPrincipalPerfil.Text.Equals("APOIO SUPERVISOR") || lblFrmPrincipalPerfil.Text.Equals("SUPERVISOR") || lblFrmPrincipalPerfil.Text.Equals("GERENTE"))
                     {
                         mnTeleatendente.Enabled = false;
                         mnMonitor.Enabled = false;
@@ -72,7 +72,7 @@ namespace CallPostgre.View
                     }
                     else
                     {
-                        if (lblFrmPrincipalCargo.Text.Equals("ADMINISTRADOR"))
+                        if (lblFrmPrincipalPerfil.Text.Equals("ADMINISTRADOR"))
                         {
                             mnTeleatendente.Enabled = true;
                             mnMonitor.Enabled = true;

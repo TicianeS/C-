@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtPretCadRegistro = new System.Windows.Forms.TextBox();
             this.txtPretCadNome = new System.Windows.Forms.TextBox();
             this.txtPretCadTurno = new System.Windows.Forms.TextBox();
@@ -44,19 +44,26 @@
             this.txtPretCadPaqFim = new System.Windows.Forms.TextBox();
             this.tabPretensao = new System.Windows.Forms.TabControl();
             this.tabPretCadastrar = new System.Windows.Forms.TabPage();
-            this.tabPretConsultar = new System.Windows.Forms.TabPage();
-            this.grpPretensoesPaquisitivo = new System.Windows.Forms.GroupBox();
             this.grpPretensoesCadastrar = new System.Windows.Forms.GroupBox();
-            this.lblPretPer1inicio = new System.Windows.Forms.Label();
-            this.lblPretPer1Fim = new System.Windows.Forms.Label();
-            this.lblPretCadastrarPer1 = new System.Windows.Forms.Label();
+            this.lblPretCadPer2Dias = new System.Windows.Forms.Label();
+            this.lblPretCadPer1Dias = new System.Windows.Forms.Label();
+            this.txtPretCadPer2Dias = new System.Windows.Forms.TextBox();
+            this.txtPretCadPer1Dias = new System.Windows.Forms.TextBox();
+            this.datePretCadPer2Fim = new System.Windows.Forms.DateTimePicker();
+            this.datePretCadPer2Inicio = new System.Windows.Forms.DateTimePicker();
+            this.datePretCadPer1Fim = new System.Windows.Forms.DateTimePicker();
+            this.datePretCadPer1Inicio = new System.Windows.Forms.DateTimePicker();
+            this.btnPretCadAlterar = new System.Windows.Forms.Button();
+            this.btnPretCadSalvar = new System.Windows.Forms.Button();
+            this.btnPretCadIncluir = new System.Windows.Forms.Button();
             this.lblPretCadastrarPer2 = new System.Windows.Forms.Label();
             this.lblPretCadPer2Fim = new System.Windows.Forms.Label();
             this.lblPretCadPer2Inicio = new System.Windows.Forms.Label();
+            this.lblPretCadastrarPer1 = new System.Windows.Forms.Label();
+            this.lblPretPer1Fim = new System.Windows.Forms.Label();
+            this.lblPretPer1inicio = new System.Windows.Forms.Label();
+            this.grpPretensoesPaquisitivo = new System.Windows.Forms.GroupBox();
             this.lblPretCadastrarPer = new System.Windows.Forms.Label();
-            this.btnPretCadIncluir = new System.Windows.Forms.Button();
-            this.btnPretCadSalvar = new System.Windows.Forms.Button();
-            this.btnPretCadAlterar = new System.Windows.Forms.Button();
             this.dtgPretCad = new System.Windows.Forms.DataGridView();
             this.dtgPretClOpcao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgPretCl1pInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,18 +73,11 @@
             this.dtgPretCl2pFim = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgPretCl2pTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgPretClTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datePretCadPer1Inicio = new System.Windows.Forms.DateTimePicker();
-            this.datePretCadPer1Fim = new System.Windows.Forms.DateTimePicker();
-            this.datePretCadPer2Inicio = new System.Windows.Forms.DateTimePicker();
-            this.datePretCadPer2Fim = new System.Windows.Forms.DateTimePicker();
-            this.txtPretCadPer1Dias = new System.Windows.Forms.TextBox();
-            this.txtPretCadPer2Dias = new System.Windows.Forms.TextBox();
-            this.lblPretCadPer1Dias = new System.Windows.Forms.Label();
-            this.lblPretCadPer2Dias = new System.Windows.Forms.Label();
+            this.tabPretConsultar = new System.Windows.Forms.TabPage();
             this.tabPretensao.SuspendLayout();
             this.tabPretCadastrar.SuspendLayout();
-            this.grpPretensoesPaquisitivo.SuspendLayout();
             this.grpPretensoesCadastrar.SuspendLayout();
+            this.grpPretensoesPaquisitivo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPretCad)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,10 +85,12 @@
             // 
             this.txtPretCadRegistro.BackColor = System.Drawing.Color.White;
             this.txtPretCadRegistro.Location = new System.Drawing.Point(27, 30);
+            this.txtPretCadRegistro.MaxLength = 6;
             this.txtPretCadRegistro.Name = "txtPretCadRegistro";
-            this.txtPretCadRegistro.ReadOnly = true;
             this.txtPretCadRegistro.Size = new System.Drawing.Size(100, 20);
             this.txtPretCadRegistro.TabIndex = 1;
+            this.txtPretCadRegistro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPretCadRegistro_KeyPress);
+            this.txtPretCadRegistro.Leave += new System.EventHandler(this.txtPretCadRegistro_Leave);
             // 
             // txtPretCadNome
             // 
@@ -173,6 +175,7 @@
             this.cboPretCadAno.Name = "cboPretCadAno";
             this.cboPretCadAno.Size = new System.Drawing.Size(100, 21);
             this.cboPretCadAno.TabIndex = 7;
+            this.cboPretCadAno.Leave += new System.EventHandler(this.cboPretCadAno_Leave);
             // 
             // txtPretCadPaqInicio
             // 
@@ -201,6 +204,7 @@
             this.tabPretensao.SelectedIndex = 0;
             this.tabPretensao.Size = new System.Drawing.Size(698, 487);
             this.tabPretensao.TabIndex = 13;
+            this.tabPretensao.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabPretensao_Selected);
             // 
             // tabPretCadastrar
             // 
@@ -222,29 +226,6 @@
             this.tabPretCadastrar.TabIndex = 0;
             this.tabPretCadastrar.Text = "Cadastrar";
             this.tabPretCadastrar.UseVisualStyleBackColor = true;
-            // 
-            // tabPretConsultar
-            // 
-            this.tabPretConsultar.Location = new System.Drawing.Point(4, 22);
-            this.tabPretConsultar.Name = "tabPretConsultar";
-            this.tabPretConsultar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPretConsultar.Size = new System.Drawing.Size(690, 461);
-            this.tabPretConsultar.TabIndex = 1;
-            this.tabPretConsultar.Text = "Consultar";
-            this.tabPretConsultar.UseVisualStyleBackColor = true;
-            // 
-            // grpPretensoesPaquisitivo
-            // 
-            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretCadastrarPer);
-            this.grpPretensoesPaquisitivo.Controls.Add(this.txtPretCadPaqInicio);
-            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretensaoDtInicio);
-            this.grpPretensoesPaquisitivo.Controls.Add(this.txtPretCadPaqFim);
-            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretensaoDtFinal);
-            this.grpPretensoesPaquisitivo.Location = new System.Drawing.Point(175, 61);
-            this.grpPretensoesPaquisitivo.Name = "grpPretensoesPaquisitivo";
-            this.grpPretensoesPaquisitivo.Size = new System.Drawing.Size(446, 63);
-            this.grpPretensoesPaquisitivo.TabIndex = 13;
-            this.grpPretensoesPaquisitivo.TabStop = false;
             // 
             // grpPretensoesCadastrar
             // 
@@ -272,32 +253,135 @@
             this.grpPretensoesCadastrar.TabStop = false;
             this.grpPretensoesCadastrar.Text = "Cadastrar Pretensões";
             // 
-            // lblPretPer1inicio
+            // lblPretCadPer2Dias
             // 
-            this.lblPretPer1inicio.AutoSize = true;
-            this.lblPretPer1inicio.Location = new System.Drawing.Point(135, 24);
-            this.lblPretPer1inicio.Name = "lblPretPer1inicio";
-            this.lblPretPer1inicio.Size = new System.Drawing.Size(34, 13);
-            this.lblPretPer1inicio.TabIndex = 15;
-            this.lblPretPer1inicio.Text = "Início";
+            this.lblPretCadPer2Dias.AutoSize = true;
+            this.lblPretCadPer2Dias.Location = new System.Drawing.Point(443, 70);
+            this.lblPretCadPer2Dias.Name = "lblPretCadPer2Dias";
+            this.lblPretCadPer2Dias.Size = new System.Drawing.Size(28, 13);
+            this.lblPretCadPer2Dias.TabIndex = 25;
+            this.lblPretCadPer2Dias.Text = "Dias";
             // 
-            // lblPretPer1Fim
+            // lblPretCadPer1Dias
             // 
-            this.lblPretPer1Fim.AutoSize = true;
-            this.lblPretPer1Fim.Location = new System.Drawing.Point(286, 24);
-            this.lblPretPer1Fim.Name = "lblPretPer1Fim";
-            this.lblPretPer1Fim.Size = new System.Drawing.Size(23, 13);
-            this.lblPretPer1Fim.TabIndex = 17;
-            this.lblPretPer1Fim.Text = "Fim";
+            this.lblPretCadPer1Dias.AutoSize = true;
+            this.lblPretCadPer1Dias.Location = new System.Drawing.Point(443, 24);
+            this.lblPretCadPer1Dias.Name = "lblPretCadPer1Dias";
+            this.lblPretCadPer1Dias.Size = new System.Drawing.Size(28, 13);
+            this.lblPretCadPer1Dias.TabIndex = 19;
+            this.lblPretCadPer1Dias.Text = "Dias";
             // 
-            // lblPretCadastrarPer1
+            // txtPretCadPer2Dias
             // 
-            this.lblPretCadastrarPer1.AutoSize = true;
-            this.lblPretCadastrarPer1.Location = new System.Drawing.Point(16, 43);
-            this.lblPretCadastrarPer1.Name = "lblPretCadastrarPer1";
-            this.lblPretCadastrarPer1.Size = new System.Drawing.Size(85, 13);
-            this.lblPretCadastrarPer1.TabIndex = 14;
-            this.lblPretCadastrarPer1.Text = "Primeiro Período";
+            this.txtPretCadPer2Dias.BackColor = System.Drawing.Color.White;
+            this.txtPretCadPer2Dias.Location = new System.Drawing.Point(446, 86);
+            this.txtPretCadPer2Dias.Name = "txtPretCadPer2Dias";
+            this.txtPretCadPer2Dias.ReadOnly = true;
+            this.txtPretCadPer2Dias.Size = new System.Drawing.Size(50, 20);
+            this.txtPretCadPer2Dias.TabIndex = 26;
+            // 
+            // txtPretCadPer1Dias
+            // 
+            this.txtPretCadPer1Dias.BackColor = System.Drawing.Color.White;
+            this.txtPretCadPer1Dias.Location = new System.Drawing.Point(446, 40);
+            this.txtPretCadPer1Dias.Name = "txtPretCadPer1Dias";
+            this.txtPretCadPer1Dias.ReadOnly = true;
+            this.txtPretCadPer1Dias.Size = new System.Drawing.Size(50, 20);
+            this.txtPretCadPer1Dias.TabIndex = 20;
+            // 
+            // datePretCadPer2Fim
+            // 
+            this.datePretCadPer2Fim.Checked = false;
+            this.datePretCadPer2Fim.CustomFormat = "\"\"";
+            this.datePretCadPer2Fim.Enabled = false;
+            this.datePretCadPer2Fim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePretCadPer2Fim.Location = new System.Drawing.Point(289, 86);
+            this.datePretCadPer2Fim.Name = "datePretCadPer2Fim";
+            this.datePretCadPer2Fim.Size = new System.Drawing.Size(100, 20);
+            this.datePretCadPer2Fim.TabIndex = 24;
+            this.datePretCadPer2Fim.ValueChanged += new System.EventHandler(this.datePretCadPer2Fim_ValueChanged);
+            // 
+            // datePretCadPer2Inicio
+            // 
+            this.datePretCadPer2Inicio.Checked = false;
+            this.datePretCadPer2Inicio.CustomFormat = "\"\"";
+            this.datePretCadPer2Inicio.Enabled = false;
+            this.datePretCadPer2Inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePretCadPer2Inicio.Location = new System.Drawing.Point(138, 86);
+            this.datePretCadPer2Inicio.Name = "datePretCadPer2Inicio";
+            this.datePretCadPer2Inicio.Size = new System.Drawing.Size(100, 20);
+            this.datePretCadPer2Inicio.TabIndex = 23;
+            this.datePretCadPer2Inicio.ValueChanged += new System.EventHandler(this.datePretCadPer2Inicio_ValueChanged);
+            // 
+            // datePretCadPer1Fim
+            // 
+            this.datePretCadPer1Fim.CustomFormat = "\"\"";
+            this.datePretCadPer1Fim.Enabled = false;
+            this.datePretCadPer1Fim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePretCadPer1Fim.Location = new System.Drawing.Point(289, 40);
+            this.datePretCadPer1Fim.Name = "datePretCadPer1Fim";
+            this.datePretCadPer1Fim.Size = new System.Drawing.Size(100, 20);
+            this.datePretCadPer1Fim.TabIndex = 18;
+            this.datePretCadPer1Fim.ValueChanged += new System.EventHandler(this.datePretCadPer1Fim_ValueChanged);
+            // 
+            // datePretCadPer1Inicio
+            // 
+            this.datePretCadPer1Inicio.Checked = false;
+            this.datePretCadPer1Inicio.CustomFormat = "\"\"";
+            this.datePretCadPer1Inicio.Enabled = false;
+            this.datePretCadPer1Inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePretCadPer1Inicio.Location = new System.Drawing.Point(138, 40);
+            this.datePretCadPer1Inicio.Name = "datePretCadPer1Inicio";
+            this.datePretCadPer1Inicio.Size = new System.Drawing.Size(100, 20);
+            this.datePretCadPer1Inicio.TabIndex = 16;
+            this.datePretCadPer1Inicio.ValueChanged += new System.EventHandler(this.datePretCadPer1Inicio_ValueChanged);
+            // 
+            // btnPretCadAlterar
+            // 
+            this.btnPretCadAlterar.BackColor = System.Drawing.Color.Transparent;
+            this.btnPretCadAlterar.BackgroundImage = global::CallPostgre.Properties.Resources.laranja;
+            this.btnPretCadAlterar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPretCadAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPretCadAlterar.ForeColor = System.Drawing.Color.White;
+            this.btnPretCadAlterar.Location = new System.Drawing.Point(392, 121);
+            this.btnPretCadAlterar.Name = "btnPretCadAlterar";
+            this.btnPretCadAlterar.Size = new System.Drawing.Size(109, 25);
+            this.btnPretCadAlterar.TabIndex = 28;
+            this.btnPretCadAlterar.Text = "Alterar";
+            this.btnPretCadAlterar.UseVisualStyleBackColor = false;
+            this.btnPretCadAlterar.Visible = false;
+            // 
+            // btnPretCadSalvar
+            // 
+            this.btnPretCadSalvar.BackColor = System.Drawing.Color.Transparent;
+            this.btnPretCadSalvar.BackgroundImage = global::CallPostgre.Properties.Resources.verde;
+            this.btnPretCadSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPretCadSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPretCadSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPretCadSalvar.ForeColor = System.Drawing.Color.White;
+            this.btnPretCadSalvar.Location = new System.Drawing.Point(541, 121);
+            this.btnPretCadSalvar.Name = "btnPretCadSalvar";
+            this.btnPretCadSalvar.Size = new System.Drawing.Size(109, 25);
+            this.btnPretCadSalvar.TabIndex = 29;
+            this.btnPretCadSalvar.Text = "Salvar e enviar";
+            this.btnPretCadSalvar.UseVisualStyleBackColor = false;
+            this.btnPretCadSalvar.Visible = false;
+            // 
+            // btnPretCadIncluir
+            // 
+            this.btnPretCadIncluir.BackColor = System.Drawing.Color.Transparent;
+            this.btnPretCadIncluir.BackgroundImage = global::CallPostgre.Properties.Resources.azul;
+            this.btnPretCadIncluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPretCadIncluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPretCadIncluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPretCadIncluir.ForeColor = System.Drawing.Color.White;
+            this.btnPretCadIncluir.Location = new System.Drawing.Point(16, 121);
+            this.btnPretCadIncluir.Name = "btnPretCadIncluir";
+            this.btnPretCadIncluir.Size = new System.Drawing.Size(109, 25);
+            this.btnPretCadIncluir.TabIndex = 27;
+            this.btnPretCadIncluir.Text = "Incluir pretensão";
+            this.btnPretCadIncluir.UseVisualStyleBackColor = false;
+            this.btnPretCadIncluir.Visible = false;
             // 
             // lblPretCadastrarPer2
             // 
@@ -326,6 +410,46 @@
             this.lblPretCadPer2Inicio.TabIndex = 22;
             this.lblPretCadPer2Inicio.Text = "Início";
             // 
+            // lblPretCadastrarPer1
+            // 
+            this.lblPretCadastrarPer1.AutoSize = true;
+            this.lblPretCadastrarPer1.Location = new System.Drawing.Point(16, 43);
+            this.lblPretCadastrarPer1.Name = "lblPretCadastrarPer1";
+            this.lblPretCadastrarPer1.Size = new System.Drawing.Size(85, 13);
+            this.lblPretCadastrarPer1.TabIndex = 14;
+            this.lblPretCadastrarPer1.Text = "Primeiro Período";
+            // 
+            // lblPretPer1Fim
+            // 
+            this.lblPretPer1Fim.AutoSize = true;
+            this.lblPretPer1Fim.Location = new System.Drawing.Point(286, 24);
+            this.lblPretPer1Fim.Name = "lblPretPer1Fim";
+            this.lblPretPer1Fim.Size = new System.Drawing.Size(23, 13);
+            this.lblPretPer1Fim.TabIndex = 17;
+            this.lblPretPer1Fim.Text = "Fim";
+            // 
+            // lblPretPer1inicio
+            // 
+            this.lblPretPer1inicio.AutoSize = true;
+            this.lblPretPer1inicio.Location = new System.Drawing.Point(135, 24);
+            this.lblPretPer1inicio.Name = "lblPretPer1inicio";
+            this.lblPretPer1inicio.Size = new System.Drawing.Size(34, 13);
+            this.lblPretPer1inicio.TabIndex = 15;
+            this.lblPretPer1inicio.Text = "Início";
+            // 
+            // grpPretensoesPaquisitivo
+            // 
+            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretCadastrarPer);
+            this.grpPretensoesPaquisitivo.Controls.Add(this.txtPretCadPaqInicio);
+            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretensaoDtInicio);
+            this.grpPretensoesPaquisitivo.Controls.Add(this.txtPretCadPaqFim);
+            this.grpPretensoesPaquisitivo.Controls.Add(this.lblPretensaoDtFinal);
+            this.grpPretensoesPaquisitivo.Location = new System.Drawing.Point(175, 61);
+            this.grpPretensoesPaquisitivo.Name = "grpPretensoesPaquisitivo";
+            this.grpPretensoesPaquisitivo.Size = new System.Drawing.Size(446, 63);
+            this.grpPretensoesPaquisitivo.TabIndex = 13;
+            this.grpPretensoesPaquisitivo.TabStop = false;
+            // 
             // lblPretCadastrarPer
             // 
             this.lblPretCadastrarPer.AutoSize = true;
@@ -334,52 +458,6 @@
             this.lblPretCadastrarPer.Size = new System.Drawing.Size(93, 13);
             this.lblPretCadastrarPer.TabIndex = 8;
             this.lblPretCadastrarPer.Text = "Período Aquisitivo";
-            // 
-            // btnPretCadIncluir
-            // 
-            this.btnPretCadIncluir.BackColor = System.Drawing.Color.Transparent;
-            this.btnPretCadIncluir.BackgroundImage = global::CallPostgre.Properties.Resources.azul;
-            this.btnPretCadIncluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPretCadIncluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPretCadIncluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPretCadIncluir.ForeColor = System.Drawing.Color.White;
-            this.btnPretCadIncluir.Location = new System.Drawing.Point(16, 121);
-            this.btnPretCadIncluir.Name = "btnPretCadIncluir";
-            this.btnPretCadIncluir.Size = new System.Drawing.Size(109, 25);
-            this.btnPretCadIncluir.TabIndex = 27;
-            this.btnPretCadIncluir.Text = "Incluir pretensão";
-            this.btnPretCadIncluir.UseVisualStyleBackColor = false;
-            // 
-            // btnPretCadSalvar
-            // 
-            this.btnPretCadSalvar.BackColor = System.Drawing.Color.Transparent;
-            this.btnPretCadSalvar.BackgroundImage = global::CallPostgre.Properties.Resources.verde;
-            this.btnPretCadSalvar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPretCadSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPretCadSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPretCadSalvar.ForeColor = System.Drawing.Color.White;
-            this.btnPretCadSalvar.Location = new System.Drawing.Point(541, 121);
-            this.btnPretCadSalvar.Name = "btnPretCadSalvar";
-            this.btnPretCadSalvar.Size = new System.Drawing.Size(109, 25);
-            this.btnPretCadSalvar.TabIndex = 29;
-            this.btnPretCadSalvar.Text = "Salvar e enviar";
-            this.btnPretCadSalvar.UseVisualStyleBackColor = false;
-            this.btnPretCadSalvar.Visible = false;
-            // 
-            // btnPretCadAlterar
-            // 
-            this.btnPretCadAlterar.BackColor = System.Drawing.Color.Transparent;
-            this.btnPretCadAlterar.BackgroundImage = global::CallPostgre.Properties.Resources.laranja;
-            this.btnPretCadAlterar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPretCadAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPretCadAlterar.ForeColor = System.Drawing.Color.White;
-            this.btnPretCadAlterar.Location = new System.Drawing.Point(392, 121);
-            this.btnPretCadAlterar.Name = "btnPretCadAlterar";
-            this.btnPretCadAlterar.Size = new System.Drawing.Size(109, 25);
-            this.btnPretCadAlterar.TabIndex = 28;
-            this.btnPretCadAlterar.Text = "Alterar";
-            this.btnPretCadAlterar.UseVisualStyleBackColor = false;
-            this.btnPretCadAlterar.Visible = false;
             // 
             // dtgPretCad
             // 
@@ -400,8 +478,8 @@
             // 
             // dtgPretClOpcao
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgPretClOpcao.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgPretClOpcao.DefaultCellStyle = dataGridViewCellStyle11;
             this.dtgPretClOpcao.HeaderText = "Opção";
             this.dtgPretClOpcao.Name = "dtgPretClOpcao";
             this.dtgPretClOpcao.ReadOnly = true;
@@ -422,8 +500,8 @@
             // 
             // dtgPretCl1pTotal
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgPretCl1pTotal.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgPretCl1pTotal.DefaultCellStyle = dataGridViewCellStyle12;
             this.dtgPretCl1pTotal.HeaderText = "Dias";
             this.dtgPretCl1pTotal.Name = "dtgPretCl1pTotal";
             this.dtgPretCl1pTotal.ReadOnly = true;
@@ -455,75 +533,15 @@
             this.dtgPretClTotal.ReadOnly = true;
             this.dtgPretClTotal.Width = 50;
             // 
-            // datePretCadPer1Inicio
+            // tabPretConsultar
             // 
-            this.datePretCadPer1Inicio.CustomFormat = "\"\"";
-            this.datePretCadPer1Inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePretCadPer1Inicio.Location = new System.Drawing.Point(138, 40);
-            this.datePretCadPer1Inicio.Name = "datePretCadPer1Inicio";
-            this.datePretCadPer1Inicio.Size = new System.Drawing.Size(100, 20);
-            this.datePretCadPer1Inicio.TabIndex = 16;
-            // 
-            // datePretCadPer1Fim
-            // 
-            this.datePretCadPer1Fim.CustomFormat = "\"\"";
-            this.datePretCadPer1Fim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePretCadPer1Fim.Location = new System.Drawing.Point(289, 40);
-            this.datePretCadPer1Fim.Name = "datePretCadPer1Fim";
-            this.datePretCadPer1Fim.Size = new System.Drawing.Size(100, 20);
-            this.datePretCadPer1Fim.TabIndex = 18;
-            // 
-            // datePretCadPer2Inicio
-            // 
-            this.datePretCadPer2Inicio.CustomFormat = "\"\"";
-            this.datePretCadPer2Inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePretCadPer2Inicio.Location = new System.Drawing.Point(138, 86);
-            this.datePretCadPer2Inicio.Name = "datePretCadPer2Inicio";
-            this.datePretCadPer2Inicio.Size = new System.Drawing.Size(100, 20);
-            this.datePretCadPer2Inicio.TabIndex = 23;
-            // 
-            // datePretCadPer2Fim
-            // 
-            this.datePretCadPer2Fim.CustomFormat = "\"\"";
-            this.datePretCadPer2Fim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePretCadPer2Fim.Location = new System.Drawing.Point(289, 86);
-            this.datePretCadPer2Fim.Name = "datePretCadPer2Fim";
-            this.datePretCadPer2Fim.Size = new System.Drawing.Size(100, 20);
-            this.datePretCadPer2Fim.TabIndex = 24;
-            // 
-            // txtPretCadPer1Dias
-            // 
-            this.txtPretCadPer1Dias.BackColor = System.Drawing.Color.White;
-            this.txtPretCadPer1Dias.Location = new System.Drawing.Point(446, 40);
-            this.txtPretCadPer1Dias.Name = "txtPretCadPer1Dias";
-            this.txtPretCadPer1Dias.ReadOnly = true;
-            this.txtPretCadPer1Dias.Size = new System.Drawing.Size(50, 20);
-            this.txtPretCadPer1Dias.TabIndex = 20;
-            // 
-            // txtPretCadPer2Dias
-            // 
-            this.txtPretCadPer2Dias.Location = new System.Drawing.Point(446, 86);
-            this.txtPretCadPer2Dias.Name = "txtPretCadPer2Dias";
-            this.txtPretCadPer2Dias.Size = new System.Drawing.Size(50, 20);
-            this.txtPretCadPer2Dias.TabIndex = 26;
-            // 
-            // lblPretCadPer1Dias
-            // 
-            this.lblPretCadPer1Dias.AutoSize = true;
-            this.lblPretCadPer1Dias.Location = new System.Drawing.Point(443, 24);
-            this.lblPretCadPer1Dias.Name = "lblPretCadPer1Dias";
-            this.lblPretCadPer1Dias.Size = new System.Drawing.Size(28, 13);
-            this.lblPretCadPer1Dias.TabIndex = 19;
-            this.lblPretCadPer1Dias.Text = "Dias";
-            // 
-            // lblPretCadPer2Dias
-            // 
-            this.lblPretCadPer2Dias.AutoSize = true;
-            this.lblPretCadPer2Dias.Location = new System.Drawing.Point(443, 70);
-            this.lblPretCadPer2Dias.Name = "lblPretCadPer2Dias";
-            this.lblPretCadPer2Dias.Size = new System.Drawing.Size(28, 13);
-            this.lblPretCadPer2Dias.TabIndex = 25;
-            this.lblPretCadPer2Dias.Text = "Dias";
+            this.tabPretConsultar.Location = new System.Drawing.Point(4, 22);
+            this.tabPretConsultar.Name = "tabPretConsultar";
+            this.tabPretConsultar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPretConsultar.Size = new System.Drawing.Size(690, 461);
+            this.tabPretConsultar.TabIndex = 1;
+            this.tabPretConsultar.Text = "Consultar";
+            this.tabPretConsultar.UseVisualStyleBackColor = true;
             // 
             // FrmPretensao
             // 
@@ -532,16 +550,18 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(723, 511);
             this.Controls.Add(this.tabPretensao);
+            this.MaximizeBox = false;
             this.Name = "FrmPretensao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmPretensao";
+            this.Load += new System.EventHandler(this.FrmPretensao_Load);
             this.tabPretensao.ResumeLayout(false);
             this.tabPretCadastrar.ResumeLayout(false);
             this.tabPretCadastrar.PerformLayout();
-            this.grpPretensoesPaquisitivo.ResumeLayout(false);
-            this.grpPretensoesPaquisitivo.PerformLayout();
             this.grpPretensoesCadastrar.ResumeLayout(false);
             this.grpPretensoesCadastrar.PerformLayout();
+            this.grpPretensoesPaquisitivo.ResumeLayout(false);
+            this.grpPretensoesPaquisitivo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPretCad)).EndInit();
             this.ResumeLayout(false);
 

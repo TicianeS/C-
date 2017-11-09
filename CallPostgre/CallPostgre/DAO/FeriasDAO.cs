@@ -10,6 +10,20 @@ namespace CallPostgre.DAO
 {
     class FeriasDAO
     {
+
+        public static Ferias ObterFeriasFuncAno(int reg, int ano)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.ferias.Include("pretensoes").FirstOrDefault(x => x.pretensoes.ano == ano && x.pretensoes.divfuncionario.funcionarios.registro == reg);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static bool Incluir(Ferias Ferias)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;

@@ -10,6 +10,19 @@ namespace CallPostgre.DAO
 {
     class PretensaoDAO
     {
+        public static Pretensao ObterPretFuncAno(int reg, int ano)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            try
+            {
+                return db.pretensoes.Include("divfuncionario").FirstOrDefault(x => x.ano == ano && x.divfuncionario.funcionarios.registro == reg);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static bool Incluir(Pretensao Pretensao)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;

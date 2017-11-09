@@ -60,7 +60,7 @@
             this.divisãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSuperDepCargos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnSair = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblFrmPrincipalCargo = new System.Windows.Forms.Label();
+            this.lblFrmPrincipalPerfil = new System.Windows.Forms.Label();
             this.lblFrmPrincipalNome = new System.Windows.Forms.Label();
             this.lblFrmPrincipalRegistro = new System.Windows.Forms.Label();
             this.mnPrincipal.SuspendLayout();
@@ -311,15 +311,15 @@
             this.mnSair.Text = "Sair";
             this.mnSair.Click += new System.EventHandler(this.mnSair_Click);
             // 
-            // lblFrmPrincipalCargo
+            // lblFrmPrincipalPerfil
             // 
-            this.lblFrmPrincipalCargo.AutoSize = true;
-            this.lblFrmPrincipalCargo.Location = new System.Drawing.Point(469, 7);
-            this.lblFrmPrincipalCargo.Name = "lblFrmPrincipalCargo";
-            this.lblFrmPrincipalCargo.Size = new System.Drawing.Size(44, 13);
-            this.lblFrmPrincipalCargo.TabIndex = 2;
-            this.lblFrmPrincipalCargo.Text = "PERFIL";
-            this.lblFrmPrincipalCargo.Visible = false;
+            this.lblFrmPrincipalPerfil.AutoSize = true;
+            this.lblFrmPrincipalPerfil.Location = new System.Drawing.Point(469, 7);
+            this.lblFrmPrincipalPerfil.Name = "lblFrmPrincipalPerfil";
+            this.lblFrmPrincipalPerfil.Size = new System.Drawing.Size(44, 13);
+            this.lblFrmPrincipalPerfil.TabIndex = 2;
+            this.lblFrmPrincipalPerfil.Text = "PERFIL";
+            this.lblFrmPrincipalPerfil.Visible = false;
             // 
             // lblFrmPrincipalNome
             // 
@@ -348,7 +348,7 @@
             this.ClientSize = new System.Drawing.Size(1047, 611);
             this.Controls.Add(this.lblFrmPrincipalRegistro);
             this.Controls.Add(this.lblFrmPrincipalNome);
-            this.Controls.Add(this.lblFrmPrincipalCargo);
+            this.Controls.Add(this.lblFrmPrincipalPerfil);
             this.Controls.Add(this.mnPrincipal);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnPrincipal;
@@ -391,7 +391,7 @@
         private System.Windows.Forms.ToolStripMenuItem timesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnSair;
         public System.Windows.Forms.Label lblFrmPrincipalRegistro;
-        public System.Windows.Forms.Label lblFrmPrincipalCargo;
+        public System.Windows.Forms.Label lblFrmPrincipalPerfil;
         public System.Windows.Forms.Label lblFrmPrincipalNome;
         private System.Windows.Forms.ToolStripMenuItem departamentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem divisãoToolStripMenuItem;

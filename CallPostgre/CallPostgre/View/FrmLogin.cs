@@ -41,7 +41,7 @@ namespace CallPostgre
             }
             else
             {
-                int reg = Conversor.ConverterParaInt(txtLoginRegistro.Text);
+                int reg = Util.Tools.ConverterParaInt(txtLoginRegistro.Text);
                 
                 Usuario Usuario = new Usuario();
                 Usuario = UsuarioDAO.ObterUsuarioRegistro(reg);

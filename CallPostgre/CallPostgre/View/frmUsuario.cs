@@ -22,8 +22,8 @@ namespace CallPostgre.View
 
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
-            int reg = Conversor.ConverterParaInt(lblUsuarioRegistro.Text);
-            if (pri.lblFrmPrincipalCargo.Text.Contains("TELEATENDENTE")){
+            int reg = Util.Tools.ConverterParaInt(lblUsuarioRegistro.Text);
+            if (pri.lblFrmPrincipalPerfil.Text.Contains("TELEATENDENTE")){
 
                 btnUsuarioCadastrar.Enabled = false;
                 btnUsuarioCadastrar.Visible = false;
@@ -37,7 +37,7 @@ namespace CallPostgre.View
                 txtUsuarioNome.Text = pri.lblFrmPrincipalNome.Text;
 
             } else {
-                if (pri.lblFrmPrincipalCargo.Text.Contains("MONITOR"))
+                if (pri.lblFrmPrincipalPerfil.Text.Contains("MONITOR"))
                 {
                     btnUsuarioCadastrar.Enabled = false;
                     btnUsuarioCadastrar.Visible = false;
