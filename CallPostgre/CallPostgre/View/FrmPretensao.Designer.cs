@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtPretCadRegistro = new System.Windows.Forms.TextBox();
             this.txtPretCadNome = new System.Windows.Forms.TextBox();
             this.txtPretCadTurno = new System.Windows.Forms.TextBox();
@@ -300,6 +300,7 @@
             this.datePretCadPer2Fim.Size = new System.Drawing.Size(100, 20);
             this.datePretCadPer2Fim.TabIndex = 24;
             this.datePretCadPer2Fim.ValueChanged += new System.EventHandler(this.datePretCadPer2Fim_ValueChanged);
+            this.datePretCadPer2Fim.Leave += new System.EventHandler(this.datePretCadPer2Fim_Leave);
             // 
             // datePretCadPer2Inicio
             // 
@@ -312,6 +313,7 @@
             this.datePretCadPer2Inicio.Size = new System.Drawing.Size(100, 20);
             this.datePretCadPer2Inicio.TabIndex = 23;
             this.datePretCadPer2Inicio.ValueChanged += new System.EventHandler(this.datePretCadPer2Inicio_ValueChanged);
+            this.datePretCadPer2Inicio.Leave += new System.EventHandler(this.datePretCadPer2Inicio_Leave);
             // 
             // datePretCadPer1Fim
             // 
@@ -323,6 +325,7 @@
             this.datePretCadPer1Fim.Size = new System.Drawing.Size(100, 20);
             this.datePretCadPer1Fim.TabIndex = 18;
             this.datePretCadPer1Fim.ValueChanged += new System.EventHandler(this.datePretCadPer1Fim_ValueChanged);
+            this.datePretCadPer1Fim.Leave += new System.EventHandler(this.datePretCadPer1Fim_Leave);
             // 
             // datePretCadPer1Inicio
             // 
@@ -335,6 +338,7 @@
             this.datePretCadPer1Inicio.Size = new System.Drawing.Size(100, 20);
             this.datePretCadPer1Inicio.TabIndex = 16;
             this.datePretCadPer1Inicio.ValueChanged += new System.EventHandler(this.datePretCadPer1Inicio_ValueChanged);
+            this.datePretCadPer1Inicio.Leave += new System.EventHandler(this.datePretCadPer1Inicio_Leave);
             // 
             // btnPretCadAlterar
             // 
@@ -478,8 +482,8 @@
             // 
             // dtgPretClOpcao
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgPretClOpcao.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgPretClOpcao.DefaultCellStyle = dataGridViewCellStyle7;
             this.dtgPretClOpcao.HeaderText = "Opção";
             this.dtgPretClOpcao.Name = "dtgPretClOpcao";
             this.dtgPretClOpcao.ReadOnly = true;
@@ -500,8 +504,8 @@
             // 
             // dtgPretCl1pTotal
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgPretCl1pTotal.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgPretCl1pTotal.DefaultCellStyle = dataGridViewCellStyle8;
             this.dtgPretCl1pTotal.HeaderText = "Dias";
             this.dtgPretCl1pTotal.Name = "dtgPretCl1pTotal";
             this.dtgPretCl1pTotal.ReadOnly = true;

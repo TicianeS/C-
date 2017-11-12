@@ -60,6 +60,7 @@ namespace CallPostgre.View
         {
             string perfil = pri.lblFrmPrincipalPerfil.Text;
             int reg = Tools.ConverterParaInt(txtPretCadRegistro.Text);
+            LimparCampos();
 
             Funcionario f = new Funcionario();
             f = FuncionarioDAO.ObterFuncionarioId(reg);
@@ -91,7 +92,7 @@ namespace CallPostgre.View
         {
             txtPretCadNome.Clear();
             txtPretCadTurno.Clear();
-            cboPretCadAno.SelectedItem = "";
+            cboPretCadAno.Text = "";
             txtPretCadPaqInicio.Clear();
             txtPretCadPaqFim.Clear();
 
@@ -152,45 +153,55 @@ namespace CallPostgre.View
                     {
                         MessageBox.Show("Você já possui pretensões para este período aquisitivo.");
 
-                        TimeSpan? p1, p2, p3, p4, p5, p6;
-                        p1 = pre.per1_op1_fim - pre.per1_op1_inicio;
-                        p2 = pre.per2_op1_fim - pre.per2_op1_inicio;
-                        p3 = pre.per1_op2_fim - pre.per1_op2_inicio;
-                        p4 = pre.per2_op2_fim - pre.per2_op2_inicio;
-                        p5 = pre.per1_op3_fim - pre.per1_op3_inicio;
-                        p6 = pre.per2_op3_fim - pre.per2_op3_inicio;
+                        if (pre.per1_op1_inicio != null)
+                        {
+                            TimeSpan? p1, p2, p3, p4, p5, p6;
+                            p1 = pre.per1_op1_fim - pre.per1_op1_inicio;
+                            p2 = pre.per2_op1_fim - pre.per2_op1_inicio;
+                            p3 = pre.per1_op2_fim - pre.per1_op2_inicio;
+                            p4 = pre.per2_op2_fim - pre.per2_op2_inicio;
+                            p5 = pre.per1_op3_fim - pre.per1_op3_inicio;
+                            p6 = pre.per2_op3_fim - pre.per2_op3_inicio;
 
-                        dtgPretCad.Rows.Add(
-                            1,
-                            pre.per1_op1_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per1_op1_fim.Value.ToString("dd/MM/yyyy"),
-                            p1.Value.Days + 1,
-                            pre.per2_op1_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per2_op1_fim.Value.ToString("dd/MM/yyyy"),
-                            p2.Value.Days + 1,
-                            (p1.Value.Days + 1) + (p2.Value.Days + 1));
-                        
-
-                        dtgPretCad.Rows.Add(
-                            2,
-                            pre.per1_op2_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per1_op2_fim.Value.ToString("dd/MM/yyyy"),
-                            p3.Value.Days + 1,
-                            pre.per2_op2_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per2_op2_fim.Value.ToString("dd/MM/yyyy"),
-                            p4.Value.Days + 1,
-                            (p3.Value.Days + 1) + (p4.Value.Days + 1));
+                            dtgPretCad.Rows.Add(
+                                1,
+                                pre.per1_op1_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per1_op1_fim.Value.ToString("dd/MM/yyyy"),
+                                p1.Value.Days + 1,
+                                pre.per2_op1_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per2_op1_fim.Value.ToString("dd/MM/yyyy"),
+                                p2.Value.Days + 1,
+                                (p1.Value.Days + 1) + (p2.Value.Days + 1));
 
 
-                        dtgPretCad.Rows.Add(
-                            3,
-                            pre.per1_op3_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per1_op3_fim.Value.ToString("dd/MM/yyyy"),
-                            p5.Value.Days + 1,
-                            pre.per2_op3_inicio.Value.ToString("dd/MM/yyyy"),
-                            pre.per2_op3_fim.Value.ToString("dd/MM/yyyy"),
-                            p6.Value.Days + 1,
-                            (p5.Value.Days + 1) + (p6.Value.Days + 1));
+                            dtgPretCad.Rows.Add(
+                                2,
+                                pre.per1_op2_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per1_op2_fim.Value.ToString("dd/MM/yyyy"),
+                                p3.Value.Days + 1,
+                                pre.per2_op2_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per2_op2_fim.Value.ToString("dd/MM/yyyy"),
+                                p4.Value.Days + 1,
+                                (p3.Value.Days + 1) + (p4.Value.Days + 1));
+
+
+                            dtgPretCad.Rows.Add(
+                                3,
+                                pre.per1_op3_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per1_op3_fim.Value.ToString("dd/MM/yyyy"),
+                                p5.Value.Days + 1,
+                                pre.per2_op3_inicio.Value.ToString("dd/MM/yyyy"),
+                                pre.per2_op3_fim.Value.ToString("dd/MM/yyyy"),
+                                p6.Value.Days + 1,
+                                (p5.Value.Days + 1) + (p6.Value.Days + 1));
+                        }
+                        else
+                        {
+                            datePretCadPer1Inicio.Enabled = false;
+                            datePretCadPer1Fim.Enabled = false;
+                            datePretCadPer2Inicio.Enabled = false;
+                            datePretCadPer2Fim.Enabled = false;
+                        }                  
                     }
                 }
                 else
@@ -223,6 +234,132 @@ namespace CallPostgre.View
         private void datePretCadPer2Inicio_ValueChanged(object sender, EventArgs e)
         {
             datePretCadPer2Inicio.CustomFormat = null;
+        }
+
+        private void datePretCadPer1Inicio_Leave(object sender, EventArgs e)
+        {
+            
+            if (!datePretCadPer1Inicio.Text.Equals(" "))
+            {
+                DateTime data;
+                data = Convert.ToDateTime(datePretCadPer1Inicio.Text);
+                if (VerifPeriodoAquisitivo(data) == true)
+                {
+                    datePretCadPer1Inicio.CustomFormat = " ";
+                    datePretCadPer1Inicio.Format = DateTimePickerFormat.Custom;
+                }
+            } else
+            {
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
+            
+        }
+
+        private Boolean  VerifPeriodoAquisitivo(DateTime data)
+        {
+            DateTime pAqIni, pAqFim;
+            pAqIni = Convert.ToDateTime(txtPretCadPaqInicio.Text);
+            pAqFim = Convert.ToDateTime(txtPretCadPaqFim.Text);
+
+            if (data < pAqIni || data > pAqFim)
+            {
+                MessageBox.Show("A data informada está fora do período aquisitivo.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+           
+        }
+
+        private void datePretCadPer1Fim_Leave(object sender, EventArgs e)
+        {
+
+            if (!datePretCadPer1Fim.Text.Equals(" "))
+            {
+                if (!datePretCadPer1Inicio.Text.Equals(" "))
+                {
+                    DateTime ini, fim;
+                    TimeSpan dias;
+
+                    fim = Convert.ToDateTime(datePretCadPer1Fim.Text);
+                    if (VerifPeriodoAquisitivo(fim) == false)
+                    {
+                        datePretCadPer1Fim.CustomFormat = " ";
+                        datePretCadPer1Fim.Format = DateTimePickerFormat.Custom;
+                    }
+                    else
+                    {
+                        ini = Convert.ToDateTime(datePretCadPer1Inicio.Text);
+                        dias = fim.Subtract(ini);
+                        txtPretCadPer1Dias.Text = dias.Days.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, informe uma data para o início do primeiro período.", "Data não informada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                          
+        }
+
+        private void datePretCadPer2Inicio_Leave(object sender, EventArgs e)
+        {
+            if (!datePretCadPer2Inicio.Text.Equals(" "))
+            {
+                DateTime data;
+
+                data = Convert.ToDateTime(datePretCadPer2Inicio.Text);
+                if (VerifPeriodoAquisitivo(data) == true)
+                {
+                    datePretCadPer2Inicio.CustomFormat = " ";
+                    datePretCadPer2Inicio.Format = DateTimePickerFormat.Custom;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void datePretCadPer2Fim_Leave(object sender, EventArgs e)
+        {
+            if (!datePretCadPer2Fim.Text.Equals(" "))
+            {
+                if (!datePretCadPer2Inicio.Text.Equals(" "))
+                {
+                    DateTime ini, fim;
+
+                    fim = Convert.ToDateTime(datePretCadPer2Fim.Text);
+                    if (VerifPeriodoAquisitivo(fim) == true)
+                    {
+                        datePretCadPer2Fim.CustomFormat = " ";
+                        datePretCadPer2Fim.Format = DateTimePickerFormat.Custom;
+                    }
+                    else
+                    {
+                        TimeSpan dias;
+
+                        ini = Convert.ToDateTime(datePretCadPer2Inicio.Text);
+                        dias = fim.Subtract(ini);
+                        txtPretCadPer2Dias.Text = dias.Days.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, informe uma data para o início do segundo período.", "Data não informada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                
         }
     }
 }
