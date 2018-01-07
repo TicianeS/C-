@@ -75,8 +75,11 @@ namespace CallPostgre.View
                         if (lblFrmPrincipalPerfil.Text.Equals("ADMINISTRADOR"))
                         {
                             mnTeleatendente.Enabled = true;
-                            mnMonitor.Enabled = true;
-                            mnSupervisor.Enabled = true;
+                            mnTeleatendente.Visible = true;
+                            mnMonitor.Enabled = false;
+                            mnMonitor.Visible = false;
+                            mnSupervisor.Enabled = false;
+                            mnSupervisor.Visible = false;
                         }
                         else
                         {

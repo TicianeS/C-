@@ -12,7 +12,7 @@ namespace CallPostgre.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class datas
+    public partial class Data
     {
         public int id { get; set; }
         public Nullable<System.DateTime> inicio { get; set; }

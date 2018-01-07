@@ -21,7 +21,7 @@
         <AssociationConnector Association="CallcenterModel.Id_Supervisor" ManuallyRouted="false" />
         <AssociationConnector Association="CallcenterModel.id_pretensoes" ManuallyRouted="false" />
         <AssociationConnector Association="CallcenterModel.funcionario" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CallcenterModel.datas" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CallcenterModel.Data" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

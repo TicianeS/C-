@@ -41,6 +41,8 @@ namespace CallPostgre.View
 
                 string turno = Tools.VerificarTurno(dep.horario);
                 txtPretCadTurno.Text = turno;
+
+                ((Control)this.tabPretConsultar).Enabled = false;
             }
             else
             {
@@ -88,33 +90,12 @@ namespace CallPostgre.View
             }
         }
 
-        public void LimparCampos()
-        {
-            txtPretCadNome.Clear();
-            txtPretCadTurno.Clear();
-            cboPretCadAno.Text = "";
-            txtPretCadPaqInicio.Clear();
-            txtPretCadPaqFim.Clear();
 
-            datePretCadPer1Inicio.CustomFormat = " ";
-            datePretCadPer1Inicio.Format = DateTimePickerFormat.Custom;
-
-            datePretCadPer1Fim.CustomFormat = " ";
-            datePretCadPer1Fim.Format = DateTimePickerFormat.Custom;
-
-            datePretCadPer2Inicio.CustomFormat = " ";
-            datePretCadPer2Inicio.Format = DateTimePickerFormat.Custom;
-
-            datePretCadPer2Fim.CustomFormat = " ";
-            datePretCadPer2Fim.Format = DateTimePickerFormat.Custom;
-
-            txtPretCadPer1Dias.Clear();
-            txtPretCadPer2Dias.Clear();
-
-        }
 
         private void cboPretCadAno_Leave(object sender, EventArgs e)
         {
+            DesabilitarDatas();
+
             if (cboPretCadAno.Text.Equals(""))
             {
                 MessageBox.Show("Por favor, informe o ano.", "Dados incorretos", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -141,13 +122,11 @@ namespace CallPostgre.View
                 {
                     Pretensao pre = new Pretensao();
                     pre = PretensaoDAO.ObterPretFuncAno(reg, ano);
-                    
+
+                    HabilitarDatas();
                     if (pre == null)
                     {
-                        datePretCadPer1Inicio.Enabled = true;
-                        datePretCadPer1Fim.Enabled = true;
-                        datePretCadPer2Inicio.Enabled = true;
-                        datePretCadPer2Fim.Enabled = true;
+                        //
                     }
                     else
                     {
@@ -197,11 +176,8 @@ namespace CallPostgre.View
                         }
                         else
                         {
-                            datePretCadPer1Inicio.Enabled = false;
-                            datePretCadPer1Fim.Enabled = false;
-                            datePretCadPer2Inicio.Enabled = false;
-                            datePretCadPer2Fim.Enabled = false;
-                        }                  
+                            HabilitarDatas();
+                        }
                     }
                 }
                 else
@@ -236,65 +212,248 @@ namespace CallPostgre.View
             datePretCadPer2Inicio.CustomFormat = null;
         }
 
+
         private void datePretCadPer1Inicio_Leave(object sender, EventArgs e)
         {
-            
-            if (!datePretCadPer1Inicio.Text.Equals(" "))
+            //CÉLULA VAZIA
+            if (CelulaVazia(datePretCadPer1Inicio) == false)
             {
                 DateTime data;
                 data = Convert.ToDateTime(datePretCadPer1Inicio.Text);
-                if (VerifPeriodoAquisitivo(data) == true)
+
+                // PERÍODO AQUISITIVO
+                if (VerifPeriodoAquisitivo(data) == false)
                 {
-                    datePretCadPer1Inicio.CustomFormat = " ";
-                    datePretCadPer1Inicio.Format = DateTimePickerFormat.Custom;
-                }
-            } else
-            {
-                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
-            
-        }
-
-        private Boolean  VerifPeriodoAquisitivo(DateTime data)
-        {
-            DateTime pAqIni, pAqFim;
-            pAqIni = Convert.ToDateTime(txtPretCadPaqInicio.Text);
-            pAqFim = Convert.ToDateTime(txtPretCadPaqFim.Text);
-
-            if (data < pAqIni || data > pAqFim)
-            {
-                MessageBox.Show("A data informada está fora do período aquisitivo.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-           
-        }
-
-        private void datePretCadPer1Fim_Leave(object sender, EventArgs e)
-        {
-
-            if (!datePretCadPer1Fim.Text.Equals(" "))
-            {
-                if (!datePretCadPer1Inicio.Text.Equals(" "))
-                {
-                    DateTime ini, fim;
-                    TimeSpan dias;
-
-                    fim = Convert.ToDateTime(datePretCadPer1Fim.Text);
-                    if (VerifPeriodoAquisitivo(fim) == false)
+                    // MAIOR QUE O ANO LIMITE
+                    if (AnoLimite(data) == false)
                     {
-                        datePretCadPer1Fim.CustomFormat = " ";
-                        datePretCadPer1Fim.Format = DateTimePickerFormat.Custom;
+                        // COMEÇA EM DIA ÚTIL
+                        if (ConsultarDiaUtil(data) == false)
+                        {
+
+                            //1 SEMANA DE INTERVALO ENTRE AS OPÇÕES
+                            if (IntervaloOpcoes(data) == false)
+                            {
+
+                                //INVADE PERÍODO ÚMIDO
+                                if (InvadePeriodoUmido(data) == false)
+                                {
+
+                                    //INVADE PERÍODO NOBRE
+                                    if (InvadePeriodoNobre(data) == false)
+                                    {
+                                        MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                    }
+                                    else
+                                    {
+                                        LimparData1();
+                                    }
+                                }
+                                else
+                                {
+                                    LimparData1();
+                                }
+                            }
+                            else
+                            {
+                                LimparData1();
+                            }
+                        }
+                        else
+                        {
+                            LimparData1();
+                        }
                     }
                     else
                     {
-                        ini = Convert.ToDateTime(datePretCadPer1Inicio.Text);
-                        dias = fim.Subtract(ini);
-                        txtPretCadPer1Dias.Text = dias.Days.ToString();
+                        LimparData1();
+                    }
+                }
+                else
+                {
+                    LimparData1();
+                }
+            }
+            else
+            {
+                LimparData1();
+            }
+
+        }
+
+
+
+
+
+        private void datePretCadPer1Fim_Leave(object sender, EventArgs e)
+        {
+            //CÉLULA VAZIA
+            if (CelulaVazia(datePretCadPer1Fim) == false)
+            {
+
+                //DATA INICIAL VAZIA
+                if (CelulaVazia(datePretCadPer1Inicio) == false)
+                {
+                    DateTime data;
+                    data = Convert.ToDateTime(datePretCadPer1Fim.Text);
+
+                    // PERÍODO AQUISITIVO
+                    if (VerifPeriodoAquisitivo(data) == false)
+                    {
+                        // MAIOR QUE O ANO LIMITE
+                        if (AnoLimite(data) == false)
+                        {
+
+                            //INVADE PERÍODO ÚMIDO
+                            if (InvadePeriodoUmido(data) == false)
+                            {
+
+                                //INVADE PERÍODO NOBRE
+                                if (InvadePeriodoNobre(data) == false)
+                                {
+
+                                    // DATA FINAL MENOR QUE INICIAL
+                                    if (CompararDatas(datePretCadPer1Inicio, data) == false)
+
+                                    {
+                                        MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                        txtPretCadPer1Dias.Text = CalcularDatas(datePretCadPer1Inicio, data);
+                                    }
+                                    else
+                                    {
+                                        LimparData2();
+                                    }
+
+                                }
+                                else
+                                {
+                                    LimparData2();
+                                }
+                            }
+                            else
+                            {
+                                LimparData2();
+                            }
+
+
+
+
+                        }
+                        else
+                        {
+
+                            LimparData2();
+                        }
+                    }
+                    else
+                    {
+                        LimparData2();
+                    }
+                }
+                else
+                {
+                    LimparData1();
+                    LimparData2();
+                }
+
+            }
+            else
+            {
+                LimparData1();
+            }
+        }
+
+        private void datePretCadPer2Inicio_Leave(object sender, EventArgs e)
+        {
+            if (!datePretCadPer2Inicio.Text.Equals(" "))
+            {
+                DateTime data;
+
+                data = Convert.ToDateTime(datePretCadPer2Inicio.Text);
+                if (VerifPeriodoAquisitivo(data) != true)
+                {
+
+                }
+                else
+                {
+                    LimparData3();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LimparData1()
+        {
+            datePretCadPer1Inicio.CustomFormat = " ";
+            datePretCadPer1Inicio.Format = DateTimePickerFormat.Custom;
+        }
+
+        private void LimparData2()
+        {
+            datePretCadPer1Fim.CustomFormat = " ";
+            datePretCadPer1Fim.Format = DateTimePickerFormat.Custom;
+        }
+
+        private void LimparData3()
+        {
+            datePretCadPer2Inicio.CustomFormat = " ";
+            datePretCadPer2Inicio.Format = DateTimePickerFormat.Custom;
+        }
+
+        private void datePretCadPer2Fim_Leave(object sender, EventArgs e)
+        {
+            // DATA FINAL VAZIA
+            if (!datePretCadPer2Fim.Text.Equals(" "))
+            {   // DATA INICIAL VAZIA
+                if (!datePretCadPer2Inicio.Text.Equals(" "))
+                {
+                    DateTime ini, fim;
+
+                    fim = Convert.ToDateTime(datePretCadPer2Fim.Text);
+                    // VERIFICA SE A DATA ESTÁ DENTRO DO PERÍODO AQUISITIVO
+                    if (VerifPeriodoAquisitivo(fim) == true)
+                    {
+                        ini = Convert.ToDateTime(datePretCadPer2Inicio.Text);
+
+                        //VERIFICA SE A DATA FINAL É MAIOR DO QUE A INICIAL
+                        if (ini < fim)
+                        {
+                            TimeSpan dias;
+                            dias = fim.Subtract(ini);
+                            int total = dias.Days + 1;
+
+                            //VERIFICA O TOTAL DE DIAS
+                            if (total <= 30)
+                            {
+                                if (total >= 5)
+                                {
+                                    txtPretCadPer2Dias.Text = total.ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("O período de férias não pode ser inferior a 5 dias.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("O período de férias não pode ultrapassar 30 dias.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("A data final deve ser maior do que a data inicial.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
+                    else
+                    {
+                        datePretCadPer2Fim.CustomFormat = " ";
+                        datePretCadPer2Fim.Format = DateTimePickerFormat.Custom;
                     }
                 }
                 else
@@ -305,61 +464,300 @@ namespace CallPostgre.View
             else
             {
                 MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }                          
+            }
         }
 
-        private void datePretCadPer2Inicio_Leave(object sender, EventArgs e)
-        {
-            if (!datePretCadPer2Inicio.Text.Equals(" "))
-            {
-                DateTime data;
 
-                data = Convert.ToDateTime(datePretCadPer2Inicio.Text);
-                if (VerifPeriodoAquisitivo(data) == true)
-                {
-                    datePretCadPer2Inicio.CustomFormat = " ";
-                    datePretCadPer2Inicio.Format = DateTimePickerFormat.Custom;
-                }
+        // MÉTODOS DE VALIDAÇÃO @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+        public void LimparCampos()
+        {
+            txtPretCadNome.Clear();
+            txtPretCadTurno.Clear();
+            cboPretCadAno.Text = "";
+            txtPretCadPaqInicio.Clear();
+            txtPretCadPaqFim.Clear();
+
+            datePretCadPer1Inicio.CustomFormat = " ";
+            datePretCadPer1Inicio.Format = DateTimePickerFormat.Custom;
+
+            datePretCadPer1Fim.CustomFormat = " ";
+            datePretCadPer1Fim.Format = DateTimePickerFormat.Custom;
+
+            datePretCadPer2Inicio.CustomFormat = " ";
+            datePretCadPer2Inicio.Format = DateTimePickerFormat.Custom;
+
+            datePretCadPer2Fim.CustomFormat = " ";
+            datePretCadPer2Fim.Format = DateTimePickerFormat.Custom;
+
+            txtPretCadPer1Dias.Clear();
+            txtPretCadPer2Dias.Clear();
+            dtgPretCad.Rows.Clear();
+
+        }
+
+        private Boolean CelulaVazia(Control x)
+        {
+            if (((DateTimePicker)x).Text.Equals(" "))
+            {
+
+                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return true;
             }
             else
             {
-                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        private void datePretCadPer2Fim_Leave(object sender, EventArgs e)
+
+        private Boolean VerifPeriodoAquisitivo(DateTime data)
         {
-            if (!datePretCadPer2Fim.Text.Equals(" "))
+            DateTime pAqIni, pAqFim;
+            pAqIni = Convert.ToDateTime(txtPretCadPaqInicio.Text);
+            pAqFim = Convert.ToDateTime(txtPretCadPaqFim.Text);
+
+            if (data < pAqIni || data > pAqFim)
             {
-                if (!datePretCadPer2Inicio.Text.Equals(" "))
+                MessageBox.Show("A data informada está fora do período aquisitivo.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private Boolean AnoLimite(DateTime data)
+        {
+            if (data.Year >= 2020)
+            {
+                MessageBox.Show("Ano não liberado para cadastro de pretensões.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private Boolean ConsultarDiaUtil(DateTime data)
+        {
+            if (data.DayOfWeek.ToString().Equals("Sunday") || data.DayOfWeek.ToString().Equals("Saturday"))
+            {
+                MessageBox.Show("A data informada deve ser um dia útil.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            else
+            {
+                Data dt = DataDAO.PesquisarFeriado(data);
+
+                if (dt != null)
                 {
-                    DateTime ini, fim;
-
-                    fim = Convert.ToDateTime(datePretCadPer2Fim.Text);
-                    if (VerifPeriodoAquisitivo(fim) == true)
-                    {
-                        datePretCadPer2Fim.CustomFormat = " ";
-                        datePretCadPer2Fim.Format = DateTimePickerFormat.Custom;
-                    }
-                    else
-                    {
-                        TimeSpan dias;
-
-                        ini = Convert.ToDateTime(datePretCadPer2Inicio.Text);
-                        dias = fim.Subtract(ini);
-                        txtPretCadPer2Dias.Text = dias.Days.ToString();
-                    }
+                    MessageBox.Show("A data informada não pode ser um feriado.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return true;
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, informe uma data para o início do segundo período.", "Data não informada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+        }
+
+
+        private Boolean IntervaloOpcoes(DateTime data)
+        {
+            int i, l;
+            i = dtgPretCad.FirstDisplayedScrollingRowIndex;
+            l = dtgPretCad.RowCount;
+
+            TimeSpan dias;
+            string opcao;
+            DateTime op;
+
+            do
+            {
+                if (dtgPretCad[1, i].Value != null)
+                {
+                    opcao = dtgPretCad[1, i].Value.ToString();
+                    op = Convert.ToDateTime(opcao);
+                    if (op.DayOfYear >= data.DayOfYear)
+                    {
+                        dias = op - data;
+                    }
+                    else
+                    {
+                        dias = data - op;
+                    }
+
+                    i++;
+
+                    if (dias.Days < 7)
+                    {
+                        MessageBox.Show("As datas de início das opções informadas devem ter um intervalo mínimo de uma semana entre elas. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
+
+                }
+                else
+                {
+                    return false;
                 }
 
-            }
-            else
-            {
-                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }                
+            } while (i <= l - 1);
+
+            return false;
         }
+
+        private Boolean InvadePeriodoUmido(DateTime data)
+        {
+            int dt = 0;
+            List<DateTime> datas = new List<DateTime>();
+
+
+
+            if (DataDAO.PeriodoUmido(data) != null)
+            {
+                datas = DataDAO.PeriodoUmido(data).ToList();
+
+                foreach (DateTime x in datas)
+                {
+
+                    if (x.DayOfYear < datas.First().DayOfYear)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        if (x.DayOfYear == data.DayOfYear)
+                        {
+                            dt = 1;
+                        }
+                    }
+
+                }
+
+                if (dt == 0)
+                {
+                    MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return true;
+                }
+            }
+
+            return false;
+
+
+        }
+
+        private Boolean InvadePeriodoNobre(DateTime data)
+        {
+            int dt = 0;
+            List<DateTime> datas = new List<DateTime>();
+
+            if (DataDAO.PeriodoNobre(data) != null)
+            {
+                datas = DataDAO.PeriodoNobre(data).ToList();
+
+                foreach (DateTime x in datas)
+                {
+
+                    if (x.DayOfYear > datas.Last().DayOfYear)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        if (x.DayOfYear == data.DayOfYear)
+                        {
+                            dt = 1;
+                        }
+                    }
+
+                }
+
+                if (dt == 0)
+                {
+                    MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período nobre. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return true;
+                }
+            }
+
+            return false;
+
+
+        }
+
+        private void DesabilitarDatas()
+        {
+            dtgPretCad.Rows.Clear();
+            datePretCadPer1Inicio.Enabled = false;
+            datePretCadPer1Fim.Enabled = false;
+            datePretCadPer2Inicio.Enabled = false;
+            datePretCadPer2Fim.Enabled = false;
+
+        }
+
+        private void HabilitarDatas()
+        {
+            datePretCadPer1Inicio.Enabled = true;
+            datePretCadPer1Fim.Enabled = true;
+            datePretCadPer2Inicio.Enabled = true;
+            datePretCadPer2Fim.Enabled = true;
+
+        }
+
+        private Boolean CompararDatas(Control x, DateTime fim)
+        {
+            string ini;
+            DateTime inicio;
+
+            ini = x.Text.ToString();
+            inicio = Convert.ToDateTime(ini);
+
+            if (fim < inicio)
+            {
+                MessageBox.Show("A data final deve ser maior do que a data inicial.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+
+            return false;
+
+        }
+
+        private string CalcularDatas (Control x , DateTime fim)
+        {
+           
+            string ini;
+            DateTime inicio;
+            int dias;
+
+            ini = x.Text.ToString();
+            inicio = Convert.ToDateTime(ini);
+
+            dias = fim.DayOfYear - inicio.DayOfYear + 1;
+
+            return dias.ToString();
+        }
+
+        private void ControleAcesso()
+        {
+
+        }
+
+        //private Boolean TudoNobre(Control x, DateTime fim)
+        //{
+        //    string ini;
+        //    DateTime inicio;
+        //    TimeSpan dias;
+
+        //    ini = x.Text.ToString();
+        //    inicio = Convert.ToDateTime(ini);
+        //}
+
     }
 }

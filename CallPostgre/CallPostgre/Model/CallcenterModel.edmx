@@ -550,9 +550,9 @@
             <End Role="funcionarios" EntitySet="funcionarios" />
             <End Role="usuarios" EntitySet="usuarios" />
           </AssociationSet>
-          <EntitySet Name="datas" EntityType="CallcenterModel.datas" />
+          <EntitySet Name="datas" EntityType="CallcenterModel.Data" />
         </EntityContainer>
-        <EntityType Name="datas">
+        <EntityType Name="Data">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -696,7 +696,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="datas">
-            <EntityTypeMapping TypeName="CallcenterModel.datas">
+            <EntityTypeMapping TypeName="CallcenterModel.Data">
               <MappingFragment StoreEntitySet="datas">
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="fim" ColumnName="fim" />
