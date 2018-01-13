@@ -30,12 +30,8 @@
         {
             this.mnPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnTeleatendente = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnTeleAcesso = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnTeleAcessoAlterarSenha = new System.Windows.Forms.ToolStripMenuItem();
-            this.fériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pretensõesDeFériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarFériasAutorizadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMonitor = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMoniAcesso = new System.Windows.Forms.ToolStripMenuItem();
             this.mnMoniAcessoGerUsuario = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,42 +78,17 @@
             // mnTeleatendente
             // 
             this.mnTeleatendente.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnTeleAcesso,
-            this.fériasToolStripMenuItem,
             this.fériasToolStripMenuItem1});
             this.mnTeleatendente.Name = "mnTeleatendente";
             this.mnTeleatendente.Size = new System.Drawing.Size(59, 20);
             this.mnTeleatendente.Text = "Opções";
             // 
-            // mnTeleAcesso
-            // 
-            this.mnTeleAcesso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnTeleAcessoAlterarSenha});
-            this.mnTeleAcesso.Name = "mnTeleAcesso";
-            this.mnTeleAcesso.Size = new System.Drawing.Size(170, 22);
-            this.mnTeleAcesso.Text = "Acesso ao sistema";
-            // 
-            // mnTeleAcessoAlterarSenha
-            // 
-            this.mnTeleAcessoAlterarSenha.Name = "mnTeleAcessoAlterarSenha";
-            this.mnTeleAcessoAlterarSenha.Size = new System.Drawing.Size(143, 22);
-            this.mnTeleAcessoAlterarSenha.Text = "Alterar senha";
-            this.mnTeleAcessoAlterarSenha.Click += new System.EventHandler(this.mnTeleAcessoAlterarSenha_Click);
-            // 
-            // fériasToolStripMenuItem
-            // 
-            this.fériasToolStripMenuItem.Name = "fériasToolStripMenuItem";
-            this.fériasToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.fériasToolStripMenuItem.Text = "Dados pessoais";
-            this.fériasToolStripMenuItem.Click += new System.EventHandler(this.fériasToolStripMenuItem_Click);
-            // 
             // fériasToolStripMenuItem1
             // 
             this.fériasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pretensõesDeFériasToolStripMenuItem,
-            this.consultarFériasAutorizadasToolStripMenuItem});
+            this.pretensõesDeFériasToolStripMenuItem});
             this.fériasToolStripMenuItem1.Name = "fériasToolStripMenuItem1";
-            this.fériasToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
+            this.fériasToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.fériasToolStripMenuItem1.Text = "Férias";
             // 
             // pretensõesDeFériasToolStripMenuItem
@@ -126,12 +97,6 @@
             this.pretensõesDeFériasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.pretensõesDeFériasToolStripMenuItem.Text = "Pretensões de férias";
             this.pretensõesDeFériasToolStripMenuItem.Click += new System.EventHandler(this.pretensõesDeFériasToolStripMenuItem_Click);
-            // 
-            // consultarFériasAutorizadasToolStripMenuItem
-            // 
-            this.consultarFériasAutorizadasToolStripMenuItem.Name = "consultarFériasAutorizadasToolStripMenuItem";
-            this.consultarFériasAutorizadasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.consultarFériasAutorizadasToolStripMenuItem.Text = "Consultar férias autorizadas";
             // 
             // mnMonitor
             // 
@@ -353,7 +318,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnPrincipal;
             this.Name = "FrmPrincipal";
-            this.Text = "FrmPrincipal";
+            this.Text = "Férias VATD";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.mnPrincipal.ResumeLayout(false);
@@ -367,14 +332,10 @@
 
         private System.Windows.Forms.MenuStrip mnPrincipal;
         private System.Windows.Forms.ToolStripMenuItem mnTeleatendente;
-        private System.Windows.Forms.ToolStripMenuItem mnTeleAcesso;
-        private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnMonitor;
         private System.Windows.Forms.ToolStripMenuItem mnSupervisor;
-        private System.Windows.Forms.ToolStripMenuItem mnTeleAcessoAlterarSenha;
         private System.Windows.Forms.ToolStripMenuItem fériasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pretensõesDeFériasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consultarFériasAutorizadasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnMoniAcesso;
         private System.Windows.Forms.ToolStripMenuItem mnMoniAcessoGerUsuario;
         private System.Windows.Forms.ToolStripMenuItem dadosPessoaisToolStripMenuItem;

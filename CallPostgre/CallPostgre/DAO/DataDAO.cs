@@ -87,7 +87,7 @@ namespace CallPostgre.DAO
 
             try
             {
-                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Equals("ÚMIDO") && 
+                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("ÚMIDO") == true && 
                     (x.inicio.Value.Month == data.Month &&
                      x.inicio.Value.Year == data.Year) ||
                     (x.fim.Value.Month == data.Month &&
@@ -179,6 +179,51 @@ namespace CallPostgre.DAO
             try
             {
                 return db.datas.FirstOrDefault(x => x.inicio == data && x.tipo.Contains("FERIADO"));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static Data Nobre(DateTime data)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+
+            try
+            {
+                return db.datas.FirstOrDefault(x => x.tipo.Equals("NOBRE") && (x.inicio.Value.Date == data.Date || x.inicio.Value.Date == data.Date));
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static Data ConsultarPrazo(DateTime data)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+
+            try
+            {
+                return db.datas.FirstOrDefault(x => x.tipo.Equals("PRAZO") && (x.inicio <= data) && (x.fim >= data));
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static Data Umido(DateTime data)
+        {
+            CallcenterEntities db = SingletonObjectContext.Instance.Context;
+
+            try
+            {
+                return db.datas.FirstOrDefault(x => x.tipo.Equals("ÚMIDO") && (x.inicio.Value.Date == data.Date || x.inicio.Value.Date == data.Date));
+
             }
             catch (Exception e)
             {

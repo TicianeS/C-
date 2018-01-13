@@ -53,6 +53,9 @@ namespace CallPostgre.View
                 mnTeleatendente.Enabled = true;
                 mnMonitor.Enabled = false;
                 mnSupervisor.Enabled = false;
+                mnTeleatendente.Visible= true;
+                mnMonitor.Visible = false;
+                mnSupervisor.Visible = false;
             }
             else
             {
