@@ -64,6 +64,9 @@ namespace CallPostgre.View
                     mnTeleatendente.Enabled = false;
                     mnMonitor.Enabled = true;
                     mnSupervisor.Enabled = false;
+                    mnTeleatendente.Visible = false;
+                    mnMonitor.Visible = true;
+                    mnSupervisor.Visible = false;
                 }
                 else
                 {
@@ -72,6 +75,9 @@ namespace CallPostgre.View
                         mnTeleatendente.Enabled = false;
                         mnMonitor.Enabled = false;
                         mnSupervisor.Enabled = true;
+                        mnTeleatendente.Visible = false;
+                        mnMonitor.Visible = false;
+                        mnSupervisor.Visible = true;
                     }
                     else
                     {
@@ -79,16 +85,19 @@ namespace CallPostgre.View
                         {
                             mnTeleatendente.Enabled = true;
                             mnTeleatendente.Visible = true;
-                            mnMonitor.Enabled = false;
-                            mnMonitor.Visible = false;
-                            mnSupervisor.Enabled = false;
-                            mnSupervisor.Visible = false;
+                            mnMonitor.Enabled = true;
+                            mnMonitor.Visible = true;
+                            mnSupervisor.Enabled = true;
+                            mnSupervisor.Visible = true;
                         }
                         else
                         {
                             mnTeleatendente.Enabled = false;
                             mnMonitor.Enabled = false;
                             mnSupervisor.Enabled = false;
+                            mnTeleatendente.Visible = false;
+                            mnMonitor.Visible = false;
+                            mnSupervisor.Visible = false;
                         }
                     }
                     

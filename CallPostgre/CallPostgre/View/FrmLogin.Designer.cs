@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.lblLoginRegistro = new System.Windows.Forms.Label();
             this.lblLoginSenha = new System.Windows.Forms.Label();
             this.mskLoginSenha = new System.Windows.Forms.MaskedTextBox();
@@ -131,6 +132,7 @@
             this.Controls.Add(this.lblLoginSenha);
             this.Controls.Add(this.lblLoginRegistro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

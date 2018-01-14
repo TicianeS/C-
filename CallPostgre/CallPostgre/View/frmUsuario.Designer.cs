@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuario));
             this.lblUsuarioRegistro = new System.Windows.Forms.Label();
             this.lblUsuarioNome = new System.Windows.Forms.Label();
             this.txtUsuarioRegistro = new System.Windows.Forms.TextBox();
@@ -202,7 +203,9 @@
             this.Controls.Add(this.txtUsuarioRegistro);
             this.Controls.Add(this.lblUsuarioNome);
             this.Controls.Add(this.lblUsuarioRegistro);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmUsuario";
             this.Text = "Acesso ao Sistema";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);

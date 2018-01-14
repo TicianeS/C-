@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCargo));
             this.tabCargo = new System.Windows.Forms.TabControl();
             this.tabCargoConsultar = new System.Windows.Forms.TabPage();
             this.dtgCargoPesq = new System.Windows.Forms.DataGridView();
@@ -262,7 +263,9 @@
             this.ClientSize = new System.Drawing.Size(535, 378);
             this.Controls.Add(this.tabCargo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmCargo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cargos";

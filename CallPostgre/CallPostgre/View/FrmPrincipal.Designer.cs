@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.mnPrincipal = new System.Windows.Forms.MenuStrip();
             this.mnTeleatendente = new System.Windows.Forms.ToolStripMenuItem();
             this.fériasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +95,7 @@
             // pretensõesDeFériasToolStripMenuItem
             // 
             this.pretensõesDeFériasToolStripMenuItem.Name = "pretensõesDeFériasToolStripMenuItem";
-            this.pretensõesDeFériasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.pretensõesDeFériasToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.pretensõesDeFériasToolStripMenuItem.Text = "Pretensões de férias";
             this.pretensõesDeFériasToolStripMenuItem.Click += new System.EventHandler(this.pretensõesDeFériasToolStripMenuItem_Click);
             // 
@@ -125,6 +126,7 @@
             // 
             // dadosPessoaisToolStripMenuItem
             // 
+            this.dadosPessoaisToolStripMenuItem.Enabled = false;
             this.dadosPessoaisToolStripMenuItem.Name = "dadosPessoaisToolStripMenuItem";
             this.dadosPessoaisToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.dadosPessoaisToolStripMenuItem.Text = "Funcionários";
@@ -147,6 +149,7 @@
             // 
             // consultarFériasAutorizadasToolStripMenuItem1
             // 
+            this.consultarFériasAutorizadasToolStripMenuItem1.Enabled = false;
             this.consultarFériasAutorizadasToolStripMenuItem1.Name = "consultarFériasAutorizadasToolStripMenuItem1";
             this.consultarFériasAutorizadasToolStripMenuItem1.Size = new System.Drawing.Size(219, 22);
             this.consultarFériasAutorizadasToolStripMenuItem1.Text = "Consultar férias autorizadas";
@@ -185,6 +188,7 @@
             // 
             // dadosPessoaisToolStripMenuItem1
             // 
+            this.dadosPessoaisToolStripMenuItem1.Enabled = false;
             this.dadosPessoaisToolStripMenuItem1.Name = "dadosPessoaisToolStripMenuItem1";
             this.dadosPessoaisToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.dadosPessoaisToolStripMenuItem1.Text = "Funcionários";
@@ -209,6 +213,7 @@
             // 
             // gerenciarFériasToolStripMenuItem
             // 
+            this.gerenciarFériasToolStripMenuItem.Enabled = false;
             this.gerenciarFériasToolStripMenuItem.Name = "gerenciarFériasToolStripMenuItem";
             this.gerenciarFériasToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.gerenciarFériasToolStripMenuItem.Text = "Férias";
@@ -217,6 +222,7 @@
             // 
             this.gerenciarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gerenciarVagasToolStripMenuItem});
+            this.gerenciarToolStripMenuItem.Enabled = false;
             this.gerenciarToolStripMenuItem.Name = "gerenciarToolStripMenuItem";
             this.gerenciarToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.gerenciarToolStripMenuItem.Text = "Vagas";
@@ -231,6 +237,7 @@
             // 
             this.datasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gerenciarDatasToolStripMenuItem});
+            this.datasToolStripMenuItem.Enabled = false;
             this.datasToolStripMenuItem.Name = "datasToolStripMenuItem";
             this.datasToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.datasToolStripMenuItem.Text = "Datas";
@@ -258,8 +265,9 @@
             // 
             // divisãoToolStripMenuItem
             // 
+            this.divisãoToolStripMenuItem.Enabled = false;
             this.divisãoToolStripMenuItem.Name = "divisãoToolStripMenuItem";
-            this.divisãoToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.divisãoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.divisãoToolStripMenuItem.Text = "Divisões";
             // 
             // mnSuperDepCargos
@@ -315,6 +323,7 @@
             this.Controls.Add(this.lblFrmPrincipalNome);
             this.Controls.Add(this.lblFrmPrincipalPerfil);
             this.Controls.Add(this.mnPrincipal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnPrincipal;
             this.Name = "FrmPrincipal";

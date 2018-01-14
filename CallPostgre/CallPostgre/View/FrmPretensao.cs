@@ -234,12 +234,16 @@ namespace CallPostgre.View
         {
             datePretCadPer2Fim.CustomFormat = null;
             txtPretCadPer2Dias.Clear();
+            btnPretCadIncluir.Enabled = false;
+            btnPretCadIncluir.Visible = false;
         }
 
         private void datePretCadPer1Inicio_ValueChanged(object sender, EventArgs e)
         {
             datePretCadPer1Inicio.CustomFormat = null;
             txtPretCadPer1Dias.Clear();
+            btnPretCadIncluir.Enabled = false;
+            btnPretCadIncluir.Visible = false;
 
         }
 
@@ -247,12 +251,16 @@ namespace CallPostgre.View
         {
             datePretCadPer1Fim.CustomFormat = null;
             txtPretCadPer1Dias.Clear();
+            btnPretCadIncluir.Enabled = false;
+            btnPretCadIncluir.Visible = false;
         }
 
         private void datePretCadPer2Inicio_ValueChanged(object sender, EventArgs e)
         {
             datePretCadPer2Inicio.CustomFormat = null;
             txtPretCadPer2Dias.Clear();
+            btnPretCadIncluir.Enabled = false;
+            btnPretCadIncluir.Visible = false;
         }
 
 
@@ -660,6 +668,7 @@ namespace CallPostgre.View
                     LimparData(3);
                     LimparData(4);
                     txtPretCadPer2Dias.Clear();
+                    AtualizarTotal();
                 }
 
             }
@@ -700,7 +709,7 @@ namespace CallPostgre.View
                 if (opcoes == 1)
                 {
                     pre.per1_op1_inicio = ConverterPretensoes(dtgPretCad[1, i].Value.ToString());
-                    pre.per1_op1_fim = ConverterPretensoes(dtgPretCad[3, i].Value.ToString());
+                    pre.per1_op1_fim = ConverterPretensoes(dtgPretCad[2, i].Value.ToString());
                     pre.per2_op1_inicio = ConverterPretensoes(dtgPretCad[4, i].Value.ToString());
                     pre.per2_op1_fim = ConverterPretensoes(dtgPretCad[5, i].Value.ToString());
                 }
@@ -946,15 +955,13 @@ namespace CallPostgre.View
 
             if (datas != null)
             {
-                
-                foreach (DateTime x in datas)
+                if (data.DayOfYear < datas.First().DayOfYear)
                 {
-
-                    if (x.DayOfYear < datas.First().DayOfYear)
-                    {
-                        return false;
-                    }
-                    else
+                    return false;
+                }
+                else
+                {
+                    foreach (DateTime x in datas)
                     {
                         if (x.DayOfYear == data.DayOfYear)
                         {
@@ -962,18 +969,16 @@ namespace CallPostgre.View
                         }
                     }
 
-                }
+                    if (dt == 0)
+                    {
+                        MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
 
-                if (dt == 0)
-                {
-                    MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return true;
-                }
+                }     
             }
 
             return false;
-
-
         }
 
         private Boolean InvadePeriodoNobre(DateTime data)
@@ -981,17 +986,15 @@ namespace CallPostgre.View
             int dt = 0;
             IOrderedEnumerable<DateTime> datas = DataDAO.PeriodoNobre(data);
 
-            if ( datas != null)
+            if (datas != null)
             {
-
-                foreach (DateTime x in datas)
+                if (data.DayOfYear < datas.First().DayOfYear || data.DayOfYear > datas.Last().DayOfYear)
                 {
-
-                    if (x.DayOfYear < datas.First().DayOfYear || x.DayOfYear > datas.Last().DayOfYear)
-                    {
-                        return false;
-                    }
-                    else
+                    return false;
+                }
+                else
+                {
+                    foreach (DateTime x in datas)
                     {
                         if (x.DayOfYear == data.DayOfYear)
                         {
@@ -999,13 +1002,13 @@ namespace CallPostgre.View
                         }
                     }
 
+                    if (dt == 0)
+                    {
+                        MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período nobre. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
                 }
-
-                if (dt == 0)
-                {
-                    MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período nobre. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return true;
-                }
+               
             }
 
             return false;
@@ -1071,21 +1074,23 @@ namespace CallPostgre.View
            
             string ini;
             DateTime inicio;
-            int dias;
+            TimeSpan dias;
+            int total;
 
             ini = dt1.Text.ToString();
             inicio = Convert.ToDateTime(ini);
 
             if ( dt2 > inicio)
             {
-                dias = dt2.DayOfYear - inicio.DayOfYear + 1;
+                dias = dt2.Date - inicio.Date;
+                total = dias.Days + 1;
             }
             else
             {
-                dias = 0;
+                total = 0;
             }
            
-            return dias;
+            return total;
         }
 
         private void LimparData(int campo)
@@ -1127,7 +1132,7 @@ namespace CallPostgre.View
             Data data1 = DataDAO.Nobre(dt1);
             Data data2 = DataDAO.Nobre(dt2);
 
-            if (data1 == null && data2 == null)
+            if (data1 == null || data2 == null)
             {
                 return false;
             }
@@ -1146,7 +1151,7 @@ namespace CallPostgre.View
             Data data1 = DataDAO.Umido(dt1);
             Data data2 = DataDAO.Umido(dt2);
 
-            if (data1 == null && data2 == null)
+            if (data1 == null || data2 == null)
             {
                 return false;
             }
@@ -1158,11 +1163,12 @@ namespace CallPostgre.View
         {
             if (!x.Text.Equals(""))
             {
-                int total = Tools.ConverterParaInt(txtPretCadPer1Dias.Text);
+                int total = Tools.ConverterParaInt(x.Text);
 
                 if (total <= 5 || (total > 25 && total < 30))
                 {
                     MessageBox.Show("O total permitido para o período deve ser 5 a 25 dias ou exatamente 30 dias.");
+                    AtualizarTotal();
                     return true;
                 }
                 else
@@ -1214,7 +1220,7 @@ namespace CallPostgre.View
 
             for (i = dtgPretCad.FirstDisplayedScrollingRowIndex; i < l; i++)
             {
-                if (!dtgPretCad[0, i].Value.ToString().Equals(""))
+                if (dtgPretCad[0, i].Value != null)
                 {
                     opcoes++;
                 }
@@ -1235,6 +1241,15 @@ namespace CallPostgre.View
 
             btnPretCadAlterar.Visible = true;
             btnPretCadAlterar.Enabled = true;
+            btnPretCadIncluir.Enabled = false;
+            btnPretCadIncluir.Visible = false;
+            LimparData(1);
+            LimparData(2);
+            LimparData(3);
+            LimparData(4);
+            txtPretCadPer1Dias.Clear();
+            txtPretCadPer2Dias.Clear();
+            txtPretCadTotal.Clear();
 
             if (opcoes == 3)
             {
@@ -1282,6 +1297,12 @@ namespace CallPostgre.View
             {
                 return false;
             }
+        }
+
+        private void cboPretCadAno_SelectedValueChanged(object sender, EventArgs e)
+        {
+            txtPretCadPaqInicio.Clear();
+            txtPretCadPaqFim.Clear();
         }
     }
 }

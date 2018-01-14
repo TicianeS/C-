@@ -84,15 +84,13 @@ namespace CallPostgre.DAO
         public static IOrderedEnumerable<DateTime> PeriodoUmido(DateTime data)
         {
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            int i = 0; 
 
             try
             {
-                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("ÚMIDO") == true && 
-                    (x.inicio.Value.Month == data.Month &&
-                     x.inicio.Value.Year == data.Year) ||
-                    (x.fim.Value.Month == data.Month &&
-                     x.fim.Value.Year == data.Year))
+                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("ÚMIDO"))
                         .ToList().OrderBy(x => x.inicio);
+
 
                 if (dt != null)
                 {
@@ -101,20 +99,29 @@ namespace CallPostgre.DAO
 
                     foreach (Data x in dt)
                     {
-                        if (x.inicio.Value.Month == data.Month)
+                        if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
                         {
                             datas.Add(x.inicio.Value.Date);
+                            i++;
                            
                         }
-                        if (x.fim.Value.Month == data.Month)
+                        if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
                         {
                             datas.Add(x.fim.Value.Date);
+                            i++;
 
                         }
 
                     }
-
-                    return datas.ToList().OrderBy(x => x.DayOfYear);
+                    if (i > 0)
+                    {
+                        return datas.ToList().OrderBy(x => x.DayOfYear);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    
                 }
                 else
                 {
@@ -129,38 +136,45 @@ namespace CallPostgre.DAO
 
         public static IOrderedEnumerable<DateTime> PeriodoNobre(DateTime data)
         {
+            int i = 0; 
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
 
             try
             {
-                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Equals("NOBRE") &&
-                    (x.inicio.Value.Month == data.Month &&
-                     x.inicio.Value.Year == data.Year) ||
-                    (x.fim.Value.Month == data.Month &&
-                     x.fim.Value.Year == data.Year))
+                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("NOBRE"))
                         .ToList().OrderBy(x => x.inicio);
+
 
                 if (dt != null)
                 {
                     List<DateTime> datas = new List<DateTime>();
-                    
+
 
                     foreach (Data x in dt)
                     {
-                        if (x.inicio.Value.Month == data.Month)
+                        if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
                         {
                             datas.Add(x.inicio.Value.Date);
-                            
+                            i++;
+
                         }
-                        if (x.fim.Value.Month == data.Month)
+                        if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
                         {
                             datas.Add(x.fim.Value.Date);
+                            i++;
 
                         }
 
                     }
 
-                    return datas.ToList().OrderBy(x => x.DayOfYear);
+                    if (i>0)
+                    {
+                        return datas.ToList().OrderBy(x => x.DayOfYear);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
@@ -192,7 +206,7 @@ namespace CallPostgre.DAO
 
             try
             {
-                return db.datas.FirstOrDefault(x => x.tipo.Equals("NOBRE") && (x.inicio.Value.Date == data.Date || x.inicio.Value.Date == data.Date));
+                return db.datas.FirstOrDefault(x => x.tipo.Equals("NOBRE") && (x.inicio == data || x.fim == data));
 
             }
             catch (Exception e)
@@ -222,7 +236,7 @@ namespace CallPostgre.DAO
 
             try
             {
-                return db.datas.FirstOrDefault(x => x.tipo.Equals("ÚMIDO") && (x.inicio.Value.Date == data.Date || x.inicio.Value.Date == data.Date));
+                return db.datas.FirstOrDefault(x => x.tipo.Equals("ÚMIDO") && (x.inicio == data || x.fim == data));
 
             }
             catch (Exception e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartamento));
             this.dtgDepto = new System.Windows.Forms.DataGridView();
             this.dtgDepRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgDepNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +89,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(654, 380);
             this.Controls.Add(this.dtgDepto);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "frmDepartamento";
             this.Text = "frmDepartamento";
             ((System.ComponentModel.ISupportInitialize)(this.dtgDepto)).EndInit();
