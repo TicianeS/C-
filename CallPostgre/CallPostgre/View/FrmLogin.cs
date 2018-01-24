@@ -58,7 +58,7 @@ namespace CallPostgre
                     {
                         string nome = Usuario.funcionarios.nome;
 
-                        MessageBox.Show("BEM-VINDO (A) " + Usuario.funcionarios.nome + " !");
+                        MessageBox.Show("BEM-VINDO(A) " + Usuario.funcionarios.nome + "!");
                         FrmPrincipal frmPri = new FrmPrincipal(this);
                         this.Hide();
                         frmPri.Show();

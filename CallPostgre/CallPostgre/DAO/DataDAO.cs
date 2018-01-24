@@ -81,105 +81,138 @@ namespace CallPostgre.DAO
             }
         }
 
-        public static IOrderedEnumerable<DateTime> PeriodoUmido(DateTime data)
+        public static IOrderedEnumerable<Data> PeriodoUmido()
         {
+
+            int i = 0;
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
-            int i = 0; 
 
             try
             {
-                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("ÚMIDO"))
-                        .ToList().OrderBy(x => x.inicio);
+                return db.datas.Where(x => x.tipo.Contains("ÚMIDO"))
+                        .ToList().OrderBy(x => x.inicio.Value.Date);
 
-
-                if (dt != null)
-                {
-                    List<DateTime> datas = new List<DateTime>();
-                    
-
-                    foreach (Data x in dt)
-                    {
-                        if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
-                        {
-                            datas.Add(x.inicio.Value.Date);
-                            i++;
-                           
-                        }
-                        if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
-                        {
-                            datas.Add(x.fim.Value.Date);
-                            i++;
-
-                        }
-
-                    }
-                    if (i > 0)
-                    {
-                        return datas.ToList().OrderBy(x => x.DayOfYear);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                    
-                }
-                else
-                {
-                    return null;
-                }
             }
             catch (Exception e)
             {
                 return null;
             }
+
+
+            //CallcenterEntities db = SingletonObjectContext.Instance.Context;
+            //int i = 0; 
+
+            //try
+            //{
+            //    IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("ÚMIDO"))
+            //            .ToList().OrderBy(x => x.inicio);
+
+
+            //    if (dt != null)
+            //    {
+            //        List<DateTime> datas = new List<DateTime>();
+
+
+            //        foreach (Data x in dt)
+            //        {
+            //            if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
+            //            {
+            //                datas.Add(x.inicio.Value.Date);
+            //                i++;
+
+            //            }
+            //            if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
+            //            {
+            //                datas.Add(x.fim.Value.Date);
+            //                i++;
+
+            //            }
+
+            //        }
+            //        if (i > 0)
+            //        {
+            //            return datas.ToList().OrderBy(x => x.DayOfYear);
+            //        }
+            //        else
+            //        {
+            //            return null;
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        return null;
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    return null;
+            //}
         }
 
-        public static IOrderedEnumerable<DateTime> PeriodoNobre(DateTime data)
+        //public static IOrderedEnumerable<DateTime> PeriodoNobre(DateTime data)
+        //{
+        //    int i = 0; 
+        //    CallcenterEntities db = SingletonObjectContext.Instance.Context;
+
+        //    try
+        //    {
+        //        IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("NOBRE"))
+        //                .ToList().OrderBy(x => x.inicio);
+
+
+        //        if (dt != null)
+        //        {
+        //            List<DateTime> datas = new List<DateTime>();
+
+
+        //            foreach (Data x in dt)
+        //            {
+        //                if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
+        //                {
+        //                    datas.Add(x.inicio.Value.Date);
+        //                    i++;
+
+        //                }
+        //                if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
+        //                {
+        //                    datas.Add(x.fim.Value.Date);
+        //                    i++;
+
+        //                }
+
+        //            }
+
+        //            if (i>0)
+        //            {
+        //                return datas.ToList().OrderBy(x => x.DayOfYear);
+        //            }
+        //            else
+        //            {
+        //                return null;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return null;
+        //    }
+        //}
+
+        public static IOrderedEnumerable<Data> PeriodoNobre()
         {
-            int i = 0; 
+            int i = 0;
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
 
             try
             {
-                IOrderedEnumerable<Data> dt = db.datas.Where(x => x.tipo.Contains("NOBRE"))
-                        .ToList().OrderBy(x => x.inicio);
-
-
-                if (dt != null)
-                {
-                    List<DateTime> datas = new List<DateTime>();
-
-
-                    foreach (Data x in dt)
-                    {
-                        if (x.inicio.Value.Month == data.Month && x.inicio.Value.Year == data.Year)
-                        {
-                            datas.Add(x.inicio.Value.Date);
-                            i++;
-
-                        }
-                        if (x.fim.Value.Month == data.Month && x.fim.Value.Year == data.Year)
-                        {
-                            datas.Add(x.fim.Value.Date);
-                            i++;
-
-                        }
-
-                    }
-
-                    if (i>0)
-                    {
-                        return datas.ToList().OrderBy(x => x.DayOfYear);
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    return null;
-                }
+                return db.datas.Where(x => x.tipo.Contains("NOBRE"))
+                        .ToList().OrderBy(x => x.inicio.Value.Date);
+    
             }
             catch (Exception e)
             {

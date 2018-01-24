@@ -112,8 +112,8 @@ namespace CallPostgre.View
                 f = FuncionarioDAO.ObterFuncionarioId(reg);
 
                 DateTime inicio = new DateTime(ano, f.per_aquisitivo.Value.Month, f.per_aquisitivo.Value.Day);
-                DateTime fim;
-                fim = inicio.AddDays(364);
+                DateTime fim = new DateTime(ano + 1, f.per_aquisitivo.Value.Month, f.per_aquisitivo.Value.Day);
+                fim = fim.AddDays(-1);
 
                 txtPretCadPaqInicio.Text = inicio.ToString("dd/MM/yyyy");
                 txtPretCadPaqFim.Text = fim.ToString("dd/MM/yyyy");
@@ -142,35 +142,49 @@ namespace CallPostgre.View
 
                             dtgPretCad.Rows.Add(
                                 1,
-                                pre.per1_op1_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per1_op1_fim.Value.ToString("dd/MM/yyyy"),
-                                p1.Value.Days + 1,
-                                pre.per2_op1_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per2_op1_fim.Value.ToString("dd/MM/yyyy"),
-                                p2.Value.Days + 1,
-                                (p1.Value.Days + 1) + (p2.Value.Days + 1));
+                                // pre.per1_op1_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op1_inicio),
+                                // pre.per1_op1_fim.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op1_fim),
+                                CalcularPeriodo(p1),     
+                               // pre.per2_op1_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per2_op1_inicio),
+                               // pre.per2_op1_fim.Value.ToString("dd/MM/yyyy"),
+                               PreencherDatas(pre.per2_op1_fim),
+                                CalcularPeriodo(p2),
+                                CalcularPeriodo(p1) + CalcularPeriodo(p2));
 
 
                             dtgPretCad.Rows.Add(
                                 2,
-                                pre.per1_op2_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per1_op2_fim.Value.ToString("dd/MM/yyyy"),
-                                p3.Value.Days + 1,
-                                pre.per2_op2_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per2_op2_fim.Value.ToString("dd/MM/yyyy"),
-                                p4.Value.Days + 1,
-                                (p3.Value.Days + 1) + (p4.Value.Days + 1));
+                                //pre.per1_op2_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op2_inicio),
+                                //pre.per1_op2_fim.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op2_fim),
+                                CalcularPeriodo(p3),
+                               // pre.per2_op2_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per2_op2_inicio),
+                               // pre.per2_op2_fim.Value.ToString("dd/MM/yyyy"),
+                               PreencherDatas(pre.per2_op2_fim),
+                                CalcularPeriodo(p4),
+                                CalcularPeriodo(p3) + CalcularPeriodo(p4));
 
 
                             dtgPretCad.Rows.Add(
                                 3,
-                                pre.per1_op3_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per1_op3_fim.Value.ToString("dd/MM/yyyy"),
-                                p5.Value.Days + 1,
-                                pre.per2_op3_inicio.Value.ToString("dd/MM/yyyy"),
-                                pre.per2_op3_fim.Value.ToString("dd/MM/yyyy"),
-                                p6.Value.Days + 1,
-                                (p5.Value.Days + 1) + (p6.Value.Days + 1));
+                                //pre.per1_op3_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op3_inicio),
+                                //pre.per1_op3_fim.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per1_op3_fim),
+                                //p5.Value.Days + 1,
+                                CalcularPeriodo(p5),
+                                //pre.per2_op3_inicio.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per2_op3_inicio),
+                                //pre.per2_op3_fim.Value.ToString("dd/MM/yyyy"),
+                                PreencherDatas(pre.per2_op3_fim),
+                                //p6.Value.Days + 1,
+                                CalcularPeriodo(p6),
+                                CalcularPeriodo(p5) + CalcularPeriodo(p6));
                         }
                         
                     }
@@ -179,6 +193,7 @@ namespace CallPostgre.View
                         if (pre == null && ConsultarPrazo() == false)
                         {
                             HabilitarDatas();
+                           // datePretCadPer1Inicio.Value = inicio;
                             
                         }
                     }
@@ -267,10 +282,12 @@ namespace CallPostgre.View
         private void datePretCadPer1Inicio_Leave(object sender, EventArgs e)
         {
             //CÉLULA VAZIA
-            if (CelulaVazia(datePretCadPer1Inicio) == false)
+            if (CelulaAnteriorVazia(datePretCadPer1Inicio, 1) == false)
             {
                 DateTime data;
+                DateTime? dataFim;
                 data = Convert.ToDateTime(datePretCadPer1Inicio.Text);
+                dataFim = ConverterData(datePretCadPer1Fim);
 
                 // PERÍODO AQUISITIVO
                 if (VerifPeriodoAquisitivo(data) == false)
@@ -287,18 +304,37 @@ namespace CallPostgre.View
                             {
 
                                 //INVADE PERÍODO ÚMIDO
-                                if (InvadePeriodoUmido(data) == false)
+                                if (InvadePeriodoUmido(data, dataFim) == false)
                                 {
 
                                     //INVADE PERÍODO NOBRE
-                                    if (InvadePeriodoNobre(data) == false)
+                                    if (InvadePeriodoNobre(data, dataFim) == false)
                                     {
-                                        MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                        
+                                        //  MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                        datePretCadPer1Fim.Enabled = true;
                                         // se os inicio e fim estiverem preenchidos calcula o total de dias
                                         if (CelulaVazia(datePretCadPer1Fim) == false)
                                         {
                                             txtPretCadPer1Dias.Text = CalcularDatas(datePretCadPer1Fim, data).ToString();
+
+
+                                            if (Total(txtPretCadPer1Dias) == true)
+                                            {
+                                                LimparData(2);
+                                                txtPretCadPer1Dias.Clear();
+                                                datePretCadPer1Fim.Enabled = false;
+                                            }
+                                            else
+                                            {
+                                                AtualizarTotal();
+                                                //datePretCadPer1Fim.Value = data;
+                                                datePretCadPer1Fim.Enabled = true;
+                                                
+                                            }                                            
+                                        }
+                                        else
+                                        {
+                                            txtPretCadTotal.Clear();
                                         }
                                     }
                                     else
@@ -345,14 +381,16 @@ namespace CallPostgre.View
         private void datePretCadPer1Fim_Leave(object sender, EventArgs e)
         {
             //CÉLULA VAZIA
-            if (CelulaVazia(datePretCadPer1Fim) == false)
+            if (CelulaAnteriorVazia(datePretCadPer1Fim, 2) == false)
             {
 
                 //DATA ANTERIOR VAZIA
                 if (CelulaAnteriorVazia(datePretCadPer1Inicio, 1) == false)
                 {
                     DateTime data;
+                    DateTime? dataIni;
                     data = Convert.ToDateTime(datePretCadPer1Fim.Text);
+                    dataIni = ConverterData(datePretCadPer1Inicio);
 
                     // PERÍODO AQUISITIVO
                     if (VerifPeriodoAquisitivo(data) == false)
@@ -362,21 +400,41 @@ namespace CallPostgre.View
                         {
 
                             //INVADE PERÍODO ÚMIDO
-                            if (InvadePeriodoUmido(data) == false)
+                            if (InvadePeriodoUmido(dataIni, data) == false)
                             {
 
                                 //INVADE PERÍODO NOBRE
-                                if (InvadePeriodoNobre(data) == false)
+                                if (InvadePeriodoNobre(dataIni, data) == false)
                                 {
 
                                     // DATA FINAL MENOR QUE INICIAL
                                     if (CompararDatas(datePretCadPer1Inicio, data, 2) == false)
 
                                     {
-                                        MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                    //    MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
 
-                                        // se os inicio e fim estiverem preenchidos calcula o total de dias
+
+                                            txtPretCadTotal.Clear();
+                                        
+                                        // se o inicio e fim estiverem preenchidos calcula o total de dias
                                         txtPretCadPer1Dias.Text = CalcularDatas(datePretCadPer1Inicio, data).ToString();
+
+                                        if (Total(txtPretCadPer1Dias) == true)
+                                        {
+                                            LimparData(2);
+                                            txtPretCadPer1Dias.Clear();
+                                            datePretCadPer2Inicio.Enabled = false;
+
+                                        }
+                                        else
+                                        {
+                                            AtualizarTotal();
+                                           // datePretCadPer2Inicio.Value = data;
+                                            datePretCadPer2Inicio.Enabled = true;
+                                            
+                                        }
+
+
                                     }
                                     else
                                     {
@@ -422,13 +480,15 @@ namespace CallPostgre.View
         private void datePretCadPer2Inicio_Leave(object sender, EventArgs e)
         {
             //CÉLULA VAZIA
-            if (CelulaVazia(datePretCadPer2Inicio) == false)
+            if (CelulaAnteriorVazia(datePretCadPer2Inicio, 3) == false)
             {
                 //DATA ANTERIOR VAZIA
                 if (CelulaAnteriorVazia(datePretCadPer1Inicio, 1) == false && CelulaAnteriorVazia(datePretCadPer1Fim, 2) == false)
                 {
                     DateTime data;
+                    DateTime? dataFim;
                     data = Convert.ToDateTime(datePretCadPer2Inicio.Text);
+                    dataFim = ConverterData(datePretCadPer2Fim);
 
                     // PERÍODO AQUISITIVO
                     if (VerifPeriodoAquisitivo(data) == false)
@@ -451,22 +511,42 @@ namespace CallPostgre.View
                                         if (CalcularDatas(datePretCadPer1Inicio, data) >= 7 && CalcularDatas(datePretCadPer1Fim, data) >= 7)
                                         {
                                             //INVADE PERÍODO ÚMIDO
-                                            if (InvadePeriodoUmido(data) == false)
+                                            if (InvadePeriodoUmido(data, dataFim) == false)
                                             {
 
                                                 //INVADE PERÍODO NOBRE
-                                                if (InvadePeriodoNobre(data) == false)
+                                                if (InvadePeriodoNobre(data, dataFim) == false)
                                                 {
                                                     // segundo período anterior ao primeiro
                                                     if (CompararDatas(datePretCadPer1Inicio, data, 3) == false)
 
                                                     {
-                                                        MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                                        // MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+                                                        datePretCadPer2Fim.Enabled = true;
 
                                                         // se os inicio e fim estiverem preenchidos calcula o total de dias
                                                         if (CelulaVazia(datePretCadPer2Fim) == false)
                                                         {
                                                             txtPretCadPer2Dias.Text = CalcularDatas(datePretCadPer2Fim, data).ToString();
+
+                                                            if (Total(txtPretCadPer2Dias) == true)
+                                                            {
+                                                                LimparData(3);
+                                                                txtPretCadPer2Dias.Clear();
+                                                                datePretCadPer2Fim.Enabled = false;
+                                                            }
+                                                            else
+                                                            {
+                                                                AtualizarTotal();
+                                                               // datePretCadPer2Fim.Value = data;
+                                                                datePretCadPer2Fim.Enabled = true;
+                                                                
+                                                            }
+
+                                                        }
+                                                        else
+                                                        {
+                                                            txtPretCadTotal.Clear();
                                                         }
                                                     }
                                                     else
@@ -532,13 +612,15 @@ namespace CallPostgre.View
         private void datePretCadPer2Fim_Leave(object sender, EventArgs e)
         {
             //CÉLULA VAZIA
-            if (CelulaVazia(datePretCadPer2Fim) == false)
+            if (CelulaAnteriorVazia(datePretCadPer2Fim, 4) == false)
             {
                 //DATA ANTERIOR VAZIA
                 if (CelulaAnteriorVazia(datePretCadPer1Inicio, 1) == false && CelulaAnteriorVazia(datePretCadPer1Fim, 2) == false && CelulaAnteriorVazia(datePretCadPer2Inicio, 3) == false)
                 {
                     DateTime data;
+                    DateTime? dataIni;
                     data = Convert.ToDateTime(datePretCadPer2Fim.Text);
+                    dataIni = ConverterData(datePretCadPer2Inicio);
 
                     // PERÍODO AQUISITIVO
                     if (VerifPeriodoAquisitivo(data) == false)
@@ -552,37 +634,52 @@ namespace CallPostgre.View
                             {
 
                                 //INVADE PERÍODO ÚMIDO
-                                if (InvadePeriodoUmido(data) == false)
+                                if (InvadePeriodoUmido(dataIni, data) == false)
                                 {
 
                                     //INVADE PERÍODO NOBRE
-                                    if (InvadePeriodoNobre(data) == false)
+                                    if (InvadePeriodoNobre(dataIni, data) == false)
                                     {
                                         // OS DOIS PERÍODOS SÃO NOBRES
-                                        if (TodosNobres(datePretCadPer1Inicio, datePretCadPer1Fim) == false && TodosNobres(datePretCadPer2Inicio, datePretCadPer2Fim) == false)
-                                        {
-
-                                            // OS DOIS PERÍODOS SÃO ÚMIDOS
-                                            if (TodosUmidos(datePretCadPer1Inicio, datePretCadPer1Fim) == false && TodosUmidos(datePretCadPer2Inicio, datePretCadPer2Fim) == false)
-                                            {
-
-                                                MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
-
-                                                // se os inicio e fim estiverem preenchidos calcula o total de dias
-                                                txtPretCadPer2Dias.Text = CalcularDatas(datePretCadPer2Inicio, data).ToString();
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("Os dois períodos escolhidos para férias são períodos úmidos.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                LimparData(3);
-                                                LimparData(4);
-                                            }
-                                        }
-                                        else
+                                        if (TodosNobres(datePretCadPer1Inicio, datePretCadPer1Fim) == true && TodosNobres(datePretCadPer2Inicio, datePretCadPer2Fim) == true)
                                         {
                                             MessageBox.Show("Os dois períodos escolhidos para férias são períodos nobres.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             LimparData(3);
-                                            LimparData(4);
+                                           // LimparData(4);
+
+                                            
+                                        }
+                                        else
+                                        {
+                                            // OS DOIS PERÍODOS SÃO ÚMIDOS
+                                           // if (TodosUmidos(datePretCadPer1Inicio, datePretCadPer1Fim) == true && TodosUmidos(datePretCadPer2Inicio, datePretCadPer2Fim) == true)
+                                            //{
+
+                                              //  MessageBox.Show("Os dois períodos escolhidos para férias são períodos úmidos.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //LimparData(3);
+                                                //LimparData(4);
+
+                                            //}
+                                            //else
+                                            //{
+                                            //    MessageBox.Show("A data informada foi validada.", "Data validada", MessageBoxButtons.OK, MessageBoxIcon.None);
+
+                                                   txtPretCadTotal.Clear();
+
+                                                // se os inicio e fim estiverem preenchidos calcula o total de dias
+                                                txtPretCadPer2Dias.Text = CalcularDatas(datePretCadPer2Inicio, data).ToString();
+
+                                                if (Total(txtPretCadPer2Dias) == true)
+                                                {
+                                                    LimparData(4);
+                                                    txtPretCadPer2Dias.Clear();
+                                                }
+                                                else
+                                                {
+                                                    AtualizarTotal();
+                                                    
+                                                }
+                                           // }
                                         }
 
 
@@ -627,14 +724,13 @@ namespace CallPostgre.View
 
         private void txtPretCadPer1Dias_TextChanged(object sender, EventArgs e)
         {
-            if (Total(txtPretCadPer1Dias) == true)
-            {
-                LimparData(2);
-                txtPretCadPer1Dias.Clear();             
-            }
+            int dias = 0;
+            dias = Tools.ConverterParaInt(txtPretCadPer1Dias.Text);
 
-            AtualizarTotal();
-            
+            if (dias > 0 && (dias != 20 && dias != 30))
+            {
+                MessageBox.Show("Para esta solicitação de pretensão é necessário preencher as datas para o segundo período de férias.", "Cadastrar pretensões", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void txtPretCadPer2Dias_TextChanged(object sender, EventArgs e)
@@ -662,15 +758,6 @@ namespace CallPostgre.View
                     btnPretCadIncluir.Enabled = true;
 
                 }
-                else
-                {
-                    MessageBox.Show("O total de dias permitido para férias é de exatamente 20 ou 30 dias.", "Períodos inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    LimparData(3);
-                    LimparData(4);
-                    txtPretCadPer2Dias.Clear();
-                    AtualizarTotal();
-                }
-
             }
 
         }
@@ -704,32 +791,39 @@ namespace CallPostgre.View
 
             for (i = dtgPretCad.FirstDisplayedScrollingRowIndex; i < l; i++)
             {
-                opcoes = Tools.ConverterParaInt(dtgPretCad[0, i].Value.ToString());
+                if (dtgPretCad[0, i].Value != null)
+                {
+                    opcoes = Tools.ConverterParaInt(dtgPretCad[0, i].Value.ToString());
+                }
+               else
+                {
+                    opcoes = 0;
+                }
 
                 if (opcoes == 1)
                 {
-                    pre.per1_op1_inicio = ConverterPretensoes(dtgPretCad[1, i].Value.ToString());
-                    pre.per1_op1_fim = ConverterPretensoes(dtgPretCad[2, i].Value.ToString());
-                    pre.per2_op1_inicio = ConverterPretensoes(dtgPretCad[4, i].Value.ToString());
-                    pre.per2_op1_fim = ConverterPretensoes(dtgPretCad[5, i].Value.ToString());
+                    pre.per1_op1_inicio = ConverterPretensoes(1, i);
+                    pre.per1_op1_fim = ConverterPretensoes(2, i);
+                    pre.per2_op1_inicio = ConverterPretensoes(4, i);
+                    pre.per2_op1_fim = ConverterPretensoes(5, i);
                 }
                 else
                 {
                     if (opcoes == 2)
                     {
-                        pre.per1_op2_inicio = ConverterPretensoes(dtgPretCad[1, i].Value.ToString());
-                        pre.per1_op2_fim = ConverterPretensoes(dtgPretCad[3, i].Value.ToString());
-                        pre.per2_op2_inicio = ConverterPretensoes(dtgPretCad[4, i].Value.ToString());
-                        pre.per2_op2_fim = ConverterPretensoes(dtgPretCad[5, i].Value.ToString());
+                        pre.per1_op2_inicio = ConverterPretensoes(1, i);
+                        pre.per1_op2_fim = ConverterPretensoes(2, i);
+                        pre.per2_op2_inicio = ConverterPretensoes(4, i);
+                        pre.per2_op2_fim = ConverterPretensoes(5, i);
                     }
                     else
                     {
                         if (opcoes == 3)
                         {
-                            pre.per1_op3_inicio = ConverterPretensoes(dtgPretCad[1, i].Value.ToString());
-                            pre.per1_op3_fim = ConverterPretensoes(dtgPretCad[3, i].Value.ToString());
-                            pre.per2_op3_inicio = ConverterPretensoes(dtgPretCad[4, i].Value.ToString());
-                            pre.per2_op3_fim = ConverterPretensoes(dtgPretCad[5, i].Value.ToString());
+                            pre.per1_op3_inicio = ConverterPretensoes(1, i);
+                            pre.per1_op3_fim = ConverterPretensoes(2, i);
+                            pre.per2_op3_inicio = ConverterPretensoes(4, i);
+                            pre.per2_op3_fim = ConverterPretensoes(5, i);
                         }
                     }
                     
@@ -739,6 +833,12 @@ namespace CallPostgre.View
             if (PretensaoDAO.Incluir(pre) == true)
             {
                 MessageBox.Show("Pretensões de férias foram salvas com sucesso!", "Salvar pretensões", MessageBoxButtons.OK, MessageBoxIcon.None);
+                btnPretCadSalvar.Enabled = false;
+                btnPretCadSalvar.Visible = false;
+                btnPretCadIncluir.Enabled = false;
+                btnPretCadIncluir.Visible = false;
+                btnPretCadAlterar.Enabled = false;
+                btnPretCadAlterar.Visible = false;
             }
             else
             {
@@ -755,7 +855,7 @@ namespace CallPostgre.View
         {
             txtPretCadNome.Clear();
             txtPretCadTurno.Clear();
-            cboPretCadAno.Text = "";
+            cboPretCadAno.SelectedText = "";
             txtPretCadPaqInicio.Clear();
             txtPretCadPaqFim.Clear();
 
@@ -781,14 +881,23 @@ namespace CallPostgre.View
         {
             if (((DateTimePicker)x).Text.Equals(" "))
             {
-
-                MessageBox.Show("Por favor, informe uma data.", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+
+        private DateTime? ConverterData(Control x)
+        {
+            if (((DateTimePicker)x).Text.Equals(" "))
+            {
+                return null;
+            }
+            else
+            {
+                return Convert.ToDateTime(x.Text);
             }
         }
 
@@ -907,13 +1016,12 @@ namespace CallPostgre.View
         {
             int i, l;
             i = dtgPretCad.FirstDisplayedScrollingRowIndex;
-            //i = 0;
             l = dtgPretCad.RowCount;
 
             TimeSpan dias;
             string opcao;
             DateTime op;
-
+            
             do
             {
                 if (dtgPretCad[1, i].Value != null)
@@ -933,87 +1041,289 @@ namespace CallPostgre.View
 
                     if (dias.Days < 7)
                     {
-                        MessageBox.Show("As datas de início das opções informadas devem ter um intervalo mínimo de uma semana entre elas. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("As datas das opções informadas devem ter um intervalo mínimo de uma semana entre elas. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
+
+                }
+               else
+                {
+                    i = l;
+                }
+            
+
+            } while (i < l);
+
+            i = dtgPretCad.FirstDisplayedScrollingRowIndex;
+            l = dtgPretCad.RowCount;
+
+            do
+            {
+                if (dtgPretCad[4, i].Value != null)
+                {
+                    opcao = dtgPretCad[4, i].Value.ToString();
+                    op = Convert.ToDateTime(opcao);
+                    if (op.DayOfYear >= data.DayOfYear)
+                    {
+                        dias = op - data;
+                    }
+                    else
+                    {
+                        dias = data - op;
+                    }
+
+                    i++;
+
+                    if (dias.Days < 7)
+                    {
+                        MessageBox.Show("As datas das opções informadas devem ter um intervalo mínimo de uma semana entre elas. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return true;
                     }
 
                 }
                 else
                 {
-                    return false;
+                    i = l;
                 }
 
-            } while (i <= l);
+            } while (i < l);
 
             return false;
         }
 
-        private Boolean InvadePeriodoUmido(DateTime data)
+        private Boolean InvadePeriodoUmido(DateTime? dataIni, DateTime? dataFim)
         {
-            int dt = 0;
-            IOrderedEnumerable<DateTime> datas = DataDAO.PeriodoUmido(data);
 
-            if (datas != null)
+
+            int i = 0;
+            IOrderedEnumerable<Data> datasUmidas = DataDAO.PeriodoUmido();
+            List<Data> datas = new List<Data>();
+
+            if (datasUmidas != null)
             {
-                if (data.DayOfYear < datas.First().DayOfYear)
+                if (dataFim == null)
                 {
-                    return false;
-                }
-                else
-                {
-                    foreach (DateTime x in datas)
+                    foreach (Data x in datasUmidas)
                     {
-                        if (x.DayOfYear == data.DayOfYear)
+                        if (x.inicio.Value.Month == dataIni.Value.Month && x.inicio.Value.Year == dataIni.Value.Year)
                         {
-                            dt = 1;
+                            datas.Add(x);
+                            i++;
                         }
                     }
 
-                    if (dt == 0)
+                    if (i > 0)
                     {
+                        datas.ToList().OrderBy(x => x.inicio.Value.Date);
+
+
+                        if (dataIni.Value.Month == 9 && dataIni.Value.Date < datas.First().inicio.Value.Date)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            foreach (Data x in datas)
+                            {
+                                if (x.inicio == dataIni)
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+
                         MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return true;
                     }
-
-                }     
-            }
-
-            return false;
-        }
-
-        private Boolean InvadePeriodoNobre(DateTime data)
-        {
-            int dt = 0;
-            IOrderedEnumerable<DateTime> datas = DataDAO.PeriodoNobre(data);
-
-            if (datas != null)
-            {
-                if (data.DayOfYear < datas.First().DayOfYear || data.DayOfYear > datas.Last().DayOfYear)
-                {
-                    return false;
-                }
+                    else
+                    {
+                        return false;
+                    }
+                } // data fim possui valor
                 else
                 {
-                    foreach (DateTime x in datas)
+                    foreach (Data x in datasUmidas)
                     {
-                        if (x.DayOfYear == data.DayOfYear)
+                        if ((x.inicio.Value.Month == dataIni.Value.Month && x.inicio.Value.Year == dataIni.Value.Year) || (x.fim.Value.Month == dataFim.Value.Month && x.fim.Value.Year == dataFim.Value.Year))
                         {
-                            dt = 1;
+                            datas.Add(x);
+                            i++;
                         }
                     }
 
-                    if (dt == 0)
+                    if (i > 0)
                     {
+                        datas.ToList().OrderBy(x => x.fim.Value.Date);
+
+
+                      //  if ((dataIni.Value.Month == 2 || dataIni.Value.Month == 7) && dataFim.Value.Date > datas.Last().fim.Value.Date)
+                      //  {
+                      //      return false;
+                     //   }
+                      //  else
+                      //  {
+                           // if (dataFim.Value.Month == 7 && dataIni.Value.Date < datas.First().inicio.Value.Date)
+                           // {
+                           //     return false;
+                           // }
+                           // else
+                           // {
+                                foreach (Data x in datas)
+                                {
+                                    if (x.inicio == dataIni && x.fim == dataFim)
+                                    {
+                                        return false;
+                                    }
+                                }
+                           // }
+
+                       // }
+
+                        MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+
+            //int dt = 0;
+            //IOrderedEnumerable<DateTime> datas = DataDAO.PeriodoUmido(data);
+
+            //if (datas != null)
+            //{
+            //    if (data.DayOfYear < datas.First().DayOfYear)
+            //    {
+            //        return false;
+            //    }
+            //    else
+            //    {
+            //        foreach (DateTime x in datas)
+            //        {
+            //            if (x.DayOfYear == data.DayOfYear)
+            //            {
+            //                dt = 1;
+            //            }
+            //        }
+
+            //        if (dt == 0)
+            //        {
+            //            MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período úmido. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            return true;
+            //        }
+
+            //    }     
+            //}
+
+            //return false;
+        }
+
+        private Boolean InvadePeriodoNobre(DateTime? dataIni, DateTime? dataFim)
+        {
+            int i = 0;
+            IOrderedEnumerable<Data> datasNobres = DataDAO.PeriodoNobre();
+            List<Data> datas = new List<Data>();
+
+           if (datasNobres != null)
+            {
+                if (dataFim == null)
+                {
+                    foreach (Data x in datasNobres)
+                    {
+                        if (x.inicio.Value.Month == dataIni.Value.Month && x.inicio.Value.Year == dataIni.Value.Year)
+                        {
+                            datas.Add(x);
+                            i++;
+                        }
+                    }
+
+                    if (i > 0)
+                    {
+                        datas.ToList().OrderBy(x => x.inicio.Value.Date);
+
+
+                        if (dataIni.Value.Month == 7 && dataIni.Value.Date < datas.First().inicio.Value.Date)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            foreach (Data x in datas)
+                            {
+                                if (x.inicio == dataIni)
+                                {
+                                    return false;
+                                }
+                            }                         
+                        }
+
                         MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período nobre. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return true;
                     }
+                    else
+                    {
+                        return false;
+                    }
+                } // data fim possui valor
+                else
+                {
+                    foreach (Data x in datasNobres)
+                    {
+                        if ((x.inicio.Value.Month == dataIni.Value.Month && x.inicio.Value.Year == dataIni.Value.Year) || (x.fim.Value.Month == dataFim.Value.Month && x.fim.Value.Year == dataFim.Value.Year))
+                        {
+                            datas.Add(x);
+                            i++;
+                        }
+                    }
+
+                    if (i > 0)
+                    {
+                        datas.ToList().OrderBy(x => x.fim.Value.Date);
+
+
+                        if ((dataIni.Value.Month == 2 || dataIni.Value.Month == 7) && dataFim.Value.Date > datas.Last().fim.Value.Date)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            if (dataFim.Value.Month == 7 && dataIni.Value.Date < datas.First().inicio.Value.Date)
+                            {
+                                return false;
+                            }       
+                            else
+                            {
+                                foreach (Data x in datas)
+                                {
+                                    if (x.inicio == dataIni && x.fim == dataFim)
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+                            
+                        }
+
+                        MessageBox.Show("A data informada não pode ser diferente das datas predefinidas para o período nobre. ", "Data incorreta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-               
             }
-
-            return false;
-
-
+            else
+            {
+                return false;
+            }    
         }
 
         private void DesabilitarDatas()
@@ -1029,9 +1339,9 @@ namespace CallPostgre.View
         private void HabilitarDatas()
         {
             datePretCadPer1Inicio.Enabled = true;
-            datePretCadPer1Fim.Enabled = true;
-            datePretCadPer2Inicio.Enabled = true;
-            datePretCadPer2Fim.Enabled = true;
+            //datePretCadPer1Fim.Enabled = true;
+            //datePretCadPer2Inicio.Enabled = true;
+            //datePretCadPer2Fim.Enabled = true;
 
         }
 
@@ -1132,12 +1442,12 @@ namespace CallPostgre.View
             Data data1 = DataDAO.Nobre(dt1);
             Data data2 = DataDAO.Nobre(dt2);
 
-            if (data1 == null || data2 == null)
+            if (data1 != null || data2 != null)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
 
@@ -1151,12 +1461,12 @@ namespace CallPostgre.View
             Data data1 = DataDAO.Umido(dt1);
             Data data2 = DataDAO.Umido(dt2);
 
-            if (data1 == null || data2 == null)
+            if (data1 != null || data2 != null)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         private Boolean Total(Control x)
@@ -1165,14 +1475,15 @@ namespace CallPostgre.View
             {
                 int total = Tools.ConverterParaInt(x.Text);
 
-                if (total <= 5 || (total > 25 && total < 30))
+                if (total < 5 || (total > 25 && total < 30) || total > 30)
                 {
-                    MessageBox.Show("O total permitido para o período deve ser 5 a 25 dias ou exatamente 30 dias.");
-                    AtualizarTotal();
+                    MessageBox.Show("O total permitido para o período deve ser 5 a 25 dias ou exatamente 30 dias.", "Data inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                     return true;
                 }
                 else
                 {
+                    AtualizarTotal();
                     return false;
                 }
                 
@@ -1191,13 +1502,27 @@ namespace CallPostgre.View
             if (!txtPretCadPer1Dias.Text.Equals("") && !txtPretCadPer2Dias.Text.Equals(""))
             {
                 dias = Tools.ConverterParaInt(txtPretCadPer1Dias.Text) + Tools.ConverterParaInt(txtPretCadPer2Dias.Text);
-                txtPretCadTotal.Text = dias.ToString();
+                
+                if (dias == 20 || dias == 30)
+                {
+                    txtPretCadTotal.Text = dias.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("O total de dias permitido para férias é de exatamente 20 ou 30 dias.", "Períodos inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimparData(4);
+                    txtPretCadPer2Dias.Clear();
+                }
+
+
             }
             else
             {
                 if (!txtPretCadPer1Dias.Text.Equals("") && txtPretCadPer2Dias.Text.Equals(""))
                 {
                     dias = Tools.ConverterParaInt(txtPretCadPer1Dias.Text);
+
+
                 }
                 else
                 {
@@ -1210,6 +1535,7 @@ namespace CallPostgre.View
             }
 
             txtPretCadTotal.Text = dias.ToString();
+
         }
 
         // inclui as datas no dataGrid
@@ -1239,8 +1565,12 @@ namespace CallPostgre.View
                                 Tools.ConverterParaInt(txtPretCadPer2Dias.Text),
                                 Tools.ConverterParaInt(txtPretCadTotal.Text));
 
-            btnPretCadAlterar.Visible = true;
-            btnPretCadAlterar.Enabled = true;
+            // btnPretCadAlterar.Visible = true;
+            // btnPretCadAlterar.Enabled = true;
+
+            btnPretCadAlterar.Enabled = false;
+            btnPretCadAlterar.Visible = false;
+
             btnPretCadIncluir.Enabled = false;
             btnPretCadIncluir.Visible = false;
             LimparData(1);
@@ -1250,6 +1580,7 @@ namespace CallPostgre.View
             txtPretCadPer1Dias.Clear();
             txtPretCadPer2Dias.Clear();
             txtPretCadTotal.Clear();
+            HabilitarDatas();
 
             if (opcoes == 3)
             {
@@ -1270,15 +1601,18 @@ namespace CallPostgre.View
             return ((DateTimePicker)x).Text;
         }
 
-        private DateTime? ConverterPretensoes(string x)
+        private DateTime? ConverterPretensoes(int col, int lin)
         {
-            if (x.Equals(null))
+            string data;
+
+            if (dtgPretCad[col, lin].Value == null)
             {
                 return null;
             }
             else
             {
-                return Convert.ToDateTime(x);
+                data = dtgPretCad[col, lin].Value.ToString();
+                return Convert.ToDateTime(data);
             }
 
         }
@@ -1304,5 +1638,46 @@ namespace CallPostgre.View
             txtPretCadPaqInicio.Clear();
             txtPretCadPaqFim.Clear();
         }
+
+        private string PreencherDatas(DateTime? data)
+        {
+            if (data == null)
+            {
+                return " ";
+            }
+            else
+            {
+                return data.Value.ToString("dd/MM/yyyy");
+            }
+        }
+
+     private int CalcularPeriodo(TimeSpan? x)
+        {
+            if (x == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return x.Value.Days + 1;
+            }
+        }
+
+
+
+        private void datePretCadPer2Inicio_Enter(object sender, EventArgs e)
+        {
+            if (CelulaAnteriorVazia(datePretCadPer1Inicio, 1) == false && CelulaAnteriorVazia(datePretCadPer1Fim, 2) == false)
+            {
+                // primeiro período NÃO termina em dia útil
+                if (ConsultarDiaUtilFim(datePretCadPer1Fim) == true)
+                {
+                    LimparData(2);
+                    txtPretCadPer1Dias.Clear();
+                }
+            }
+        }
+
+
     }
 }

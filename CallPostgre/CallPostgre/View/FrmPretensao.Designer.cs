@@ -144,7 +144,6 @@
             // txtPretCadTotal
             // 
             this.txtPretCadTotal.BackColor = System.Drawing.Color.White;
-            this.txtPretCadTotal.Enabled = false;
             this.txtPretCadTotal.Location = new System.Drawing.Point(600, 86);
             this.txtPretCadTotal.Name = "txtPretCadTotal";
             this.txtPretCadTotal.ReadOnly = true;
@@ -173,7 +172,6 @@
             // txtPretCadPer2Dias
             // 
             this.txtPretCadPer2Dias.BackColor = System.Drawing.Color.White;
-            this.txtPretCadPer2Dias.Enabled = false;
             this.txtPretCadPer2Dias.Location = new System.Drawing.Point(446, 86);
             this.txtPretCadPer2Dias.Name = "txtPretCadPer2Dias";
             this.txtPretCadPer2Dias.ReadOnly = true;
@@ -184,7 +182,6 @@
             // txtPretCadPer1Dias
             // 
             this.txtPretCadPer1Dias.BackColor = System.Drawing.Color.White;
-            this.txtPretCadPer1Dias.Enabled = false;
             this.txtPretCadPer1Dias.Location = new System.Drawing.Point(446, 40);
             this.txtPretCadPer1Dias.Name = "txtPretCadPer1Dias";
             this.txtPretCadPer1Dias.ReadOnly = true;
@@ -216,6 +213,7 @@
             this.datePretCadPer2Inicio.Size = new System.Drawing.Size(100, 20);
             this.datePretCadPer2Inicio.TabIndex = 23;
             this.datePretCadPer2Inicio.ValueChanged += new System.EventHandler(this.datePretCadPer2Inicio_ValueChanged);
+            this.datePretCadPer2Inicio.Enter += new System.EventHandler(this.datePretCadPer2Inicio_Enter);
             this.datePretCadPer2Inicio.Leave += new System.EventHandler(this.datePretCadPer2Inicio_Leave);
             // 
             // datePretCadPer1Fim
@@ -251,7 +249,7 @@
             this.btnPretCadAlterar.Enabled = false;
             this.btnPretCadAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPretCadAlterar.ForeColor = System.Drawing.Color.White;
-            this.btnPretCadAlterar.Location = new System.Drawing.Point(392, 121);
+            this.btnPretCadAlterar.Location = new System.Drawing.Point(386, 121);
             this.btnPretCadAlterar.Name = "btnPretCadAlterar";
             this.btnPretCadAlterar.Size = new System.Drawing.Size(109, 25);
             this.btnPretCadAlterar.TabIndex = 28;
@@ -374,7 +372,6 @@
             // txtPretCadPaqInicio
             // 
             this.txtPretCadPaqInicio.BackColor = System.Drawing.Color.White;
-            this.txtPretCadPaqInicio.Enabled = false;
             this.txtPretCadPaqInicio.Location = new System.Drawing.Point(131, 33);
             this.txtPretCadPaqInicio.Name = "txtPretCadPaqInicio";
             this.txtPretCadPaqInicio.ReadOnly = true;
@@ -393,7 +390,6 @@
             // txtPretCadPaqFim
             // 
             this.txtPretCadPaqFim.BackColor = System.Drawing.Color.White;
-            this.txtPretCadPaqFim.Enabled = false;
             this.txtPretCadPaqFim.Location = new System.Drawing.Point(317, 34);
             this.txtPretCadPaqFim.Name = "txtPretCadPaqFim";
             this.txtPretCadPaqFim.ReadOnly = true;

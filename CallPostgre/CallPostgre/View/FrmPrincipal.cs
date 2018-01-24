@@ -70,7 +70,7 @@ namespace CallPostgre.View
                 }
                 else
                 {
-                    if (lblFrmPrincipalPerfil.Text.Equals("APOIO SUPERVISOR") || lblFrmPrincipalPerfil.Text.Equals("SUPERVISOR") || lblFrmPrincipalPerfil.Text.Equals("GERENTE"))
+                    if (lblFrmPrincipalPerfil.Text.Equals("APOIO SUPERVISAO") || lblFrmPrincipalPerfil.Text.Equals("SUPERVISOR") || lblFrmPrincipalPerfil.Text.Equals("GERENTE"))
                     {
                         mnTeleatendente.Enabled = false;
                         mnMonitor.Enabled = false;
