@@ -249,13 +249,14 @@
             this.btnPretCadAlterar.Enabled = false;
             this.btnPretCadAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPretCadAlterar.ForeColor = System.Drawing.Color.White;
-            this.btnPretCadAlterar.Location = new System.Drawing.Point(386, 121);
+            this.btnPretCadAlterar.Location = new System.Drawing.Point(276, 121);
             this.btnPretCadAlterar.Name = "btnPretCadAlterar";
             this.btnPretCadAlterar.Size = new System.Drawing.Size(109, 25);
             this.btnPretCadAlterar.TabIndex = 28;
             this.btnPretCadAlterar.Text = "Alterar";
             this.btnPretCadAlterar.UseVisualStyleBackColor = false;
             this.btnPretCadAlterar.Visible = false;
+            this.btnPretCadAlterar.Click += new System.EventHandler(this.btnPretCadAlterar_Click);
             // 
             // btnPretCadSalvar
             // 
@@ -419,11 +420,13 @@
             this.dtgPretCl2pFim,
             this.dtgPretCl2pTotal,
             this.dtgPretClTotal});
+            this.dtgPretCad.Enabled = false;
             this.dtgPretCad.Location = new System.Drawing.Point(11, 305);
             this.dtgPretCad.Name = "dtgPretCad";
             this.dtgPretCad.ReadOnly = true;
             this.dtgPretCad.Size = new System.Drawing.Size(660, 150);
             this.dtgPretCad.TabIndex = 30;
+            this.dtgPretCad.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPretCad_CellDoubleClick);
             // 
             // dtgPretClOpcao
             // 

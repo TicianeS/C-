@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CallPostgre.Model;
 using System.Data.Entity;
+using System.Windows.Forms;
 
 namespace CallPostgre.DAO
 {
@@ -15,7 +16,22 @@ namespace CallPostgre.DAO
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
             try
             {
-                return db.funcionarios.Include("cargos").FirstOrDefault(x => x.registro == reg);
+                Funcionario f = db.funcionarios.Include("cargos").FirstOrDefault(x => x.registro == reg);
+                
+                if (f != null)
+                {
+                    if (f.ativo == false)
+                    {
+                        MessageBox.Show("O funcionário informado foi desligado ou não pertence mais a esta divisão.");
+                    }
+                    else
+                    {
+                        return f;
+                    }
+                }
+                
+                return null;
+                
             }
             catch (Exception e)
             {

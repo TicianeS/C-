@@ -15,7 +15,7 @@ namespace CallPostgre.DAO
             CallcenterEntities db = SingletonObjectContext.Instance.Context;
             try
             {
-                return db.pretensoes.Include("divfuncionario").FirstOrDefault(x => x.ano == ano && x.divfuncionario.funcionarios.registro == reg);
+                return db.pretensoes.Include("divfuncionario").FirstOrDefault(x => x.ano == ano && x.divfuncionario.funcionarios.registro == reg && x.ativo == true);
             }
             catch (Exception e)
             {
