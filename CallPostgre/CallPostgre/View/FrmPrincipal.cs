@@ -42,7 +42,10 @@ namespace CallPostgre.View
             Funcionario f = new Funcionario();
 
             f = FuncionarioDAO.ObterFuncionarioId(reg);
-            lblFrmPrincipalNome.Text = f.nome;
+            if (f != null)
+            {
+                lblFrmPrincipalNome.Text = f.nome;
+            }
 
             Usuario u = new Usuario();
             u = UsuarioDAO.ObterUsuarioRegistro(reg);

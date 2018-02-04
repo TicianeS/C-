@@ -1589,7 +1589,7 @@ namespace CallPostgre.View
                 per2 = Tools.ConverterParaInt(txtPretCadPer2Dias.Text);
                 dias = per1 + per2;
 
-                data = Convert.ToDateTime(txtPretCadPer2Dias.Text);
+                data = Convert.ToDateTime(datePretCadPer1Inicio.Text);
                 idade = CalcularIdade(data);
                 
                 if (idade < 50)
@@ -1613,6 +1613,7 @@ namespace CallPostgre.View
                         MessageBox.Show("Não é possível parcelar as férias se o total for inferior a 30 dias.", "Períodos inválidos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         LimparData(4);
                         txtPretCadPer2Dias.Clear();
+                        txtPretCadTotal.Clear();
                     }
                     else
                     {
@@ -1625,7 +1626,7 @@ namespace CallPostgre.View
                 if (!txtPretCadPer1Dias.Text.Equals("") && txtPretCadPer2Dias.Text.Equals(""))
                 {
                     dias = Tools.ConverterParaInt(txtPretCadPer1Dias.Text);
-
+                    txtPretCadTotal.Text = dias.ToString();
 
                 }
                 else
@@ -1633,12 +1634,13 @@ namespace CallPostgre.View
                     if (txtPretCadPer1Dias.Text.Equals("") && txtPretCadPer2Dias.Text.Equals(""))
                     {
                         dias = 0;
+                        txtPretCadTotal.Text = dias.ToString();
                     }
 
                 }
             }
 
-            txtPretCadTotal.Text = dias.ToString();
+            
 
         }
 

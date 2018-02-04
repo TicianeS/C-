@@ -29,7 +29,7 @@ namespace CallPostgre
             div = DivisaoDAO.ObterDivisaoId(1);
             if (div != null)
             {
-                MessageBox.Show(div.nome);
+                MessageBox.Show("DIVISÃO DE ATENDIMENTO TELEFÔNICO");
             }
         }
 
